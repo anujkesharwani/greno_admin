@@ -1,0 +1,47 @@
+<div class="wrapper"   *ngIf="AuthService.userPermissions"
+>
+  <div class="buttons">
+    <!-- <button
+      (click)="changeTab('users')"
+      [ngClass]="{ active: tabStatus.users }"
+    >
+      Users & Permission
+    </button>
+    <button
+      (click)="changeTab('admin')"
+      [ngClass]="{ active: tabStatus.admin }"
+    >
+      Admin Panel
+    </button> -->
+    <button *ngIf="AuthService.userPermissions['customerAppSettings']"
+      (click)="changeTab('customer')"
+      [ngClass]="{ active: tabStatus.customer }"
+    >
+      Customer App
+    </button>
+    <button *ngIf="AuthService.userPermissions['agentAppSettings']"
+      (click)="changeTab('agent')"
+      [ngClass]="{ active: tabStatus.agent }"
+    >
+      Agent Panel
+    </button>
+    <button
+    *ngIf="AuthService.userPermissions['userPermissions']"
+      (click)="changeTab('permission')"
+      [ngClass]="{ active: tabStatus.permission }"
+    >
+       User & Permission
+    </button>
+  </div>
+
+  <div class="content">
+    <app-users-permission-catalogue
+      *ngIf="tabStatus.users"
+    ></app-users-permission-catalogue>
+    <app-admin-catalogue *ngIf="tabStatus.admin"></app-admin-catalogue>
+    <app-customer-catalogue *ngIf="tabStatus.customer"></app-customer-catalogue>
+    <app-agent-catalogue *ngIf="tabStatus.agent"></app-agent-catalogue>
+    <app-user-permission *ngIf="tabStatus.permission"></app-user-permission>
+
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="mainContainer">
+  <div>
+    <h5>Banner Management</h5>
+    <form [formGroup]="bannerForm" (submit)="onSubmit()">
+      <mat-slide-toggle></mat-slide-toggle>
+      Enable/Disable <br /><br />
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title" />
+        <mat-error *ngIf="title?.invalid && title?.touched"
+          >Field is required</mat-error
+        > </mat-form-field
+      ><br />
+
+      <strong> Banner Image: </strong>
+      <button mat-flat-button color="primary" (click)="selectImage()" type="button">Select Image</button>
+      <br /><br />
+      <mat-form-field appearance="outline">
+        <mat-label>Banner Url</mat-label>
+        <input type="url" matInput formControlName="bannerUrl" /><mat-error
+          *ngIf="bannerUrl?.invalid && bannerUrl?.touched"
+          >Field is required</mat-error
+        > </mat-form-field
+      ><br />
+      <mat-form-field appearance="outline">
+        <mat-label>Start</mat-label>
+        <input type="date" matInput formControlName="start" />
+        <mat-error *ngIf="start?.invalid && start?.touched"
+          >Field is required</mat-error
+        > </mat-form-field
+      ><br />
+      <mat-form-field appearance="outline">
+        <mat-label>End</mat-label>
+        <input type="date" matInput formControlName="end" />
+        <mat-error *ngIf="end?.invalid && end?.touched"
+          >Field is required</mat-error
+        ></mat-form-field
+      ><br />
+
+      <section>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button mat-raised-button color="white" (click)="closeDialog()" type="button">
+          Cancel
+        </button>
+      </section>
+    </form>
+  </div>
+  <div class="preview">
+    <img [src]="imageUrl" *ngIf="imageUrl" />
+    <ng-container *ngIf="!imageUrl">
+      <mat-icon>image</mat-icon>
+      <p>Image Preview</p>
+    </ng-container>
+  </div>
+</div>

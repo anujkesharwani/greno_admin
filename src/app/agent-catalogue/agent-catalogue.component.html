@@ -1,0 +1,173 @@
+<div class="wrapper-card">
+  <div *ngIf="isLoading">
+    <div class="loader101">
+      <app-spinner></app-spinner>
+    </div>
+
+    <app-loader></app-loader>
+  </div>
+  <div class="content" *ngIf="!isLoading">
+    <mat-accordion [multi]="true">
+      <mat-expansion-panel class="inner-section d-flex" [expanded]="true">
+        <mat-expansion-panel-header
+          style="background-color: #3e3e3e; color: white"
+        >
+          <div class="header-inner">
+            <div>
+              <span>Contact Management</span>
+              <span>Total Mobile Numbers : 2</span>
+              <span>Total Emails : 2</span>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div style="padding: 1rem">
+          <form (ngSubmit)="updateContact()">
+            <div class="areas">
+              <div class="box">
+                <div
+                  *ngFor="let phone of phoneNumbers; let i = index"
+                  class="box-c"
+                >
+                  <p><i class="ri-phone-line"></i> Contact No. 1</p>
+                  <input
+                    type="phone"
+                    id="phone-{{ i + 1 }}"
+                    [ngModel]="phone"
+                    [value]="phone"
+                    name="phone-{{ i + 1 }}"
+                    (ngModelChange)="onChange($event, i, 'phoneNumbers')"
+                  />
+                </div>
+              </div>
+              <div class="box">
+                <div
+                  *ngFor="let whatsApp of whatsAppNumbers; let i = index"
+                  class="box-c"
+                >
+                  <p><i class="ri-whatsapp-line"></i> Whats App No.1</p>
+                  <input
+                    matInput
+                    id="whatsApp-{{ i + 1 }}"
+                    [ngModel]="whatsApp"
+                    [value]="whatsApp"
+                    name="whatsApp-{{ i + 1 }}"
+                    (ngModelChange)="onChange($event, i, 'whatsAppNumbers')"
+                  />
+                </div>
+              </div>
+
+              <div class="box">
+                <div *ngFor="let email of emails; let i = index" class="box-c">
+                  <p><i class="ri-mail-line"></i> Email id 1</p>
+                  <input
+                    matInput
+                    id="email-{{ i + 1 }}"
+                    [ngModel]="email"
+                    [value]="email"
+                    name="email-{{ i + 1 }}"
+                    (ngModelChange)="onChange($event, i, 'emails')"
+                  />
+                </div>
+              </div>
+            </div>
+            <button class="button_1" (click)="updateContact()">Save</button>
+          </form>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="inner-section d-flex" [expanded]="true">
+        <mat-expansion-panel-header
+          style="background-color: #3e3e3e; color: white"
+        >
+          <div class="header-inner">
+            <div>
+              <span>Agent and Customer Contact Time Management</span>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="agent-contact-time">
+          <p>
+            Time Period to show Customer Contact Details:
+            <input
+              style="height: 2rem; width: 5rem; margin: 0 0.4rem; outline: none"
+              [value]="timePeriod"
+              type="number"
+              id="timeperiod"
+              name="timePeriod"
+              (input)="onChange($event, 5, 'timePeriod')"
+            />
+            min
+          </p>
+
+          <button class="button_1" (click)="saveTime()">Save</button>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="inner-section d-flex faqsSection">
+        <div
+          style="
+            background-color: #3e3e3e;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+          "
+        >
+          <div class="header-inner">
+            <div>
+              <span>FAQs</span>
+              <span>Total FAQs : {{ FAQ.length }} </span>
+            </div>
+            <div class="icons">
+              <button
+                class="button mx-5"
+                style="color: white; border-color: white"
+                (click)="addFaQ()"
+              >
+                Add FAQs <i class="ri-add-line"></i>
+              </button>
+
+              <app-switch
+                [checkedBackgroundColor]="'#fff'"
+                [checkedThumbColor]="'#094A28'"
+                [uncheckedThumbColor]="'#fff'"
+                [borderColor]="'#fff'"
+                [checked]="panelOpenState"
+                size="50"
+                (change)="toggleFaQ(!panelOpenState)"
+              ></app-switch>
+            </div>
+          </div>
+        </div>
+        <div class="faq-question">
+          <div *ngFor="let question of FAQ" class="q-box">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                gap: 0.2rem;
+              "
+            >
+              <p><b>Question:</b> {{ question.question }}</p>
+              <p><b>Answer:</b> {{ question.answer }}</p>
+            </div>
+            <div class="actions">
+              <app-switch
+                [checked]="question.showQuestion"
+                size="50"
+                (change)="
+                  changeQuestionStatus(question.id, !question.showQuestion)
+                "
+              ></app-switch>
+              <button (click)="editFaQ(question)">
+                <i class="ri-pencil-line"></i>
+              </button>
+              <button (click)="deleteFaQ(question.id)">
+                <i class="ri-delete-bin-6-line" style="color: red"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-accordion>
+  </div>
+</div>

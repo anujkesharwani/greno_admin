@@ -1,0 +1,8 @@
+<section>
+	<h3>Select Agent</h3>
+	<mat-form-field appearance="outline">
+		<mat-select (selectionChange)="dialogRef.close($event)">
+			<mat-option [value]="agent.userId" *ngFor="let agent of agents">{{agent.phone}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+</section>

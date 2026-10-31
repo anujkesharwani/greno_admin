@@ -1,0 +1,89 @@
+.mainContainer {
+  padding: 32px;
+  font-family: Lato !important;
+  background: #EDF1F7;
+  height: 100%;
+
+  $blue-border: #5688FF;
+  $border: #E4E9F2;
+  $orange-background: #FFEAE0;
+  $orange-primary: #F56606;
+  $red-background: #FFE3E3;
+  $red-primary: #FF0000;
+  $blue-background: #E8F1FF;
+  $blue-primary: #3C95BC;
+  $green-background: #EFFFEA;
+  $green-primary: #579540;
+
+  .row-1 {
+    display: flex;
+    justify-content: end;
+    gap: 16px;
+
+    button {
+      border-radius: 4px $blue-border;
+      border: 1px solid;
+    }
+
+    #b1,
+    #b2 {
+      background-color: white;
+      color: $blue-border;
+    }
+
+    #b3 {
+      background-color: $blue-border;
+      color: white;
+    }
+
+  }
+
+  .containerr {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    border: 2px solid $border;
+    margin-top: 24px;
+
+    h3 {
+      color: black;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    table {
+      border: 1px solid $border;
+      margin-top: 16px;
+
+      .status-yes {
+        padding: 4px 8px;
+        background-color: $orange-background;
+        color: $orange-primary;
+        border-radius: 10px;
+      }
+
+      .status-no {
+        padding: 4px 8px;
+        background-color: $red-background;
+        color: $red-primary;
+        border-radius: 10px;
+      }
+
+      .orderDate {
+        padding: 4px 8px;
+        background-color: $blue-background;
+        color: $blue-primary;
+        border-radius: 10px;
+      }
+
+      .amount {
+        padding: 4px 8px;
+        background-color: $green-background;
+        color: $green-primary;
+        border-radius: 10px;
+      }
+
+    }
+
+  }
+}

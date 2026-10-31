@@ -1,0 +1,176 @@
+<div class="main">
+  <!-- Search bar -->
+  <div class="search">
+    <div class="container">
+      <input type="text" class="input" placeholder="Search Area" />
+      <img src="../../assets/Search.svg" alt="" class="search-icon" />
+      <!-- Side buttons -->
+      <button class="clear-filter">
+        <img
+          style="height: 15px; width: 15px; margin-right: 5px; margin-top: -3px"
+          src="../../assets/clear.svg"
+          alt=""
+        />Clear Filter
+      </button>
+
+      <button class="date-range">
+        Enter a date range
+        <span
+          ><img
+            style="margin-left: 10px; height: 18px; width: 18px"
+            src="../../assets/calendar-outline.svg"
+            alt=""
+        /></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Data card -->
+  <div class="container-1">
+    <mat-card class="card" *ngFor="let details of data">
+      <mat-card-title class="title"
+        >Ashok Nagar, Prayagraj, 210010
+        <img src="../../assets/Up.svg" alt="" style="float: right"
+      /></mat-card-title>
+      <div class="bill-container">
+        <div class="row">
+          <div class="bill-card">
+            <h6>25</h6>
+            <p>Total Customers</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bill-card">
+            <h6>15</h6>
+            <p style="margin-left: 10px">Total Booking</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bill-card">
+            <h6 style="margin-left: -4px">₹ 2,220</h6>
+            <p style="margin-left: 15px">Average Bill</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bill-card">
+            <h6 style="margin-left: -4px">₹ 20,220</h6>
+            <p style="margin-left: 25px">Total Bill</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bill-card">
+            <h6 style="margin-left: -4px; color: #d37f07">₹ 20,220</h6>
+            <p style="margin-left: 17px; color: #d37f07">Pending Bill</p>
+          </div>
+        </div>
+      </div>
+      <!-- Details table -->
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr style="text-align: center">
+              <th style="text-align: center">Customer</th>
+              <th style="text-align: center">Phone</th>
+              <th>Total Service</th>
+              <th>Order/week</th>
+              <th>Last Bill</th>
+              <th>Total Bill</th>
+              <th style="text-align: center">Action</th>
+            </tr>
+          </thead>
+
+          <tr *ngFor="let tables of data">
+            <td>
+              <img src="../../assets/Ellipse 162.svg" alt="" class="image" />{{
+                tables.customer
+              }}
+            </td>
+            <td>
+              <img src="../../assets/call.svg" alt="" class="image" />{{
+                tables.phone
+              }}
+            </td>
+            <td style="text-align: center">{{ tables.service }}</td>
+            <td style="text-align: center">{{ tables.order }}</td>
+            <td class="bill">{{ tables.lastbill }}</td>
+            <td class="bill">{{ tables.totalbill }}</td>
+            <td style="display: flex; margin-top: 17px">
+              <!-- toggle btn -->
+              <mat-slide-toggle color="primary" style="margin-right: -20px">
+              </mat-slide-toggle>
+              <!-- (delete,history,down-arrow) -->
+              <span style="display: flex; margin-left: 10px"
+                ><img class="icon-btn" src="../../assets/delete.svg" alt="" />
+                <img
+                  class="icon-btn"
+                  src="../../assets/history_1 1.svg"
+                  alt="" />
+                <img class="icon-btn" src="../../assets/down.svg" alt=""
+              /></span>
+            </td>
+          </tr>
+          <tr *ngFor="let tables of data">
+            <td>
+              <img src="../../assets/Ellipse 162.svg" alt="" class="image" />{{
+                tables.customer
+              }}
+            </td>
+            <td>
+              <img src="../../assets/call.svg" alt="" class="image" />{{
+                tables.phone
+              }}
+            </td>
+            <td style="text-align: center">{{ tables.service }}</td>
+            <td style="text-align: center">{{ tables.order }}</td>
+            <td class="bill">{{ tables.lastbill }}</td>
+            <td class="bill">{{ tables.totalbill }}</td>
+            <td style="display: flex; margin-top: 17px">
+              <!-- toggle btn -->
+              <mat-slide-toggle color="primary" style="margin-right: -20px">
+              </mat-slide-toggle>
+              <!-- (delete,history,down-arrow) -->
+              <span style="display: flex; margin-left: 10px"
+                ><img class="icon-btn" src="../../assets/delete.svg" alt="" />
+                <img
+                  class="icon-btn"
+                  src="../../assets/history_1 1.svg"
+                  alt="" />
+                <img class="icon-btn" src="../../assets/down.svg" alt=""
+              /></span>
+            </td>
+          </tr>
+          <tr *ngFor="let tables of data">
+            <td>
+              <img src="../../assets/Ellipse 162.svg" alt="" class="image" />{{
+                tables.customer
+              }}
+            </td>
+            <td>
+              <img src="../../assets/call.svg" alt="" class="image" />{{
+                tables.phone
+              }}
+            </td>
+            <td style="text-align: center">{{ tables.service }}</td>
+            <td style="text-align: center">{{ tables.order }}</td>
+            <td class="bill">{{ tables.lastbill }}</td>
+            <td class="bill">{{ tables.totalbill }}</td>
+            <td style="display: flex; margin-top: 17px">
+              <!-- toggle btn -->
+              <mat-slide-toggle color="primary" style="margin-right: -20px">
+              </mat-slide-toggle>
+              <!-- (delete,history,down-arrow) -->
+              <span style="display: flex; margin-left: 10px"
+                ><img class="icon-btn" src="../../assets/delete.svg" alt="" />
+                <img
+                  class="icon-btn"
+                  src="../../assets/history_1 1.svg"
+                  alt="" />
+                <img class="icon-btn" src="../../assets/down.svg" alt=""
+              /></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-card>
+  </div>
+</div>

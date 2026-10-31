@@ -1,0 +1,45 @@
+<main *ngIf="isSidebarVisible()">
+  <header>
+    <mat-toolbar>
+      <img src="assets\Group 9231 (1).svg" alt="Greno Dryclean" />
+      <div class="title">Greno Dryclean</div>
+      <div class="menu">
+        <button
+          *ngFor="let item of labels"
+          [routerLink]="item.link"
+          routerLinkActive="active"
+          [disabled]="!item.active"
+        >
+          <mat-icon>{{ item.icon }}</mat-icon
+          ><span class="text">{{ item.name }}</span>
+        </button>
+        <button (click)="signOut()">
+          <mat-icon>exit_to_app</mat-icon><span class="text">Sign-Out</span>
+        </button>
+      </div>
+      <div class="right-menu">
+        <mat-form-field>
+          <mat-label>Select City</mat-label>
+          <mat-select
+            (selectionChange)="setCity($event.value)"
+            [(value)]="selectedCity"
+          >
+            <mat-option *ngIf="allCities.length > 1" value="all"
+              >All Cities</mat-option
+            >
+            <mat-option *ngFor="let city of allCities" [value]="city.id">{{
+              city.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-toolbar>
+  </header>
+
+  <div class="loader" *ngIf="dataProvider.loading"></div>
+  <app-loader></app-loader>
+  <router-outlet></router-outlet>
+</main>
+<main *ngIf="!isSidebarVisible()">
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,15 @@
+<div class="content">
+    <section class="row-1">
+        <h2>Add Address</h2>
+        <button (click)="closeDialog()">
+            <img src="assets/icon/dialog/close.svg" alt="">
+        </button>
+    </section>
+    <ng-container *ngFor="let data of data">
+        <input type="text" [placeholder]="data">
+    </ng-container>
+    <section class="butn">
+        <button mat-flat-button id="b1" (click)="closeDialog()">Cancel</button>
+        <button mat-flat-button id="b2">Add</button>
+    </section>
+</div>

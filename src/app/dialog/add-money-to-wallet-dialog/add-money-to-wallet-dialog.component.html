@@ -1,0 +1,26 @@
+<div class="content">
+    <section class="row-1">
+        <h2>Add Money To Wallet</h2>
+        <button (click)="closeDialog()">
+            <img src="assets/icon/dialog/close.svg" alt="" style="height: 30px;">
+        </button>
+    </section>
+    <!-- <ng-container *ngFor="let data of data"> -->
+        <!-- <input type="text" [placeholder]="data"> -->
+    <!-- </ng-container> -->
+    <section class="row-2">
+        <input type="text" placeholder="Search Agent Name or ID">
+        <img src="assets/icon/dialog/search.svg" alt="">
+    </section>
+    <section class="row-3">
+        <span>Ram Charan Dash</span>
+        <img src="assets/icon/dialog/symbols_close.svg" alt="">
+    </section>
+    <h2>Enter Amount:</h2>
+    <input type="text" placeholder="₹15,000" >
+    <textarea name="reason"  cols="30" rows="3"></textarea>
+    <section class="butn">
+        <button mat-flat-button id="b1" (click)="closeDialog()">Cancel</button>
+        <button mat-flat-button id="b2">Add Money</button>
+    </section>
+</div>

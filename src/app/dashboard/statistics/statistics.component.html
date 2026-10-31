@@ -1,0 +1,53 @@
+<div class="stats three" *ngIf="AuthService.userPermissions && AuthService.userPermissions['totalSales'] ">
+    <div class="stat">
+        <img src="assets/dashboard/totalSales.svg" alt="">
+        <div class="detail">
+            <div class="title">Total Sales</div>
+            <div class="value">{{ totalSales | currency:'INR' }}</div>
+        </div>
+    </div>
+    <div class="stat">
+        <img src="assets/dashboard/totalDiscounts.svg" alt="">
+        <div class="detail">
+            <div class="title">Total Discounts</div>
+            <div class="value">{{ totalDiscounts | currency:'INR' }}</div>
+        </div>
+    </div>
+    <div class="stat">
+        <img src="assets/dashboard/averageBill.png" alt="">
+        <div class="detail">
+            <div class="title">Average Bills</div>
+            <div class="value">{{ averageBills | currency:'INR' }}</div>
+        </div>
+    </div>
+</div>
+<div class="stats four" *ngIf="AuthService.userPermissions && AuthService.userPermissions['bookingsSummary'] ">
+    <div class="stat">
+        <img src="assets/dashboard/availableAgents.png" alt="">
+        <div class="detail">
+            <div class="title">Available Agents</div>
+            <div class="value">{{ availableAgents}}</div>
+        </div>
+    </div>
+    <div class="stat">
+        <img src="assets/dashboard/pendingBookings.png" alt="">
+        <div class="detail">
+            <div class="title">Pending Bookings</div>
+            <div class="value">{{ pendingBookings}}</div>
+        </div>
+    </div>
+    <div class="stat">
+        <img src="assets/dashboard/rejectedBooking.png" alt="">
+        <div class="detail">
+            <div class="title">Rejected Bookings</div>
+            <div class="value">{{ rejectedBookings}}</div>
+        </div>
+    </div>
+    <div class="stat">
+        <img src="assets/dashboard/inProgressBookings.png" alt="">
+        <div class="detail">
+            <div class="title">In Progress Bookings</div>
+            <div class="value">{{ inProgressBookings}}</div>
+        </div>
+    </div>
+</div>

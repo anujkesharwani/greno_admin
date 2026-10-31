@@ -1,0 +1,59 @@
+section {
+    //     display: flex;
+    //     flex-direction: row;
+    //     flex-wrap: wrap;
+    //     gap:20px;
+    //     mat-card{
+    //         width: 300px;
+    //         height: 150px;
+    //         transition: scale 0.3s ease-in-out;
+    //     }
+    //     mat-card:hover{
+    //         scale: 1.05;
+    //     }
+
+    $text-primary: #444;
+    font-family: Lato;
+    $button-primary: #5688FF;
+
+    padding: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    mat-card {
+        flex: 1 1 280px;
+        // width: 280px;
+        height: 120px;
+
+
+        transition: scale 0.3s ease-in-out;
+
+        h1 {
+            color: $text-primary;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        img {
+            height: 101px;
+            width: 101px;
+        }
+
+        button {
+            background-color: $button-primary;
+            color: #FFFFFF;
+            width: 100%;
+        }
+
+        mat-card-content {
+            display: flex;
+            gap: 13px;
+        }
+
+    }
+
+    mat-card:hover {
+        scale: 1.05;
+    }
+}

@@ -1,0 +1,42 @@
+<div class="mat-dialog-container">
+  <h2>Edit {{ data.item.name }}</h2>
+  <form [formGroup]="editForm">
+    <div class="container">
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Name" />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Rate</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="rate"
+            placeholder="Rate"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let option of typeOptions" [value]="option">{{
+              option
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="actions">
+      <button mat-flat-button id="b1" type="button" (click)="onCancel()">
+        Cancel
+      </button>
+      <button mat-flat-button id="b2" type="button" (click)="onSubmit()">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

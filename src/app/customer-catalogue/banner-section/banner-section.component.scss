@@ -1,0 +1,100 @@
+.banner-section {
+  &:last-child {
+    padding-bottom: 1em;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .banner-section-header {
+    color: #054BAE;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    border: 2px solid #7f9ba4;
+    border-left: none;
+    border-right: none;
+
+    button {
+      border: 1px solid #054BAE;
+      border-radius: 20px;
+      padding: 0.25em 0.75em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s;
+
+      .mat-icon {
+        margin-left: 0.25em;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: #054BAE;
+        color: #fff;
+      }
+    }
+  }
+
+  .banner-section-body {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 0.5em;
+
+    .banner {
+      margin: 0.5em;
+      padding: 0.5em;
+      border-radius: 14px;
+      background-color: #fff;
+      color: #054BAE;
+      border: 2px solid #054BAE;
+
+      .banner-img-container,
+      .banner-redirect-url {
+        width: 200px;
+      }
+
+      .banner-img-container {
+        margin: 0 auto;
+
+        img {
+          width: 100%;
+          border-radius: 14px;
+          display: block;
+          height: auto;
+        }
+      }
+
+      .icon-action-btns {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+
+        .delete-btn {
+          color: #d71212;
+        }
+      }
+
+      .banner-redirect-url {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 12px;
+      }
+    }
+
+    .no-banners {
+      margin: 0 auto;
+      text-align: center;
+      color: #7f9ba4;
+    }
+  }
+}

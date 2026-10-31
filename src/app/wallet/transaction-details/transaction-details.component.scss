@@ -1,0 +1,106 @@
+.mainContainer {
+    background: #EDF1F7;
+    padding: 32px;
+    font-family: Lato !important;
+    $border-color: #E4E9F2;
+    $img-border: #D9E4FF;
+    $button-border: #D9E4FF;
+    $green-background:#E8FFDF;
+    $green-primary:#579540;
+    $red-background:#FAECEC;
+    $red-primary:#C94141;
+    $blue-background:#ECEDFA;
+    $blue-primary:#0074C1;
+
+    #back {
+        height: 24px;
+    }
+
+    .heading {
+        border-radius: 8px;
+        border: 1px solid $border-color;
+        background: white;
+        padding: 24px;
+        margin-top: 16px;
+
+        h2 {
+            color: black;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .rows {
+            display: flex;
+            justify-content: space-between;
+
+            section {
+                align-self: center;
+            }
+
+            .btnn {
+                display: flex;
+                gap: 16px;
+
+                .round {
+                    border-radius: 100px;
+                    border: 2px solid $img-border;
+                    padding: 8px;
+                    height: 40px;
+                }
+
+                button {
+                    border-radius: 6px;
+                    border: 1px solid $button-border;
+                    align-self: center;
+                }
+
+            }
+        }
+    }
+
+    .last-transactoion {
+        border-radius: 8px;
+        border: 1px solid $border-color;
+        background: white;
+        padding: 24px;
+        margin-top: 16px;
+
+        h2 {
+            color: black;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .table {
+            border: 1px solid $border-color;
+
+            .green{
+                background-color: $green-background;
+                color: $green-primary;
+                padding: 6px;
+                border-radius: 6px;
+            }
+            .red{
+                background-color: $red-background;
+                color: $red-primary;
+                padding: 6px;
+                border-radius: 6px;
+            }
+            .blue{
+                background-color: $blue-background;
+                color: $blue-primary;
+                padding: 6px;
+                border-radius: 6px;
+            }
+            
+            
+        }
+    }
+
+}

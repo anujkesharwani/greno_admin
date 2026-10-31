@@ -1,0 +1,104 @@
+h2,
+h3 {
+    margin: 0px;
+}
+
+.mainContainer {
+    padding: 20px 24px;
+    font-family: Lato;
+    border-radius: 8px;
+    background: #FFF;
+    margin-top: 24px;
+    height: 500px;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    h2 {
+        color: #252836;
+        font-size: 18px;
+    }
+
+    .search {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+            position: relative;
+            flex-grow: 1;
+
+            input {
+                padding: 8px 16px 8px 32px;
+                position: relative;
+                border-radius: 4px;
+                background: var(--surface-card, #FFF);
+
+                /* 1dp — Elevation */
+                box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.20), 0px 2px 2px 0px rgba(0, 0, 0, 0.12), 0px 0px 2px 0px rgba(0, 0, 0, 0.14);
+                width: 70%;
+            }
+
+            input::placeholder {
+                color: rgba(117, 117, 117, 0.70);
+                font-family: Roboto;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            img {
+                position: absolute;
+                left: 6px;
+                top: 8px;
+            }
+        }
+
+        .right {
+
+
+            button {
+                border-radius: 6px;
+                border: 2px solid var(--bluu, #0074C1);
+                background: #FFF;
+
+                color: var(--bluu, #0074C1);
+                // font-size: 18px;
+                // font-weight: 500;
+            }
+
+        }
+    }
+
+    .row-1{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0px 45px;
+        
+        .small-card {
+            border-radius: 9px;
+            border: 1px solid #D7D7D7;
+            background: var(--white, #FFF);
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 24px;
+            margin-top: 16px;
+            flex-grow: 1;
+            h3 {
+                color: var(--style, #444);
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            .right-side{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .delete{
+                    height: 24px;
+                }
+            }
+        }
+    }
+
+    
+}

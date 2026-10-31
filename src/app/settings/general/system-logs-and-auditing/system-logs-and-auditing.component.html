@@ -1,0 +1,15 @@
+<div class="mainContainer">
+    <div class="heading">
+        <h3>System Logs and Auditing</h3>
+        <button mat-flat-button id="b1">
+            <img src="assets/icon/settings/delete.png" alt="">
+        </button >
+        <button mat-flat-button id="b2">Clear All</button>
+    </div>
+    <div class="rows" *ngFor="let item of data">
+        <h3>{{item.log}}</h3>
+        <h4>{{item.time}}</h4>
+        <button mat-flat-button>Undo</button>
+    </div>
+    <mat-paginator></mat-paginator>
+</div>

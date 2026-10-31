@@ -1,0 +1,14 @@
+li{
+    list-style-type: none;
+    padding: 5px;
+}
+li.active{
+    background: rgb(26, 26, 26);
+    color:white;
+    border-radius: 8px;
+    button{
+        color:white;
+        background: rgb(26, 26, 26);
+    }
+}
+

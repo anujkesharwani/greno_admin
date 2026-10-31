@@ -1,0 +1,37 @@
+<div class="mainContainer">
+    <section class="heading">
+        <div class="left">
+            <h2>Notification (6)</h2>
+        </div>
+        <div class="right">
+            <button mat-flat-button>
+                <img src="assets/icon/notification/tick.svg" alt="">
+                Mark All as Read
+            </button>
+            <button mat-flat-button (click)="openConfirmationDialog()">
+                <img src="assets/icon/notification/delete.svg" alt="">
+                Clear All
+            </button>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="rows" *ngFor="let item of data">
+            <div>
+                <h1>{{item.h1}}</h1>
+                <h2>{{item.h2}}</h2>
+            </div>
+            <div style="margin-left: 40%;">
+                <h3>{{item.day}}</h3>
+                <h3>{{item.time}}</h3>
+            </div>
+            <div>
+                <img src="assets/icon/notification/delete2.svg" alt="">
+            </div>
+            <div class="btnn" *ngIf="item.new">
+                <button mat-flat-button id="b1">Cancel</button>
+                <button mat-flat-button id="b2">Assign</button>
+            </div>
+        </div>
+    </section>
+</div>

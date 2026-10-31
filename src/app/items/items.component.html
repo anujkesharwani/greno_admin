@@ -1,0 +1,55 @@
+<div class="wrapper-card">
+  <div class="header">
+    <div>
+      <span>Total Items: {{ roles.length }}</span>
+      <!-- <span class="mx-5">In Use Items: {{ useCount }}</span>
+      <span>Active Items: {{ activeCount }}</span> -->
+    </div>
+    <div>
+      <button (click)="openAddItemModal()">
+        New Item <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr />
+  
+  <div class="content">
+    <div class="inner-section d-flex" *ngFor="let role of roles">
+      <img class="item-img" [src]="role.img" alt="not appearing" />
+      <div>
+        <span class="slot-name">{{ role.itemName }}</span>
+        <!-- <span class="time">Created On : {{utils.formatDate(role.created.seconds, 'DD MMM YYYY')}}</span> -->
+        <!-- <span class="time">Active On Areas : 0</span> -->
+      </div>
+      <div class="icons">
+        <!-- <img
+          matTooltip="Create Duplicate"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/copy.svg"
+        /> -->
+        <!-- <span matTooltip="Enable/Disable" matTooltipPosition="above" class="d-flex mx-2">
+                  <label class="switch">
+                  <input type="checkbox" [checked]="role.active" (change)="changeStatus(role.id, !role.active)"/>
+                  <span class="slider round"></span>
+                  </label>
+              </span> -->
+        <img
+          matTooltip="Edit"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/edit.svg"
+          (click)="editRole(role)"
+        />
+        <img
+          matTooltip="Delete"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/delete.svg"
+          (click)="deletePermission(role.id)"
+        />
+        
+      </div>
+    </div>
+  </div>
+</div>

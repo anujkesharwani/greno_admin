@@ -1,0 +1,60 @@
+<div
+  class="banner-section"
+  *ngFor="let section of bannerSections; let i = index"
+>
+  <div class="banner-section-header">
+    <h5>Section: {{ section.name }}</h5>
+    <span>No. of Banners: {{ section.banners.length }}</span>
+    <button (click)="addBanner.emit({ sectionIndex: i })">
+      Add Banner<mat-icon fontIcon="add_circle"></mat-icon>
+    </button>
+    <app-switch
+      [checked]="section.show"
+      (switch)="switchBannerSectionShow.emit({ sectionIndex: i, show: $event })"
+    ></app-switch>
+  </div>
+  <div class="banner-section-body">
+    <ng-container
+      *ngIf="section.banners && section.banners.length; else noBanners"
+    >
+      <div class="banner" *ngFor="let banner of section.banners; let j = index">
+        <div class="banner-img-container">
+          <img [src]="banner.imageUrl" alt="Banner {{ j + 1 }}" />
+        </div>
+        <div class="icon-action-btns">
+          <app-switch
+            [checked]="banner.show"
+            size="50"
+            (switch)="
+              switchBannerShow.emit({
+                sectionIndex: i,
+                bannerIndex: j,
+                show: $event
+              })
+            "
+          ></app-switch>
+          <button
+            (click)="editBanner.emit({ sectionIndex: i, bannerIndex: j })"
+          >
+            <mat-icon fontIcon="edit_outline"></mat-icon>
+          </button>
+          <button
+            class="delete-btn"
+            (click)="deleteBanner.emit({ sectionIndex: i, bannerIndex: j })"
+          >
+            <mat-icon fontIcon="delete_outline"></mat-icon>
+          </button>
+        </div>
+        <p class="banner-redirect-url">
+          URL:
+          <a [href]="banner.redirectUrl" target="_blank">{{
+            banner.redirectUrl
+          }}</a>
+        </p>
+      </div>
+    </ng-container>
+    <ng-template #noBanners>
+      <p class="no-banners">No banners in this section</p>
+    </ng-template>
+  </div>
+</div>

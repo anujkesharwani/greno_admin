@@ -1,0 +1,52 @@
+<div id="dialog">
+    <div id="header">
+      <div>
+        <h4>Area wise Summary</h4>
+        <p>{{ refreshedAt }}</p>
+      </div>
+      <div id="header-buttons">
+        <button id="hidden-for-focus"></button>
+        <button (click)="downloadExcel()">Download as Excel</button>
+        <button (click)="downloadPDF()">Download as PDF</button>
+        <button (click)="refresh()">Refresh Data</button>
+        <button (click)="picker.open()">
+          {{ dateSelected | date : 'mediumDate' }}
+          <input matInput [matDatepicker]="picker" [(ngModel)]="dateSelected" [max]="today"
+                 (dateChange)="refresh()">
+          <mat-datepicker #picker xPosition="end"></mat-datepicker>
+          <mat-icon fontIcon="calendar_month"></mat-icon>
+        </button>
+      </div>
+      <button id="close" (click)="dialogRef.close()"><mat-icon fontIcon="close"></mat-icon></button>
+    </div>
+    <div id="summary-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Area Id</th>
+            <th>Area Name</th>
+            <th>Total Sales</th>
+            <th>Total Taxes</th>
+            <th>Total Bookings</th>
+            <th>Bookings Cancelled</th>
+            <!-- <th>Available Agents</th> -->
+            <!-- Add more headers as needed -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let summary of customerSummary">
+            <td>{{ summary && summary.id ? summary.id : '-' }}</td>
+            <td>{{ summary && summary.name ? summary.name : '-' }}</td>
+            <td>{{ summary && summary.sales >= 0 ? '₹' + summary.sales : '-' }}</td>
+            <td>{{ summary && summary.taxes >= 0 ? '₹' + summary.taxes : '-' }}</td>
+            <td>{{ summary && summary.totalBooking >= 0 ? summary.totalBooking : '-' }}</td>
+            <td>{{ summary && summary.discarded >= 0 ? summary.discarded : '-' }}</td>
+            <!-- <td>{{ summary && summary.availableAgents >= 0 ? summary.availableAgents : '-' }}</td> -->
+            <!-- Add more columns as needed -->
+          </tr>
+          <!-- Add more rows if there are more properties in the summary object -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

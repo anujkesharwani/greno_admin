@@ -1,0 +1,44 @@
+h2,
+h3,
+p {
+    margin: 0px;
+}
+
+.mainContainer {
+    padding: 12px 24px;
+    // background: #EDF1F7;
+    font-family: Lato;
+
+    .btnn {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+
+        button {
+            border-radius: 6px;
+            font-size: 22px;
+            font-weight: 500;
+            padding: 20px;
+        }
+
+        #b1 {
+            border: 1px solid #0074C1;
+            background-color: #0074C1;
+            color: #EDF1F7;
+        }
+
+        #b2 {
+            border: 1px solid #0074C1;
+            background: #FFF;
+            color:#0074C1;
+        }
+
+        #b3 {
+            border: 1px solid #E64A4A;
+            background: #E64A4A;
+            color: #EDF1F7;
+        }
+
+        
+    }
+}

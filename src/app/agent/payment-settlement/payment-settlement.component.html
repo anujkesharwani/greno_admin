@@ -1,0 +1,81 @@
+<div class="containerr">
+    <div class="boxx">
+        <div class="searchBar"><input id="searchBar" placeholder="Search Agent" />
+        </div>
+        <div *ngFor="let agent of agentDetails">
+            <mat-card *ngIf="agentDetails.length>0">
+                <mat-card-header class="box1">
+                    <div class="agentDetail">
+                        
+                        <img src={{agent.agentPhoto}} />
+                        <p> {{agent.agentName}}</p>
+                    </div>
+                    <div class="actions">
+                        <button><img src="\assets\icon\paymentSettlement\phone.svg" /></button>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <button><img src="\assets\icon\paymentSettlement\delete.svg" /></button>
+                        
+                        
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="paymentDetails">
+                        <div class="detailBox">
+                            <div class="blueBox">
+                                <h5>{{agent.lastPayment}}</h5>
+                                <p>Last Payment</p>
+                            </div>
+                            <div class="blueBox">
+                                <h5> ₹ {{agent.paid}}</h5>
+                                <p>Paid</p>
+                            </div>
+                            <div class="orangeBox">
+                                <h5> ₹ {{agent.unpaid}}</h5>
+                                <p>Unpaid</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="transactions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Txn ID</th>
+                                    <th>Time</th>
+                                    <th>Recipient</th>
+                                    <th>Reason</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr *ngFor="let transaction of agent.transaction">
+                                    <td>{{transaction.transactionID}}</td>
+                                    <td>{{transaction.transactionTime}}</td>
+                                    <td>{{transaction.recipient}}</td>
+                                    <td>{{transaction.reason}}</td>
+                                    <td>
+                                        <p class="amount"> ₹ {{transaction.amount}}</p>
+                                    </td>
+                                    <td><button><img
+                                        src="\assets\icon\paymentSettlement\edit.svg" /></button><button><img
+                                            src="\assets\icon\paymentSettlement\delete.svg" /></button></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                    <div class="seeMore">
+                        <a>See More</a>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+        
+    </div>
+    <div *ngIf="agentDetails.length===0" class="empty"><img src="\assets\icon\paymentSettlement\empty.svg"/></div>
+</div>

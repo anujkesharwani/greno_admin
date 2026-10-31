@@ -1,0 +1,22 @@
+<section class="mainContainer">
+    <div class="row-1">
+        <h2>Order</h2>
+        <!-- <button mat-flat-button>
+            <img src="assets/icon/dashboard/arrow-down.png" alt="">&nbsp;
+            Last 7 Days
+        </button> -->
+    </div>
+
+    <div class="chart">
+        <section>
+            <div class="label" *ngFor="let item of chartData">
+                <h2 class="dot" [style.background]="item.color"></h2>
+                <h2> {{item.service}}</h2>
+            </div>
+        </section>
+        <section>
+            <canvas id="myChart1"></canvas>
+        </section>
+    </div>
+
+</section>

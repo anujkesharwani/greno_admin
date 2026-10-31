@@ -1,0 +1,96 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="d-flex heading-text">
+      <span class="blue-bold-text">Add Item</span>
+    </div>
+    <div class="modal-close-icon">
+      <mat-icon (click)="closeDialog()">close</mat-icon>
+    </div>
+  </div>
+  <hr class="my-4" />
+  <div>
+    <div class="icons mt-3">
+      <form [formGroup]="employeeForm">
+        <div class="input_field_section">
+          <label for="itemName" class="label">Item Name*</label><br />
+          <div
+            class="input_field_box"
+            [ngClass]="{
+              'invalid-field':
+                employeeForm.controls['itemName'].invalid &&
+                employeeForm.controls['itemName'].touched
+            }"
+          >
+            <img src="assets/edit-info/user_icon.svg" alt="" />
+            <input
+              formControlName="itemName"
+              class="text_box_width"
+              type="text"
+              placeholder="Item Name"
+            />
+          </div>
+
+          <!-- Adding Image -->
+          <div class="flex_space_between imgUpload">
+            <div>
+              <input
+                type="file"
+                #fileInput
+                style="display: none"
+                (change)="changePhoto($event)"
+                accept="image/*"
+              />
+              <button (click)="fileInput.click()">
+                <img
+                  src="assets/add-user/upload.svg"
+                  class="upload_picture_icon"
+                  alt=""
+                />
+                Upload Photo
+              </button>
+              <p *ngIf="isImgSizeValid">*Image size should be</p>
+              <p *ngIf="isImgSizeValid">less than 500kb</p>
+            </div>
+            <div>
+              <button (click)="removePhoto()" class="remove_btn">
+                <img
+                  src="assets/add-user/delete.svg"
+                  class="remove_picture_icon"
+                  alt=""
+                />
+                Remove
+              </button>
+            </div>
+            <div>
+              <img
+                class="profile_section"
+                [src]="this.employeeForm.value.img"
+                alt="Profile Photo"
+              />
+            </div>
+          </div>
+
+          <div
+            *ngIf="
+              employeeForm.controls['itemName'].invalid &&
+              employeeForm.controls['itemName'].touched
+            "
+            class="error-message"
+          >
+            Please enter a valid name.
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <button class="btn btn-primary me-3" type="submit" (click)="addItem()">
+          Submit
+        </button>
+        <button class="btn btn-secondary" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

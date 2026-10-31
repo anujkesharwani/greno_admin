@@ -1,0 +1,24 @@
+.mainContainer {
+    $text-primary: #444;
+    font-family: poppins;
+    // background-color: #EDF1F7;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    
+
+    mat-tab-group {
+        color: $text-primary ;
+        font-size: 20px;
+        font-weight: 500;
+        // width: 100%;
+
+    }
+
+    .btn{
+        display: flex;
+        gap:16px;
+    }
+
+    
+}

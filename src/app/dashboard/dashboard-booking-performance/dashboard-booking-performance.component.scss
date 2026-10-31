@@ -1,0 +1,65 @@
+.mainContainer {
+    border-radius: 8px;
+    border: 2px solid var(--border, #E4E9F2);
+    background: #FFF;
+    margin-top: 32px;
+    padding: 24px 32px;
+    font-family: Lato;
+
+    h2 {
+        color: #000;
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    h3 {
+        color: #000;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .chart {
+        display: flex;
+        justify-content: center;
+
+        div {
+            height: 176px;
+            width: 176px;
+        }
+
+        // canvas {
+        //     width: 40%;
+        //     height: 40%;
+        // }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+        gap: 70px;
+        h2 {
+            color: #1A1D1F;
+            font-size: 18px;
+            font-weight: 700;
+            align-self: center;
+        }
+
+        h1 {
+            color:  #1A1D1F;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        h3{
+            height: 28px;
+            width: 28px;
+        }
+
+        div{
+            display: flex;
+            gap: 16px;
+        }
+    }
+}

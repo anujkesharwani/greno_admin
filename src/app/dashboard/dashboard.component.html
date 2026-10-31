@@ -1,0 +1,17 @@
+<app-statistics
+[totalSales]="totalSales"
+[totalDiscounts]="totalDiscounts"
+[averageBills]="averageBills"
+ [availableAgents]="availableAgents"
+[inProgressBookings]="inProgressBookings"
+[pendingBookings]="pendingBookings"
+[rejectedBookings]="rejectedBookings"
+
+></app-statistics>
+<section class="chartsSection" *ngIf="AuthService.userPermissions && AuthService.userPermissions['allGraphs']">
+    <app-chart-container title="Bookings Per Day"  ><app-bookings-per-day  (notify)="handleNotification($event)"></app-bookings-per-day></app-chart-container>
+    <app-chart-container title="Slot Wise Bookings"><app-slot-wise-bookings></app-slot-wise-bookings></app-chart-container>
+    <app-chart-container title="Agent Wise Bookings"><app-agent-wise-bookings></app-agent-wise-bookings></app-chart-container>
+    <app-chart-container [center]="true" title="Service Wise Bookings" ><app-service-wise-bookings  ></app-service-wise-bookings></app-chart-container>
+    <app-chart-container title="Completed Vs Rejected Bookings"><app-completed-vs-rejected-bookings ></app-completed-vs-rejected-bookings></app-chart-container>
+</section>

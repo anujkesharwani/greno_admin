@@ -1,0 +1,48 @@
+* {
+  font-size: 16px;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.modal-header {
+  font-size: 18px !important;
+  
+
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 707px !important;
+  height: fit-content !important;
+  flex-shrink: 0;
+  border-radius: 14px;
+	overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.invoice-data {
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: min-content;
+  margin-bottom: 15px;
+  padding: 5px;
+}

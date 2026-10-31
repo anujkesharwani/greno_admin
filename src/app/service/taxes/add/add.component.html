@@ -1,0 +1,30 @@
+<section>
+	<div class="heading">
+		<h2 *ngIf="mode=='edit'">Edit Tax</h2>
+		<h2 *ngIf="mode=='add'">Add Tax</h2>
+		<button type="button" (click)="close()" mat-icon-button><i class="ri-close-fill"></i></button>
+	</div>
+	<form [formGroup]="taxForm" (ngSubmit)="handleSubmit()">
+		<div class="body">
+			<mat-form-field appearance="outline">
+				<mat-label>Name</mat-label>
+				<input type="text" matInput formControlName="name">
+			</mat-form-field>
+			<mat-form-field appearance="outline">
+				<mat-label>Rate</mat-label>
+				<input type="number" matInput formControlName="rate">
+			</mat-form-field>
+			<mat-form-field appearance="outline">
+				<mat-label>Type</mat-label>
+				<mat-select formControlName="type">
+					<mat-option value="percentage">Percentage</mat-option>
+					<mat-option value="flat">Flat</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div class="actions">
+			<button type="button" (click)="close()" mat-stroked-button color="primary">Cancel</button>
+			<button mat-flat-button color="primary">Submit</button>
+		</div>
+	</form>
+</section>

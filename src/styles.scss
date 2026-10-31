@@ -1,0 +1,604 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$turbanlaundryAdmin-primary: mat.define-palette(mat.$indigo-palette);
+$turbanlaundryAdmin-accent: mat.define-palette(mat.$pink-palette,
+    A200,
+    A100,
+    A400);
+
+// The warn palette is optional (defaults to red).
+$turbanlaundryAdmin-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$turbanlaundryAdmin-theme: mat.define-light-theme((color: (primary: $turbanlaundryAdmin-primary,
+        accent: $turbanlaundryAdmin-accent,
+        warn: $turbanlaundryAdmin-warn,
+      ),
+    ));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($turbanlaundryAdmin-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  font-family: Roboto;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+@mixin same-size($sz) {
+  width: $sz;
+  height: $sz;
+}
+
+// loader wrapper - can be used as a backdrop to obscure the rest of the page or given a transparent background/use hsla/rgba
+.loader__wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  @include same-size(100%);
+  display: flex;
+  z-index: 1; // fine for this demo
+}
+
+// container for animation
+.loader {
+  --sz: 7rem;
+  width: calc(var(--sz) * 2);
+  height: var(--sz);
+  margin: auto; // centers along both main and cross axis in flex containers
+  display: flex;
+  justify-content: space-evenly;
+}
+
+// each half of the animation container
+.loader__sq {
+  // size of each loader piece circle/triangle;
+  --p-sz: calc(var(--sz) / 4);
+  // margin offset so each half of the container overlaps a bit
+  --m-offset: calc((var(--p-sz) * -1) * 0.75);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 50%;
+
+  &::before,
+  &::after {
+    @include same-size(var(--p-sz));
+    content: "";
+    position: relative;
+    // transform is what's being animated
+    transform: translateY(calc((var(--sz) - var(--p-sz)) * -1));
+
+    animation: loader-box-bounce 0.5s cubic-bezier(0.3, 0.5, 0.4, 0.95) calc(var(--i) * 0.06s) infinite alternate-reverse;
+  }
+
+  &:first-of-type {
+    margin-right: var(--m-offset);
+
+    // first el animated and first visual element
+    &::before {
+      --i: 1;
+      border: 3px solid #ff7ab5;
+      border-radius: 50%;
+    }
+
+    // second element visually; third el animated
+    &::after {
+      --i: 3;
+      background-color: #c643fb;
+
+      // make the loader pieces triangles in supporting browsers
+      @supports (clip-path: circle()) {
+        clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      }
+    }
+  }
+
+  &:nth-of-type(2) {
+
+    // third element visually; 2nd el animated
+    &::before {
+      --i: 2;
+      border: 3px solid #ffb650;
+    }
+
+    // fourth element visually, fourth el animated
+    &::after {
+      --i: 4;
+      background-color: #2fe2dd;
+      border-radius: 50%;
+
+      @supports (clip-path: circle()) {
+        border-radius: 0;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+    }
+  }
+}
+
+@keyframes loader-box-bounce {
+  to {
+    transform: translateY(0);
+  }
+}
+
+// general page styles
+
+* {
+  font-family: Inter, sans-serif;
+}
+
+// matsnack bar toast
+.error-toast {
+  --mdc-snackbar-container-color: #cc3328;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: yellow;
+}
+
+.success-toast {
+  --mdc-snackbar-container-color: #2e7d32;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: yellow;
+}
+
+.warning-toast {
+  --mdc-snackbar-container-color: #ff9900;
+  --mdc-snackbar-supporting-text-color: rgb(0, 0, 0);
+  --mat-snack-bar-button-color: rgb(255, 61, 61);
+}
+
+.map-container {
+  border-radius: 10px;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+}
+
+.sky-blue-gradient {
+  background: linear-gradient(90deg, #06a3b8 0%, rgba(3, 200, 233, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.light-blue-gradient {
+  background: linear-gradient(90deg, #06a3b8 0%, rgba(3, 200, 233, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.yellow-gradient {
+  background: linear-gradient(90deg, #d7c206 0%, rgba(235, 212, 0, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.grey-gradient {
+  background: linear-gradient(90deg, #a8a8a8 0%, rgba(205, 205, 205, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.blue-gradient {
+  background: linear-gradient(90deg, #00518b 0%, rgba(0, 127, 220, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.green-gradient {
+  background: linear-gradient(90deg, #07bf72 0%, rgba(121, 234, 17, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.red-gradient {
+  background: linear-gradient(90deg, #c92323 0%, rgba(255, 54, 54, 0.5) 100%),
+    linear-gradient(0deg, #dddddd, #dddddd);
+}
+
+.sky-blue-background {
+  background: #06a3b8;
+}
+
+.light-blue-background {
+  background: #007eda;
+}
+
+.yellow-background {
+  background: #d7c206;
+}
+
+.grey-background {
+  background: #a8a8a8;
+}
+
+.blue-background {
+  background: #00518b;
+}
+
+.green-background {
+  background: #07bf72;
+}
+
+.red-background {
+  background: #c92323;
+}
+
+.light-grey-background {
+  background: #E5E5E5;
+}
+
+.sky-blue-color {
+  color: #06a3b8;
+}
+
+.light-blue-color {
+  color: #007eda;
+}
+
+.yellow-color {
+  color: #d7c206;
+}
+
+.grey-color {
+  color: #a8a8a8;
+}
+
+.blue-color {
+  color: #00518b;
+}
+
+.green-color {
+  color: #07bf72;
+}
+
+.red-color {
+  color: #c92323;
+}
+
+.mx-5 {
+  margin: 0 5px;
+}
+
+.mx-30 {
+  margin: 0 30px;
+}
+
+.wrapper-card {
+  background-color: #EDF1F7;
+  border-radius: 20px;
+  border: 1px solid #7794A0;
+  color: #054BAE;
+  font-size: 18px;
+  font-weight: 700;
+
+  .header {
+    padding: 15px 25px 0;
+  }
+
+  .content {
+    min-height: 50vh;
+
+    .inner-section {
+      margin: 20px 100px;
+      background: #fff;
+      border-radius: 20px !important;
+      border: 1px solid #11445589;
+      padding: 10px 30px;
+      align-items: center;
+      justify-content: space-between;
+
+      .time {
+        margin-left: 50px;
+        font-weight: 100;
+      }
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 20px;
+
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+
+        &:before {
+          position: absolute;
+          content: "";
+          height: 7px;
+          width: 7px;
+          left: 4px;
+          bottom: 6px;
+          background-color: white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+      }
+
+      input:checked+.slider {
+    
+
+
+        box-shadow: 0 0 1px linear-gradient(107deg, #01680B 10.98%, #579540 49.96%, #094A28 85.23%);
+
+      }
+
+      input:focus+.slider {
+        box-shadow: 0 0 1px linear-gradient(107deg, #01680B 10.98%,  #579540 49.96%,#094A28 85.23%);
+      }
+
+      input:checked+.slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+      }
+    }
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 15px;
+
+  input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+        display: flex;
+
+    align-items: center;
+    z-index: 1;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 7px;
+      width: 7px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+  }
+
+  input:checked+.slider {
+    background: linear-gradient(107deg, #199DE9 10.98%, #199DE9 49.96%, #199DE9 85.23%);
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px linear-gradient(107deg, #01680B 10.98%, #579540 49.96%, #094A28 85.23%);
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(8px);
+    -ms-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}
+
+.blue-bold-text {
+  font-weight: 700;
+  color: #054BAE;
+}
+
+.themeDD {
+  background-color: #EDF1F7;
+
+  .mat-icon {
+    color: 3D2DF9;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .mdc-floating-label,
+  .mat-mdc-select-value-text {
+    color: 3D2DF9;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #EDF1F7;
+    border-radius: 20px;
+    border: 1px solid 3D2DF9;
+  }
+
+  .mdc-line-ripple,
+  .mat-mdc-form-field-subscript-wrapper,
+  .mat-mdc-select-arrow-wrapper {
+    display: none;
+  }
+
+  &.gray {
+    background-color: #FBFBFB;
+
+    .mdc-floating-label,
+    .mat-mdc-select-value-text {
+      color: #878787;
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: #FBFBFB;
+      border-radius: 20px;
+      border: 1px solid #BCBCBC;
+    }
+  }
+}
+
+.roundedElement {
+  .mdc-text-field {
+    border-radius: 20px;
+    border: 1px solid #BCBCBC;
+
+    .mdc-line-ripple,
+    .mat-mdc-form-field-subscript-wrapper,
+    .mat-mdc-select-arrow-wrapper {
+      display: none;
+    }
+  }
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+  width: 6px;
+  /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(98, 97, 95);
+  /* color of the tracking area */
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(186, 186, 185);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 2px solid rgb(186, 186, 185);
+  /* creates padding around scroll thumb */
+}
+
+.cdk-overlay-container {
+  z-index: 1057;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-close-icon {
+  color: #C16256;
+}
+
+.btn-primary,
+.btn-primary:hover {
+  background: 3D2DF9;
+  border: 1px solid 3D2DF9;
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+  border: 1px solid #054BAE;
+  background: white;
+  color: #054BAE;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input>input {
+  padding: 8px !important;
+}
+
+.ng-select-with-icon .ng-select-container {
+  padding-left: 35px !important;
+
+  .ng-value-container .ng-input>input {
+    padding-left: 40px !important;
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
+}
+
+mat-expansion-panel-body {
+  padding: 0 !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
+  /* padding: 0 24px 16px; */
+}
+
+
+mat-expansion-indicator::after {
+  color: white;
+}
+
+.mat-expansion-indicator::after {
+  color: white;
+}
+
+.remove-mat-expansion-panel-padding .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.m1-mat-expansion-panel-padding .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 1em !important;
+}
+
+.m2-mat-expansion-panel-padding .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 2em !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent;
+}
+
+mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent;
+}

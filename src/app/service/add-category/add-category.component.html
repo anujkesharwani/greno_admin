@@ -1,0 +1,55 @@
+<section>
+  <div class="heading">
+    <h3 *ngIf="operation == 'add'">Add Category</h3>
+    <h3 *ngIf="operation == 'edit'">Edit Category</h3>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="categoryForm" (ngSubmit)="handleSubmit()">
+    <div class="body">
+      <div class="dropArea" (click)="selectImage()">
+        <p *ngIf="!this.categoryForm.value?.image">Select image</p>
+        <img
+          [src]="this.categoryForm.value.image"
+          *ngIf="this.categoryForm.value.image"
+        />
+      </div>
+      <mat-error
+        *ngIf="categoryForm.get('image')?.hasError('required') && formSubmitted"
+      >
+        Image is required.
+      </mat-error>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+
+        <input matInput type="text" formControlName="name" />
+        <mat-error *ngIf="categoryForm.get('name')?.hasError('required')"
+          >Name is required.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="data.type == 'mainCategory'">
+        <mat-label>Icon</mat-label>
+        <mat-select matNativeControl formControlName="icon">
+          <mat-option *ngFor="let icon of iconsList | keyvalue" [value]="$any(icon.value).value"><img class="mx-2" [src]="$any(icon.value).value">{{$any(icon.value).text}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="categoryForm.get('icon')?.hasError('required')"
+          >Icon is required.</mat-error
+        >
+      </mat-form-field>
+      <mat-slide-toggle formControlName="enabled">Enabled</mat-slide-toggle>
+    </div>
+    <div class="actions">
+      <button
+        color="primary"
+        type="button"
+        (click)="close()"
+        mat-stroked-button
+      >
+        Cancel
+      </button>
+      <button color="primary" type="submit" mat-flat-button>Submit</button>
+    </div>
+  </form>
+</section>

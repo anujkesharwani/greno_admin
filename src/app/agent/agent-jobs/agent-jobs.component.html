@@ -1,0 +1,120 @@
+<div class="containerr">
+    <div class="boxx">
+        <div *ngFor="let agent of agentDetails">
+            <mat-card *ngIf="agentDetails.length>0">
+                <mat-card-header class="box1">
+                    <div class="agentDetail">
+
+                        <img src={{agent.agentPhoto}} />
+                        <p> {{agent.agentName}}</p>
+                    </div>
+                    <div class="actions">
+                        <button><img src="\assets\icon\paymentSettlement\phone.svg" /></button>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <button><img src="\assets\icon\paymentSettlement\delete.svg" /></button>
+
+
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="paymentDetails">
+                        <div class="detailBox">
+                            <div class="blueBox">
+                                <h5>{{agent.pickupDone}}</h5>
+                                <p>Pickup Done
+                                </p>
+                            </div>
+                            <div class="blueBox">
+                                <h5> {{agent.completionTimeDone}}</h5>
+                                <p>Completion Time Done</p>
+                            </div>
+                            <div class="blueBox">
+                                <h5> ₹ {{agent.settled}}</h5>
+                                <p>Settled</p>
+                            </div>
+                            <div class="orangeBox">
+                                <h5> ₹ {{agent.unsettled}}</h5>
+                                <p>Unsettled</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="transactions">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Service</th>
+                                    <th>Service Time</th>
+                                    <th>Status</th>
+                                    <th>Address</th>
+                                    <th>Actions</th>
+                                </tr>
+                                <tr *ngFor="let transaction of agent.transaction">
+                                    <td>#{{transaction.orderID}}</td>
+                                    <td><img src="\assets\icon\agentJobs\phone.svg" />{{transaction.customerName}}</td>
+                                    <td>{{transaction.service}}</td>
+                                    <td>{{transaction.serviceTime}}</td>
+                                    <td>
+                                        <p ngClass="{{transaction.status}}"> {{transaction.status}}</p>
+                                    </td>
+                                    <td>{{transaction.address}}</td>
+                                    <!-- <td><button><img src="\assets\icon\agentJobs\dots.svg"/></button></td> -->
+                                    <td>
+                                        <button mat-flat-button [matMenuTriggerFor]="menu">
+                                            <img src="assets/icon/booking/appliance-repair/menu.svg" alt="">
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="openChangeAgentDialog()">Change Agent</button>
+                                            <button mat-menu-item (click)="openBookingConfirmationDialog()">Booking Cancel</button>
+                                            <button mat-menu-item (click)="openInfoDialog()">Booking Info</button>
+                                        </mat-menu>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Service</th>
+                                    <th>Service Time</th>
+                                    <th>Address</th>
+                                    <th>Job End Date</th>
+                                    <th></th>
+                                </tr>
+                                <tr *ngFor="let transaction of agent.transaction">
+                                    <td>#{{transaction.orderID}}</td>
+                                    <td><img src="\assets\icon\agentJobs\phone.svg" />{{transaction.customerName}}</td>
+                                    <td>{{transaction.service}}</td>
+                                    <td>{{transaction.serviceTime}}</td>
+                                    <td>
+                                        {{transaction.address}}
+                                    </td>
+                                    <td>{{transaction.jobEndTime}}</td>
+                                    <td><button><img src="\assets\icon\agentJobs\info.svg" /></button></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+    <!-- <div *ngIf="agentDetails.length===0" class="empty"><img src="\assets\icon\paymentSettlement\empty.svg"/></div> -->
+</div>

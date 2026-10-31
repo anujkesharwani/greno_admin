@@ -1,0 +1,240 @@
+// Variables
+$header-height: 10%;
+// Header
+.header {
+  display: flex;
+  height: $header-height;
+  justify-content: space-between;
+  padding-bottom: 2em;
+  // Header buttons
+  button {
+    width: 40px;
+    border: none;
+    background: none;
+    position: relative;
+    top: -10px;
+  }
+}
+
+// Details Box
+.details-box {
+  font-family: Lato;
+  font-weight: 400;
+  height: 80%;
+  padding: 2em;
+
+  // Details Box image
+  img {
+    width: 4em;
+  }
+  // Status
+}
+.status {
+  font-size: 15px;
+  border-radius: 8px;
+  align-self: first baseline;
+  padding: 6px 12px;
+  color: #d37f07;
+background: #F8ECDA;
+}
+
+// User Details
+.user-details {
+  justify-content: space-between;
+  display: flex;
+  .currentStatus {
+    color: green;
+    background-color: red;
+    font-size: 15px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #e4ebff;
+  }
+}
+
+// Basic Details
+.basic-details {
+  display: flex;
+  margin-left: -8em;
+
+  .flex {
+    display: flex;
+    margin: auto 3em;
+    flex-direction: column;
+  }
+  // Basic Details images
+  img {
+    width: 1em;
+    margin: auto;
+  }
+}
+
+// Contact Details
+.contact-details {
+  display: flex;
+  align-self: first baseline;
+
+  button {
+    border-radius: 50px;
+    border: 2px solid #d9e4ff;
+    background: #fff;
+    font-size: 10px;
+    width: 40px;
+    padding: 8px;
+    height: 40px;
+    margin: auto 15px;
+  }
+}
+
+// Booking Info
+.booking-info {
+  border-bottom: 1px solid #e4e9f2;
+  display: flex;
+  width: 100%;
+  gap: 5rem;
+  margin-bottom: 1rem;
+}
+.BookingSection {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+// Services
+.services {
+  margin-top: 1.5em;
+  width: 40vw;
+  height: 15em;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+// Services Header
+.services-header {
+  padding: 10px;
+  display: flex;
+  top: 0;
+  z-index: 100;
+  position: sticky;
+  background: white;
+  height: 20%;
+  justify-content: space-between;
+
+  // Services Header titles
+  h6 {
+    width: 20%;
+  }
+}
+
+// Services List
+.services-list {
+  align-items: center;
+}
+
+// Service Container
+.service-container {
+  display: flex;
+  padding-top: 10px;
+}
+
+// Service Box
+.service-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+// Services Header List
+.services-header ul {
+  display: flex;
+  gap: 25px;
+}
+
+// Service Info
+.serviceInfo {
+  font-size: 10px;
+  position: relative;
+  top: -5px;
+  display: flex;
+  gap: 10px;
+}
+
+// Service Type
+.serviceType {
+  flex-direction: column;
+  width: 70%;
+  margin-left: 1.5em;
+  display: flex;
+}
+.service-info{
+  display: flex;
+  font-size: 17px;
+  margin-top: 2em;
+  gap: 2em;
+}
+
+// Amount
+.amount {
+  font-size: 20px;
+  color: #579540;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+// Billing Summary
+.billingSummary {
+  width: 35%;
+  height: 19em;
+  border: 2px solid #e4e9f2;
+  border-radius: 4px;
+
+  // Billing Summary Header
+  .header {
+    padding: 5px 0px 30px 5px;
+    font-size: large;
+    font-weight: 700;
+    width: 100%;
+    border-bottom: 0.5px solid #c6c6c6;
+  }
+
+  // Billing Info
+  .billingInfo {
+    padding: 10px;
+
+    p {
+      line-height: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .Service_Actions {
+    display: flex;
+    flex-direction: column;
+  }
+  // Total Amount
+  .totalAmount {
+    padding: 15px;
+    border-top: 2px dashed #c6c6c6;
+    display: flex;
+    justify-content: space-between;
+
+    h6 {
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+}
+
+// Actions
+.actions {
+  padding: 10px;
+  margin-left: 2em;
+  display: flex;
+  width: 70%;
+  // justify-content: space-evenly;
+
+  // Action buttons
+  button {
+    margin: 0.2em 1em auto 0em;
+    border: 1px solid;
+  }
+}

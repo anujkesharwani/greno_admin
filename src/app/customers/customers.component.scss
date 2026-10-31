@@ -1,0 +1,278 @@
+.agent-wrapper {
+	background: #fff;
+    padding: 15px;
+
+	.header-inner {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
+	.table {
+		span {
+			font-size: 18px;
+			display: inline-block;
+		}
+		.currency {
+			color: #14AE5C;
+		}
+		.header {
+			padding: 0 10px;
+			span {
+				color: #054BAE;
+				font-weight: 600;
+			}
+		}
+		.rows {
+			border-radius: 10px;
+			border: 2px solid #C8C8C8;
+			padding: 0 10px;
+			background-color: #fff;
+			display: flex;
+			align-items: center;
+
+			.info-icon {
+				margin-left: 5px;
+				cursor: pointer;
+			}
+		}
+		.name {
+			width: 10%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.phone {
+			width: 10%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.email {
+			width: 15%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.userid {
+			width: 10%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.orders {
+			width: 8%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.avgbill {
+			width: 8%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.totalbill {
+			width: 8%;
+			overflow: hidden;
+    		text-overflow: ellipsis;
+		}
+		.icons-wrap {
+			width: 31%;
+		}
+		.icons {
+			width: 100%;
+			align-items: center;
+			justify-content: end;
+			.availability-btn {
+				border-radius: 11.667px;
+				opacity: 0.25;
+				background: #3E3E3E;
+				color: #fff;
+				float: left;
+			}
+		}
+	}
+	.search {
+		position: relative;
+		input {
+			width: 100%;
+			border-radius: 16px;
+			border: 1px solid #054BAE;
+			padding: 12px 10px 12px 45px;
+		}
+		svg {
+			position: absolute;
+			left: 14px;
+			top: 14px;
+		}
+	}
+
+	.cards {
+		justify-content: space-between;
+		.card {
+			width: 19%;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			border-radius: 16px;
+			border: 2px solid #F43832
+			;
+			background: linear-gradient(93deg, #FFF 35.37%, #FFE8E8 250.38%);
+			padding: 0px 21px;
+			position: relative;
+
+			img {
+				position: absolute;
+				top: -8px;
+				left: 0;
+				background: -webkit-linear-gradient(left, rgb(255 255 255 / 100%) 73%, rgba(0,0,0,0) 84%, rgba(0,0,0,0) 99%, rgb(255 255 255 / 93%) 100%);
+			}
+
+			.content {
+				height: 116px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: end;
+				width: 100%;
+				.total-agent{
+					color: var(--Button, #054BAE);
+					font-size: 24px;
+					font-weight: 500;
+				}
+				.today-agent{
+					color: var(--Button, #054BAE);
+					font-size: 18px;
+					font-weight: 500;
+				}
+				.pink-number{
+					color: var(--Button, #0FC1DF);
+				}
+				.big-number {
+					font-size: 45px;
+				}
+			}
+
+			&.card1 {
+				img {
+					top: -3px;
+					height: 120px;
+					left: -3px;
+				}
+			}
+
+			&.card2 {
+				img {
+					top: -8px;
+    				left: -12px;
+				}
+			}
+
+			&.card3 {
+				img {
+					top: -2px;
+					left: -10px;
+					height: 100px;
+				}
+			}
+
+			&.card4 {
+				img {
+					top: -3px;
+					left: -4px;
+					height: 119px;
+				}
+			}
+
+			&.card5 {
+				img.small {
+					z-index: 9;
+					top: -11px;
+					left: -17px;
+				}
+				img.big {
+					top: 15px;
+					left: -3px;
+				}
+			}
+		}
+	}
+}
+
+.inner-section {
+    padding: 0 !important;
+    display: block !important;
+}
+
+::ng-deep app-customers {
+    .mat-expansion-panel-content {
+        .mat-expansion-panel-body {
+            padding: 0 !important;
+			background-color: #FCFCFC;
+        }
+
+        .table {
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #7F9BA480;
+            padding: 20px 24px;
+            font-weight: 100;
+        }
+    }
+
+	.mat-expansion-panel {
+		border-radius: 16px 16px 0px 0px;
+	}
+
+	.mat-expansion-panel-header {
+		background: #3E3E3E !important;
+    	color: #fff !important;
+		border-radius: 16px 16px 0px 0px;
+	}
+}
+
+.agent-detail {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 16px;
+	height: 100%;
+	overflow: auto;
+
+	svg {
+		height: 24px;
+	}
+	span {
+		font-size: 16px;
+	}
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.cursor-pointer {
+			cursor: pointer;
+		}
+
+		p {
+			font-size: 18px;
+		}
+	}
+	.d-flex {
+		justify-content: space-between;
+		position: relative;
+
+		img {
+			min-height: 150px;
+		}
+
+		.download-button {
+			position: absolute;
+			left: 15px;
+			bottom: 15px;
+			height: 52px;
+			cursor: pointer;
+		}
+	}
+	.address {
+		text-align: right;
+		width: 300px;
+	}
+	.data {
+		color: #145889;
+	}
+}

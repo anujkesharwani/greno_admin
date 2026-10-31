@@ -1,0 +1,442 @@
+<div
+  id="createBookingModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="createBookingModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="bookingForm">
+        <div class="modal-header flex-between">
+          <div class="header-title">
+            <span class="modal-title" id="createBookingModalLabel">
+              Create New Booking
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              style="margin-left: 10px"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M24 10.2852C24 10.7591 23.6153 11.1424 23.1424 11.1424C22.6695 11.1424 22.2848 10.7591 22.2848 10.2852V2.57167C22.2848 2.34437 22.1954 2.12597 22.0342 1.96552C21.874 1.80507 21.656 1.71443 21.4283 1.71443H2.57173C2.09879 1.71443 1.71519 2.09775 1.71519 2.57167V21.4276C1.71519 21.9015 2.09879 22.2848 2.57173 22.2848H21.4283C21.656 22.2848 21.874 22.1942 22.0342 22.0337C22.1954 21.8733 22.2848 21.6549 22.2848 21.4276V13.7141C22.2848 13.2402 22.6695 12.8568 23.1424 12.8568C23.6153 12.8568 24 13.2402 24 13.7141V21.4276C24 22.1095 23.7287 22.7632 23.2459 23.246C22.7643 23.7289 22.1104 23.9992 21.4283 23.9992H2.57173C1.15182 23.9992 0 22.8479 0 21.4276V2.57167C0 1.15139 1.15182 0 2.57173 0H21.4283C22.1104 0 22.7643 0.270372 23.2459 0.75321C23.7287 1.23605 24 1.88976 24 2.57167V10.2852Z"
+                fill="#8983D9"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M17.321 11.1217C16.987 11.4558 16.4439 11.4558 16.1091 11.121C15.7743 10.7863 15.7743 10.2432 16.1084 9.9091L17.7496 8.26794C17.91 8.1075 18.0003 7.88943 18.001 7.66232C18.0003 7.43521 17.91 7.21712 17.7496 7.05668L16.7008 6.00795C16.5404 5.84751 16.3223 5.75722 16.0952 5.75653C15.8681 5.75722 15.65 5.8475 15.4896 6.00793L7.58449 13.913L9.84449 16.173L13.7672 12.2503C14.1012 11.9163 14.6443 11.9163 14.9791 12.251C15.3139 12.5858 15.3139 13.1289 14.9798 13.463L10.4508 17.992C10.116 18.3267 9.57292 18.3267 9.23816 17.992L5.76554 14.5193C5.43078 14.1846 5.43079 13.6415 5.76555 13.3067L14.277 4.79531C14.759 4.31331 15.4132 4.04245 16.0952 4.04245C16.7772 4.04245 17.4315 4.3133 17.9135 4.7953L18.9622 5.84404C19.4442 6.32604 19.7151 6.98027 19.7151 7.6623C19.7151 8.34432 19.4442 8.99856 18.9622 9.48056L17.321 11.1217Z"
+                fill="#145889"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.15491 11.9175C7.48967 11.5827 8.03278 11.5827 8.36754 11.9175C8.7023 12.2522 8.70229 12.7953 8.36753 13.1301L6.29855 15.1991C6.13742 15.3602 6.04783 15.5776 6.04713 15.8047L6.04784 17.8432L7.84803 17.8432C8.07584 17.8432 8.29393 17.7529 8.45437 17.5924L10.2949 15.7519C10.6296 15.4172 11.1727 15.4172 11.5068 15.7512C11.8415 16.086 11.8416 16.6291 11.5068 16.9639L9.66631 18.8044C9.18431 19.2864 8.53007 19.5572 7.84805 19.5572L5.1901 19.5579C4.71713 19.5572 4.33305 19.1732 4.33305 18.7009L4.33305 15.8047C4.33305 15.1227 4.60393 14.4685 5.08593 13.9865L7.15491 11.9175Z"
+                fill="#145889"
+              />
+            </svg>
+          </div>
+          <div class="header-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+              (click)="onNoClick()"
+            >
+              <path
+                d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+                fill="#E82C2C"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="divide-X"></div>
+
+        <div class="modal-body">
+          <div class="booking-container">
+            <div class="input-box">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="ml-2"
+              >
+                <path
+                  d="M18.0315 16.6168L22.3142 20.8995L20.9 22.3137L16.6173 18.031C15.0774 19.263 13.1245 20 11.0005 20C6.03249 20 2.00049 15.968 2.00049 11C2.00049 6.032 6.03249 2 11.0005 2C15.9685 2 20.0005 6.032 20.0005 11C20.0005 13.124 19.2635 15.0769 18.0315 16.6168ZM16.0252 15.8748C17.248 14.6146 18.0005 12.8956 18.0005 11C18.0005 7.1325 14.868 4 11.0005 4C7.13299 4 4.00049 7.1325 4.00049 11C4.00049 14.8675 7.13299 18 11.0005 18C12.8961 18 14.6151 17.2475 15.8753 16.0247L16.0252 15.8748Z"
+                  fill="#878787"
+                />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search Customer Name or Phone"
+                aria-label=""
+                matInput
+                formControlName="customerSearch"
+                [matAutocomplete]="auto"
+                class="search-input"
+              />
+              <mat-autocomplete
+                #auto="matAutocomplete"
+                (optionSelected)="onCustomerDropdownSelect($event)"
+              >
+                <mat-option
+                  *ngFor="let option of options"
+                  value="{{ getSelectedAddressValue(option) }}"
+                  >{{ option.name }}
+                  <span *ngIf="option.phoneNumber">
+                    | {{ option.phoneNumber }}</span
+                  ></mat-option
+                >
+              </mat-autocomplete>
+            </div>
+            <button (click)="openCustomerDialog()" class="booking-btn">
+              Create New Customer
+            </button>
+            <div class="delivery-address-container mt-8px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="ml-2"
+              >
+                <path
+                  d="M12 20.8995L16.9497 15.9497C19.6834 13.2161 19.6834 8.78392 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.31658 8.78392 4.31658 13.2161 7.05025 15.9497L12 20.8995ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 13C13.1046 13 14 12.1046 14 11C14 9.89543 13.1046 9 12 9C10.8954 9 10 9.89543 10 11C10 12.1046 10.8954 13 12 13ZM12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15Z"
+                  fill="#878787"
+                />
+              </svg>
+              <div>
+                <ng-select
+                  [items]="customerAddresses"
+                  bindLabel="name"
+                  bindValue="id"
+                  appearance="outline"
+                  class="pb-0 ng-select-with-icon"
+                  placeholder="Choose Delivery Address"
+                  formControlName="bookingAddress"
+                  (change)="onAddressChange($event)"
+                >
+                </ng-select>
+              </div>
+            </div>
+            <button
+              *ngIf="selectedCustomerId"
+              (click)="openAddressDialog()"
+              class="booking-btn mt-15px"
+            >
+              Add New Address
+            </button>
+            <div *ngIf="!selectedCustomerId"></div>
+
+            <div class="input-box mt-8px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="mx-2"
+              >
+                <path
+                  d="M9 1V3H15V1H17V3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9ZM20 11H4V19H20V11ZM8 13V15H6V13H8ZM13 13V15H11V13H13ZM18 13V15H16V13H18ZM7 5H4V9H20V5H17V7H15V5H9V7H7V5Z"
+                  fill="#878787"
+                />
+              </svg>
+              <label for="datePicker" class="calender">
+                <span style="margin-right: 8px">{{ datePickerText }}</span>
+                <input
+                  type="date"
+                  formControlName="bookingDate"
+                  id="datePicker"
+                  [min]="minBookingDate"
+                />
+              </label>
+              <!-- <input type="text" placeholder="Date of Service" /> -->
+            </div>
+
+            <div class="">
+              <ng-select
+                [items]="timeSlots"
+                bindLabel="name"
+                bindValue="id"
+                appearance="outline"
+                placeholder="Pick Slot"
+                formControlName="timeSlot"
+                (change)="onTimeSlotChange($event)"
+              >
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="divide-X"></div>
+
+          <div>
+            <span class="modal-title" id="createBookingModalLabel">
+              Add Services to Cart
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              style="margin-left: 10px"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12.5216 11.4784V6.26099H11.4781V11.4784H6.26074V12.5219H11.4781V17.7393H12.5216V12.5219H17.739V11.4784H12.5216Z"
+                fill="#145889"
+              />
+              <path
+                d="M5.73913 1.04348C3.14579 1.04348 1.04348 3.14579 1.04348 5.73913V18.2609C1.04348 20.8542 3.14579 22.9565 5.73913 22.9565H18.2609C20.8542 22.9565 22.9565 20.8542 22.9565 18.2609V5.73913C22.9565 3.14579 20.8542 1.04348 18.2609 1.04348H5.73913ZM5.73913 0H18.2609C21.4305 0 24 2.5695 24 5.73913V18.2609C24 21.4305 21.4305 24 18.2609 24H5.73913C2.5695 24 0 21.4305 0 18.2609V5.73913C0 2.5695 2.5695 0 5.73913 0Z"
+                fill="#145889"
+              />
+            </svg>
+          </div>
+
+          <div class="add-cart-container">
+            <div style="grid-column: 1 / span 2" class="">
+              <ng-select
+                [items]="services"
+                bindLabel="name"
+                bindValue="id"
+                appearance="outline"
+                placeholder="Service"
+                formControlName="service"
+                (change)="onServiceChange($event)"
+              >
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="divide-X"></div>
+
+          <div class="variant-container">
+            <div class="variant-item" *ngFor="let cloth of clothes">
+              <span class="variant-head">{{ cloth.name }}</span>
+              <span class="variant-price">₹ {{ cloth.cost }}</span>
+              <button class="booking-btn" (click)="addToCart(cloth)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <div class="divide-X"></div>
+
+          <div class="header-title">
+            <span class="modal-title" id="createBookingModalLabel">Cart</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="24"
+              viewBox="0 0 26 24"
+              fill="none"
+              style="margin-left: 10px"
+            >
+              <path
+                d="M24.9396 4.9396C24.4564 4.32215 23.7047 3.94631 22.9262 3.94631H6.57718L6.06711 1.95973C5.77181 0.805369 4.75168 0 3.57047 0H0.832215C0.375839 0 0 0.375839 0 0.832215C0 1.28859 0.375839 1.66443 0.832215 1.66443H3.57047C3.97315 1.66443 4.32215 1.93289 4.42953 2.33557L7.7047 15.3826C8 16.5369 9.02013 17.3423 10.2013 17.3423H20.9127C22.094 17.3423 23.1409 16.5369 23.4094 15.3826L25.4228 7.1141C25.6107 6.36242 25.4497 5.55705 24.9396 4.9396ZM23.7852 6.73826L21.7718 15.0067C21.6644 15.4094 21.3154 15.6779 20.9127 15.6779H10.2013C9.79866 15.6779 9.44966 15.4094 9.34228 15.0067L7.00671 5.63759H22.9262C23.1946 5.63759 23.4631 5.77181 23.6242 5.98658C23.7852 6.20134 23.8658 6.4698 23.7852 6.73826Z"
+                fill="#145889"
+              />
+              <path
+                d="M10.7656 18.4161C9.23538 18.4161 7.97363 19.6779 7.97363 21.2081C7.97363 22.7383 9.23538 24 10.7656 24C12.2958 24 13.5575 22.7383 13.5575 21.2081C13.5575 19.6779 12.2958 18.4161 10.7656 18.4161ZM10.7656 22.3088C10.1481 22.3088 9.66491 21.8255 9.66491 21.2081C9.66491 20.5906 10.1481 20.1074 10.7656 20.1074C11.383 20.1074 11.8663 20.5906 11.8663 21.2081C11.8663 21.7987 11.3562 22.3088 10.7656 22.3088Z"
+                fill="#145889"
+              />
+              <path
+                d="M19.9995 18.4161C18.4693 18.4161 17.2075 19.6779 17.2075 21.2081C17.2075 22.7383 18.4693 24 19.9995 24C21.5297 24 22.7914 22.7383 22.7914 21.2081C22.7646 19.6779 21.5297 18.4161 19.9995 18.4161ZM19.9995 22.3088C19.382 22.3088 18.8988 21.8255 18.8988 21.2081C18.8988 20.5906 19.382 20.1074 19.9995 20.1074C20.6169 20.1074 21.1001 20.5906 21.1001 21.2081C21.1001 21.7987 20.5901 22.3088 19.9995 22.3088Z"
+                fill="#145889"
+              />
+            </svg>
+          </div>
+
+          <div class="cart-container" *ngIf="cart">
+            <ng-container *ngFor="let service of cart.services">
+              <div
+                class="record"
+                *ngFor="let cartItem of service.selectedItems"
+              >
+                <div class="label">
+                  <img [src]="cartItem.image" alt="Product" />
+                  <div class="head">
+                    <span>{{ cartItem.name }}</span>
+                    <div class="head-content">
+                      <span>₹ {{ cartItem.cost }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="quantity">
+                  <button
+                    class="quantBtn"
+                    (click)="increaseCartQuantity(service, cartItem)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M9.5625 8.4375V0.5625C9.5625 0.25184 9.31066 0 9 0C8.68934 0 8.4375 0.25184 8.4375 0.5625V8.4375H0.5625C0.25184 8.4375 0 8.68934 0 9C0 9.31066 0.25184 9.5625 0.5625 9.5625H8.4375V17.4375C8.4375 17.7482 8.68934 18 9 18C9.31066 18 9.5625 17.7482 9.5625 17.4375V9.5625H17.4375C17.7482 9.5625 18 9.31066 18 9C18 8.68934 17.7482 8.4375 17.4375 8.4375H9.5625Z"
+                        fill="#454545"
+                      />
+                    </svg>
+                  </button>
+                  <span>{{ cartItem.quantity }}</span>
+                  <button
+                    class="quantBtn"
+                    (click)="decreaseCartQuantity(service, cartItem)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="2"
+                      viewBox="0 0 22 2"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1H21"
+                        stroke="black"
+                        stroke-width="2"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="deleteBtn"
+                  (click)="deleteCartItem(service, cartItem)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="20"
+                    viewBox="0 0 15 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.76323 16.4767C5.76756 16.4767 5.77168 16.4767 5.77601 16.4767C6.14601 16.4699 6.44035 16.1644 6.43314 15.7944L6.22701 4.70869C6.22021 4.33891 5.91329 4.04168 5.54474 4.05136C5.17475 4.05817 4.8804 4.36364 4.88762 4.73363L5.09374 15.8194C5.10054 16.1848 5.39901 16.4767 5.76323 16.4767ZM8.7778 16.4767C9.14202 16.4767 9.44069 16.1848 9.44729 15.8194L9.65341 4.73363C9.66042 4.36364 9.36608 4.05817 8.99629 4.05136C8.62815 4.04992 8.32103 4.33891 8.31402 4.70869L8.10789 15.7944C8.10089 16.1644 8.39523 16.4699 8.76502 16.4767C8.76935 16.4767 8.77368 16.4767 8.7778 16.4767ZM12.8356 4.05136C12.4697 4.04229 12.1564 4.32963 12.1444 4.69942L11.7322 17.508C11.732 17.5152 11.7318 17.5224 11.7318 17.5294C11.7318 17.7934 11.5174 18.0082 11.2542 18.0082H3.28768C3.02364 18.0082 2.80885 17.7934 2.80885 17.5294C2.80885 17.5222 2.80865 17.515 2.80844 17.508L2.39619 4.69942C2.38424 4.32963 2.0666 4.04209 1.70506 4.05136C1.33527 4.06332 1.04526 4.37271 1.057 4.7425L1.46884 17.5415C1.47544 18.5388 2.2888 19.3482 3.28748 19.3482H11.254C12.2522 19.3482 13.065 18.539 13.0714 17.5415L13.4832 4.7427C13.4954 4.37271 13.2053 4.06332 12.8356 4.05136ZM13.8701 1.99013H10.7597L10.4581 0.534067C10.3936 0.223026 10.1197 0 9.80203 0H4.73962C4.42198 0 4.14804 0.223026 4.08353 0.534067L3.78176 1.99013H0.669904C0.299911 1.99013 0 2.29004 0 2.66003C0 3.03002 0.299911 3.32993 0.669904 3.32993H4.32469C4.32634 3.32993 4.32778 3.32993 4.32923 3.32993H10.2122C10.2126 3.32993 10.213 3.32993 10.2135 3.32993C10.2139 3.32993 10.2141 3.32993 10.2145 3.32993H13.8701C14.2401 3.32993 14.54 3.03002 14.54 2.66003C14.54 2.29004 14.2399 1.99013 13.8701 1.99013ZM5.15043 1.99013L5.28502 1.33981H9.25683L9.39143 1.99013H5.15043Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
+                <div class="total">
+                  ₹ {{ cartItem.cost * cartItem.quantity }}
+                </div>
+              </div>
+            </ng-container>
+
+            <div class="divide-X"></div>
+
+            <ng-container *ngFor="let discount of applicableDiscounts">
+              <div class="coupon-card">
+                <div class="coupon-content">
+                  <div class="coupon-img">
+                    <img
+                      src="\assets\icon\discount\discount-shape.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="coupon-text">
+                    <div class="card-name-text">
+                      {{
+                        discount.type == "flat" || discount.type == "fixed"
+                          ? discount.value + " " + discount.type
+                          : discount.value + " %"
+                      }}
+                      off on {{ discount.name }}
+                    </div>
+                    <div class="min-order-text">
+                      Min. Order: ₹{{ discount.minimumRequiredAmount }}
+                    </div>
+                    <div class="discount-text">
+                      SAVE ₹{{ discount?.value }} ON THIS ORDER
+                    </div>
+                  </div>
+                </div>
+                <p
+                  (click)="onApplyCoupon(discount)"
+                  *ngIf="!getIsAppliedCoupon(discount)"
+                  class="apply-button"
+                  id="{{ discount.code }}"
+                >
+                  Apply
+                </p>
+                <p
+                  (click)="onRemoveCoupon(discount)"
+                  *ngIf="getIsAppliedCoupon(discount)"
+                  class="remove-button"
+                  id="{{ discount.id }}"
+                >
+                  remove
+                </p>
+              </div>
+            </ng-container>
+            <div class="divide-X"></div>
+            <div class="bill">
+              <div class="flex-between">
+                <span class="heading">Sub Total</span>
+                <span class="heading"
+                  >₹ {{ cart.billing.subTotal | number : "1.0-0" }}</span
+                >
+              </div>
+              <div class="flex-between">
+                <span>Discount/Coupon Applied</span>
+                <span class="price"
+                  >-₹ {{ cart.billing.discount | number : "1.0-0" }}</span
+                >
+              </div>
+              <div class="flex-between">
+                <span>Tax</span>
+                <span class="price"
+                  >₹ {{ cart.billing.tax | number : "1.0-0" }}</span
+                >
+              </div>
+              <ng-container *ngIf="cart.billing && cart.billing.fixedCharges">
+                <div
+                  class="flex-between"
+                  *ngFor="let charge of cart.billing.fixedCharges"
+                >
+                  <span>{{ charge.name }}</span>
+                  <span class="price"
+                    >₹ {{ charge.amount | number : "1.0-0" }}</span
+                  >
+                </div>
+              </ng-container>
+
+              <div class="divide-X"></div>
+
+              <div class="flex-between">
+                <span class="heading">Total Amount</span>
+                <span class="price"
+                  >₹ {{ cart.billing.grandTotal | number : "1.0-0" }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divide-X"></div>
+
+        <div class="modal-footer">
+          <button class="btn1" (click)="handleSubmit()">Submit</button>
+          <button (click)="onNoClick()" class="btn2">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

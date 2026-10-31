@@ -1,0 +1,41 @@
+.mainContainer {
+    padding: 30px;
+    font-family: Lato !important;
+
+    $text-primary: #212638;
+    $blue: #5688FF;
+
+    h2 {
+        color: $text-primary;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.408px;
+    }
+
+    .btnn {
+        display: flex;
+        justify-content: center;
+        // margin-left: 50px;
+        // margin-right: 50px;
+        margin-top: 16px;
+        gap: 16px;
+
+        button {
+            width: 100%;
+            border: 2px solid $blue;
+        }
+
+        #b1 {
+            border-radius: 6px;
+            background: white;
+            color: $blue;
+        }
+
+        #b2{
+            border-radius: 6px;
+            background: $blue;
+            color: white;
+        }
+    }
+}

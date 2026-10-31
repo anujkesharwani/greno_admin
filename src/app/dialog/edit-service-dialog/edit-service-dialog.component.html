@@ -1,0 +1,28 @@
+<section class="mainContainer">
+    <div class="heading">
+        <h2>Edit Service</h2>
+        <img src="assets/icon/dialog/close.svg" alt="" (click)="closeDialog()">
+    </div>
+    <div class="imgBox">
+        <img [src]="data.image" alt="">
+    </div>
+    <input type="text" placeholder="Service Name" id="serviceName" [(ngModel)]="data.serviceName">
+    <textarea name="des" id="description" cols="30" rows="10" placeholder="Description" [(ngModel)]="data.description"></textarea>
+    <div class="row-1">
+        <select name="category" id="category" >
+            <option [value]="data.category">{{data.category}}</option>
+            <option value="c1">C1</option>
+            <option value="c1">C1</option>
+        </select>
+        <input type="text" placeholder="Cost" [(ngModel)]="data.amount">
+    </div>
+    <button mat-flat-button id="addButton">Add Type</button>
+    <select name="job" id="job" >
+        <option [value]="data.jobs">{{data.jobs}}</option>
+        <option value="jobs">jobs</option>
+        <option value="jobs">jobs</option>
+    </select>
+    <div class="btnn">
+        <button mat-flat-button id="addService">Edit Service</button>
+    </div>
+</section>

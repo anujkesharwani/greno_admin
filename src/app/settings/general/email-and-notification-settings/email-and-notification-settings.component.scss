@@ -1,0 +1,26 @@
+h3{
+    margin: 0px;
+}
+.mainContainer {
+    background: #EDF1F7;
+    font-family: Lato !important;
+    padding: 32px;
+    height: 100%;
+
+    $primary-text: #54595F;
+
+    .rows {
+
+        background-color: white;
+        padding: 24px 32px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+        h3 {
+            color: $primary-text;
+            font-size: 18px;
+            font-weight: 500;
+
+        }
+    }
+}

@@ -1,0 +1,80 @@
+
+
+<div class="container">
+    <div class="btn">
+        <div class="btn-1">
+            <button mat-flat-button color="accent" id="debit" (click)="openDebitDetailsDialog()">
+              <mat-icon>arrow_upward</mat-icon>Add Debit
+            </button>
+            <button mat-flat-button color="primary"  id="credit" (click)="openCreditDetailsDialog()">
+              <mat-icon>arrow_downward</mat-icon>Add Credit
+            </button>
+          </div>
+          <div class="btn-2">
+            <button class="mx-3" mat-stroked-button color="primary">
+              <mat-icon>refresh</mat-icon>Refresh
+            </button>
+            <button class="mx-3" mat-stroked-button color="primary">
+              <mat-icon>filter</mat-icon>Clear Filter
+            </button>
+            <button mat-raised-button color="primary">
+              Enter the date Range<mat-icon>filter</mat-icon>
+            </button>
+          </div>
+    </div>
+
+    <div class="card-1" *ngFor="let item of row">
+        <section class="row-1">
+            <img src="assets/icon/ledger/calender.svg" alt="">
+            <h3>Today - 25 Jan 2023</h3>
+        </section>
+        <section class="row-2">
+            <button mat-flat-button id="debit">
+                <mat-icon>arrow_upward</mat-icon>₹ 2,220 <br>
+                <span class="dat">Total Debit</span>
+              </button>
+              <button mat-flat-button  id="credit">
+                <mat-icon>arrow_downward</mat-icon>₹ 22,440 <br>
+                <span class="dat">Total Credi</span>t
+              </button>
+              <button mat-flat-button  id="credit">
+                <mat-icon><img src="assets/icon/ledger/bank.svg" alt=""></mat-icon>₹ 22,440 <br>
+                <span class="dat">Total Credi</span>t
+              </button>
+        </section>
+
+        <section class="row-3" >
+            <div *ngFor="let item of row">
+                <h4>Debit Transactions</h4>
+                <table  cellpadding ="10">
+                    <thead>
+                        <tr>
+                            <th>Txn ID</th>
+                            <th>Time</th>
+                            <th>Recipient</th>
+                            <th>Reason</th>
+                            <th>Amount </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of data">
+                            <td>TX87678</td>
+                            <td>7:32 AM</td>
+                            <td>Arun Arora</td>
+                            <td>Salary of Jan...</td>
+                            <td>₹225</td>
+                            <td>
+                                <img src="assets/icon/ledger/edit.svg" alt="" (click)="openAddDebitTransactionDialog()">
+                                <img src="assets/icon/ledger/delete.svg" alt="" (click)="openConfirmationDialog()">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+  </div>
+
+
+  

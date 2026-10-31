@@ -1,0 +1,13 @@
+<div class="switch-container">
+  <label class="switch-component" [style]="{
+    '--unchecked-bg': uncheckedBackgroundColor,
+    '--checked-bg': checkedBackgroundColor,
+    '--thumb-color': this.checked ? this.checkedThumbColor : this.uncheckedThumbColor,
+    '--size': size,
+    '--border-color': borderColor,
+  }">
+
+    <input type="checkbox" [(ngModel)]="checked" (change)="switch.emit(checked)" />
+    <span class="slider round"></span>
+  </label>
+</div>

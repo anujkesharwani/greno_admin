@@ -1,0 +1,108 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0px;
+}
+
+.container {
+    padding: 40px;
+    background-color: #EDF1F7;
+
+
+    .btn {
+        display: flex;
+        justify-content: space-between;
+
+        .btn-1,
+        .btn-2 {
+            display: flex;
+            gap: 16px;
+        }
+
+        #debit {
+            background-color: #3E94E0;
+            border: 1px solid #5688FF;
+        }
+
+        #credit {
+            background-color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+    }
+
+    .card-1 {
+        padding: 24px;
+        background-color: #fff;
+        margin-top: 30px;
+        border-radius: 8px;
+        border: 2px solid var(--border, #E4E9F2);
+
+        .row-1 {
+            display: flex;
+            gap: 20px;
+        }
+
+        .row-2 {
+
+            display: flex;
+            gap: 16px;
+            margin-top: 26px;
+
+            button {
+                // padding: 13px;
+                height: 63px;
+                width: 158px;
+                font-size: 22px;
+                font-weight: 700;
+            }
+
+            #debit {
+                border-radius: 8px;
+                border: 1px solid #3E94E0;
+                background: #FFF;
+                color: #3E94E0;
+            }
+
+            #credit {
+                border-radius: 8px;
+                border: 1px solid #4CAF50;
+                background: #FFF;
+                color: #4CAF50;
+            }
+
+            .dat {
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+
+        .row-3 {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            table {
+                width: 100%;
+                th {
+                    color:  #444;
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+// .grid{
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+// }
+// .w-set{
+//     width: 100%;
+//     min-width: 200px;
+//     max-width: 200px;
+// }

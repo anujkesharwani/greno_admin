@@ -1,0 +1,38 @@
+<div
+  id="noBookingModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="noBookingModalLabel"
+>
+  <div class="header-btn">
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        (click)="onNoClick()"
+      >
+        <path
+          d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+          fill="#E82C2C"
+        />
+      </svg>
+    </span>
+  </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="no-booking-container">
+          <div class="no-booking-image">
+            <img src="\assets\icon\dashboard\no-booking.svg" alt="No Booking" />
+          </div>
+          <p class="no-booking-text">
+            No Bookings Available for the Selected Date
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

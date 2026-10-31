@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "turbanlaundry",
+    "admin": "turbanlaundry-admin"
+  },
+  "targets": {
+    "turbanlaundry": {
+      "hosting": {
+        "admin": [
+          "turbanlaundry-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

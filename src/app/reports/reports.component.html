@@ -1,0 +1,259 @@
+<div id="wrapper"   *ngIf="authService.userPermissions">
+  <mat-accordion multi>
+    <mat-expansion-panel
+      class="m2-mat-expansion-panel-padding"
+      [expanded]="true"
+      [disabled]="true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Graph and Summary </mat-panel-title>
+        <mat-panel-description>
+          <button (click)="refresh()">{{ refreshedAt }}</button>
+          <button *ngIf="!isDateToday(dateSelected)" (click)="resetDate()">
+            Reset Date
+          </button>
+          <button id="date-picker-btn" (click)="picker.open()">
+            {{ dateSelected | date : "mediumDate" }}
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [(ngModel)]="dateSelected"
+              [max]="today"
+            />
+            <mat-datepicker #picker xPosition="end"></mat-datepicker>
+            <mat-icon fontIcon="calendar_month"></mat-icon>
+          </button>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div id="graphs">
+          <div class="graph-container">
+            <h4>Day-Wise Current Week Sales vs Average Sales</h4>
+            <app-day-line-chart
+              [dateSelected]="dateSelected"
+            ></app-day-line-chart>
+          </div>
+          <div class="graph-container">
+            <h4>Category-Wise Bookings</h4>
+            <app-category-pie [dateSelected]="dateSelected"></app-category-pie>
+          </div>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      class="m2-mat-expansion-panel-padding"
+      [expanded]="true"
+      [disabled]="true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> All Reports </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div id="reports">
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['daySummaryReport']"
+          >
+            <div>
+              <h4>Day Summary</h4>
+              <p>Full day summary of Bookings, Sales etc.</p>
+            </div>
+            <button (click)="openDaySummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['allBookingsReport']"
+          >
+            <div>
+              <h4>All Bookings</h4>
+              <p>All Bookings, Sales etc.</p>
+            </div>
+            <button (click)="openAllBookings()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['deliveryCompletedBookingReport']"
+          >
+            <div>
+              <h4>Delivery Completed Booking</h4>
+              <p>All Bookings, Delivery etc.</p>
+            </div>
+            <button (click)="openDelivaryCompletedBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['pickupCompletedBookingReport']"
+          >
+            <div>
+              <h4>Pickup Completed Booking</h4>
+              <p>All Bookings, Pickup etc.</p>
+            </div>
+            <button (click)="openPickupCompletedBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+        </div>
+        <div id="reports">
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['cancelledBooking']"
+          >
+            <div>
+              <h4>Cancelled Booking</h4>
+              <p>All Bookings, Cancelled etc.</p>
+            </div>
+            <button (click)="openCanceledBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['washInProgressBookingReport']"
+          >
+            <div>
+              <h4>Wash in progress Booking</h4>
+              <p>All Bookings, Wash in progress etc.</p>
+            </div>
+            <button (click)="openWashInProgressBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['prepaidBookingReport']"
+          >
+            <div>
+              <h4>Prepaid Booking</h4>
+              <p>All Bookings, Prepaid Booking etc.</p>
+            </div>
+            <button (click)="openPrepaidBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['paylaterBookingReport']"
+          >
+            <div>
+              <h4>Paylater Booking</h4>
+              <p>All Bookings, Paylater Booking etc.</p>
+            </div>
+            <button (click)="openPaylaterBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <!-- <div class="report">
+						<div>
+							<h4>Admin created Booking</h4>
+							<p>All bookings, Admin created Booking etc.</p>
+						</div>
+						<button (click)="openAdminCreatedBooking()">View Report<mat-icon
+								fontIcon="insert_chart"></mat-icon></button>
+					</div> -->
+          <!-- <div class="report">
+						<div>
+							<h4>Customer Created Booking</h4>
+							<p>All bookings, Customer created Booking etc.</p>
+						</div>
+						<button (click)="openCustomerCreatedBooking()">View Report<mat-icon
+								fontIcon="insert_chart"></mat-icon></button>
+					</div> -->
+        </div>
+        <div id="reports">
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['discountBookingReport']"
+          >
+            <div>
+              <h4>Discount Booking</h4>
+              <p>All Bookings, Discount Booking etc.</p>
+            </div>
+            <button (click)="openDiscountBooking()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['slotWiseSummaryReport']"
+          >
+            <div>
+              <h4>Slot wise summary</h4>
+              <p>Full day summary of bookings, Slot wise summary etc.</p>
+            </div>
+            <button (click)="openSlotWiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['customerWiseSummaryReport']"
+          >
+            <div>
+              <h4>Customer wise summary</h4>
+              <p>Full day summary of bookings, Customer wise summary etc.</p>
+            </div>
+            <button (click)="openCustomerWiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['areaWiseSummaryReport']"
+          >
+            <div>
+              <h4>Area wise summary</h4>
+              <p>Full day summary of bookings, Area wise summary etc.</p>
+            </div>
+            <button (click)="openAreaWiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+        </div>
+        <div id="reports">
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['agentWiseSummaryReport']"
+          >
+            <div>
+              <h4>Agent wise summary</h4>
+              <p>Full day summary of bookings, Agent wise summary etc.</p>
+            </div>
+            <button (click)="openAgentWiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['serviceWiseSummaryReport']"
+          >
+            <div>
+              <h4>Service wise summary</h4>
+              <p>Full day summary of bookings, Service wise summary etc.</p>
+            </div>
+            <button (click)="openservicewiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+          <div
+            class="report"
+            *ngIf="authService.userPermissions?.['itemWiseSummaryReport']"
+          >
+            <div>
+              <h4>Item wise summary</h4>
+              <p>Full day summary of bookings, Item wise summary etc.</p>
+            </div>
+            <button (click)="openItemWiseSummary()">
+              View Report<mat-icon fontIcon="insert_chart"></mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

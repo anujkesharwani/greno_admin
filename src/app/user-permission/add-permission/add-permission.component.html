@@ -1,0 +1,820 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="d-flex heading-text">
+      <span class="blue-bold-text">Create Role</span>
+      <mat-icon class="blue-bold-text">add</mat-icon>
+    </div>
+    <div class="modal-close-icon">
+      <mat-icon (click)="closeDialog()">close</mat-icon>
+    </div>
+  </div>
+  <hr class="my-4" />
+  <div>
+    <form [formGroup]="roleForm">
+      <label for="" class="label">Role Name</label>
+      <div
+        class="input_field space_between"
+        [ngClass]="{
+          'invalid-field':
+            roleForm.controls['roleName'].invalid &&
+            roleForm.controls['roleName'].touched
+        }"
+      >
+        <div>
+          <img src="" alt="" />
+          <input
+            type="text"
+            formControlName="roleName"
+            placeholder="Enter role"
+          />
+        </div>
+      </div>
+
+      <div class="vertical_scroll">
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('Dashboard')"
+          >
+            <p>Dashboard</p>
+            <div class="flex">
+              <span
+                matTooltip="Enable/Disable"
+                matTooltipPosition="above"
+                class="d-flex mx-2"
+                (click)="stopPropagation($event)"
+              >
+                <label class="switch">
+                  <input type="checkbox" formControlName="dashboard" />
+                  <span class="slider round"></span>-
+                </label>
+              </span>
+              <img src="assets/add-user/downarrow.svg" alt="" />
+            </div>
+          </div>
+          <div *ngIf="isDashboard">
+            <div>
+              <div class="permission space_between">
+                <p>Total Sales, Discounts, Bills</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="totalSales" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Agents Summary Cards, Bookings summary Cards</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="bookingsSummary" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>All Graphs</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="allGraphs" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('BookingsCardVariables')"
+          >
+            <p>Bookings > Card Variables & Buttons</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  formControlName="bookingsCardVariables"
+                />
+                <span class="slider round"></span>-
+              </label>
+            </span>
+            <img src="assets/add-user/downarrow.svg" alt="" />
+          </div>
+          </div>
+          <div *ngIf="isBookingsCardVariables">
+            <div>
+              <div class="permission space_between">
+                <p>Customer & Agent Phone Number and Address</p>
+                <select
+                  class="select_option_permission"
+                  formControlName="phoneNumberAddress"
+                >
+                  <option value="visible">Visible</option>
+                  <option value="mask">Mask</option>
+                  <option value="hide">Hide</option>
+                </select>
+              </div>
+
+              <div class="permission space_between">
+                <p>
+                  Job Acceptance Charge, Bill Amount , Bill Details, Download
+                  Invoice
+                </p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="jobAcceptance" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+              <div class="permission space_between">
+                <p>OTP</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="otp" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Progress Bar, Timers</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="progressBar" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Allot, Reallot Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="allotReallot" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+              <div class="permission space_between">
+                <p>Cancel, Complete, Accept, OTP Verify Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="bookingActions" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('BookingsStages')"
+          >
+            <p>Bookings > Stages</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="bookingsStages" />
+                <span class="slider round"></span>-
+              </label>
+            </span>
+            <img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isBookingsStages">
+            
+            <div>
+              <div class="permission space_between">
+                <p>Available Agents</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="availableAgents" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Acceptance Pending</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="pending"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Wash-In-Progress</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="inProgress"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Completed Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="completed" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Cancelled Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="cancelled"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('AgentsPage')"
+          >
+            <p>Agents Page</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="agentsPage" />
+                <span class="slider round"></span>-
+              </label>
+            </span><img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isAgentsPage">
+            <div>
+              <div class="permission space_between">
+                <p>View Summary Cards & Agent Cards & History</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="viewSummary" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              
+              <div class="permission space_between">
+                <p>Enable/Disable Agents</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="enableDisableAgent"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Delete Agent</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="addDeleteAgent" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('CustomersPage')"
+          >
+            <p>Customers Page</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="customersPage" />
+                <span class="slider round"></span>-
+              </label>
+            </span><img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isCustomersPage">
+            <div>
+              <div class="permission space_between">
+                <p>View Summary Cards & Customers Cards & History</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="viewSummaryCustomerPage"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              
+              <div class="permission space_between">
+                <p>Enable/Disable Customer</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="enableDisableCustomer"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Delete Customer</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="addDeleteCustomer"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('ServicesPage')"
+          >
+            <p>Services Page</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="servicesPage" />
+                <span class="slider round"></span>-
+              </label>
+            </span><img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isServicesPage">
+            <div>
+              <div class="permission space_between">
+                <p>Area Wise Catalogue</p>
+                <select
+                  class="select_option_permission"
+                  formControlName="areaWiseCatalogue"
+                >
+                  <option value="can_edit">Can Edit</option>
+                  <option value="can_view">Can View</option>
+                </select>
+              </div>
+              <div class="permission space_between">
+                <p>Service Catalogues</p>
+                <select
+                  class="select_option_permission"
+                  formControlName="serviceCatalogues"
+                >
+                  <option value="can_edit">Can Edit</option>
+                  <option value="can_view">Can View</option>
+                </select>
+              </div>
+              <div class="permission space_between">
+                <p>Slot Management</p>
+                <select
+                  class="select_option_permission"
+                  formControlName="slotManagement"
+                >
+                  <option value="can_edit" default>Can Edit</option>
+                  <option value="can_view">Can View</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('ReportsPage')"
+          >
+            <p>Reports Page</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="reportsPage" />
+                <span class="slider round"></span>-
+              </label>
+            </span><img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isReportsPage">
+            <div>
+              <div class="permission space_between">
+                <p>Day Summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="daySummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+                <div class="permission space_between">
+                <p>All Bookings</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="allBookingsReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+                <div class="permission space_between">
+                <p>Delivery Completed Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="deliveryCompletedBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+                <div class="permission space_between">
+                <p>Pickup Completed Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="pickupCompletedBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+                <div class="permission space_between">
+                <p>Cancelled Booking
+                </p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="cancelledBooking" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+                <div class="permission space_between">
+                <p>In progress bookings</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="washInProgressBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+                </div>
+
+                <div class="permission space_between">
+                <p>Prepaid Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="prepaidBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+
+                <div class="permission space_between">
+                <p>Paylater Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="paylaterBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Discount Booking</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="discountBookingReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Slot wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="slotWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Customer wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="customerWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Area wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="areaWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Agent wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="agentWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Service wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="serviceWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span></div>
+
+                <div class="permission space_between">
+                <p>Item wise summary</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="itemWiseSummaryReport" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+
+              </div>
+              
+              
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="droplist">
+          <div
+            class="space_between droplist_heading"
+            (click)="togglePermissions('SettingsPage')"
+          >
+            <p>Settings Page</p>
+            <div class="flex">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+              (click)="stopPropagation($event)"
+            >
+              <label class="switch">
+                <input type="checkbox" formControlName="settingsPage" />
+                <span class="slider round"></span>-
+              </label>
+            </span><img src="assets/add-user/downarrow.svg" alt="" /></div>
+          </div>
+          <div *ngIf="isSettingsPage">
+            <div>
+              <div class="permission space_between">
+                <p>User Permissions Tab</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="userPermissions" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              
+              <div class="permission space_between">
+                <p>Customer App Settings tab</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      formControlName="customerAppSettings"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="permission space_between">
+                <p>Agent App Settings tab</p>
+                <span
+                  matTooltip="Enable/Disable"
+                  matTooltipPosition="above"
+                  class="d-flex mx-2"
+                >
+                  <label class="switch">
+                    <input type="checkbox" formControlName="agentAppSettings" />
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <button class="btn btn-success me-3" type="submit" (click)="onSubmit()">
+          Submit
+        </button>
+        <button class="btn btn-secondary" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

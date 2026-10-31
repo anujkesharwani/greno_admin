@@ -1,0 +1,62 @@
+h1,
+h2,
+h3 {
+    margin: 0px;
+}
+
+.mainContainer {
+    background-color: #fff;
+    padding: 24px 32px;
+    border-radius: 8px;
+    border: 2px solid #E4E9F2;
+
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            color: #444;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+        }
+
+        button {
+            border-radius: 10px;
+            border: 1px solid #94A0B6;
+            background: #F7F9FC;
+
+            color: #222B45;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 130%;
+        }
+    }
+
+    .chart {
+        margin-top: 16px;
+        display: flex;
+        gap: 75px;
+
+        .label {
+            display: flex;
+            gap: 10px;
+            h2 {
+                color: #41405D;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 87.5%;
+                /* 12.25px */
+                letter-spacing: -0.14px;
+                margin-top: 16px;
+            }
+
+            .dot{
+                height: 15px;
+                width: 15px;
+                border-radius: 100%;
+            }
+        }
+    }
+
+}

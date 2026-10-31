@@ -1,0 +1,181 @@
+h2,
+h3 {
+    margin: 0px;
+}
+
+.containerr {
+    background-color: #EDF1F7;
+    font-family: Lato;
+    padding: 32px;
+    display: grid;
+    gap: 32px;
+
+
+    .big-card {
+        background-color: #fff;
+        padding: 24px;
+        border-radius: 8px;
+        border: 2px solid #E4E9F2;
+
+        .roww {
+            display: flex;
+            gap: 16px;
+
+            h2 {
+                color: #094A28;
+                font-size: 22px;
+                font-weight: 500;
+
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
+
+        .cardss {
+
+            margin-top: 21px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+
+            .cardd {
+                flex: 0 1 250px;
+
+                transition: scale 0.3s ease-in-out;
+
+                border-radius: 8px;
+                border: 1px solid #E4E9F2;
+                background: #FFF;
+                box-shadow: 0px 2px 8px 0px rgba(22, 22, 22, 0.10);
+                padding: 19px;
+
+                    // width: fit-content;
+                    // height: fit-content;
+
+                h2 {
+                    color: #444;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                .row-1 {
+                    display: flex;
+                    justify-content: space-between;
+
+                    h2 {
+                        color: #848484;
+                        font-size: 16px;
+                        font-weight: 400;
+
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                    }
+
+                    h3 {
+                        color: #579540;
+                        font-size: 16px;
+                        font-weight: 500;
+                        background-color: #C4FFAE;
+                        padding: 8px;
+
+                        border-radius: 8px;
+                        background: rgba(196, 255, 174, 0.40);
+                    }
+                }
+
+                .row-2 {
+                    display: flex;
+                    gap: 16px;
+                    margin-top: 16px;
+
+                    .img {
+                        position: relative;
+
+                        #photo {
+                            position: relative;
+                        }
+
+                        #tel {
+                            position: absolute;
+                            left: -12px;
+                            top: -8px;
+                        }
+                    }
+
+                    .right {
+
+                        h2 {
+                            margin-top: 10px;
+                        }
+
+                        h3 {
+                            color: #181F29;
+                            font-size: 14px;
+                            font-weight: 500;
+                            background: #EDF1F7;
+                            // text-align: center;
+                            padding: 1px 7px;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+
+                .row-3 {
+                    display: flex;
+                    gap: 10px;
+
+
+                }
+
+                .row-4 {
+
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+
+                    h3 {
+                        color: #579540;
+                        font-size: 14px;
+                        font-weight: 400;
+                        border-radius: 6px;
+                        background: #E8FFDF;
+
+                    }
+
+                }
+
+                .btnn {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 20px;
+
+                    button {
+                        width: -webkit-fill-available;
+                        border-radius: 6px;
+                        border: 1px solid #5688FF;
+                        font-size: 18px;
+                        font-weight: 400;
+                    }
+
+                    #b1 {
+                        background: #FFF;
+                        color: #5688FF;
+                        width: 40%;
+                    }
+
+                    #b2 {
+                        background: #5688FF;
+                        color: #FFFFFF;
+                        width: 60%;
+                    }
+                }
+            }
+
+            .cardd:hover{
+                scale: 1.05;
+            }
+        }
+    }
+}

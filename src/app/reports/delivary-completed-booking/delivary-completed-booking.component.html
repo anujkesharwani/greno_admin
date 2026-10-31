@@ -1,0 +1,91 @@
+<div id="dialog">
+    <div id="header">
+        <div>
+            <h4>Delivery Completed Booking</h4>
+            <p>{{ refreshedAt }}</p>
+        </div>
+        <div id="header-buttons">
+            <div>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Columns
+                    </button>
+                    <div class="dropdown-menu">
+                        <div *ngFor="let column of allColumns">
+                            <label class="dropdown-item">
+                                <input type="checkbox" [(ngModel)]="columnVisibility[column]" checked> {{ column }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="hidden-for-focus"></button>
+            <button (click)="downloadExcel()">Download as Excel</button>
+            <button (click)="downloadPDF()">Download as PDF</button>
+            <button (click)="refresh()">Refresh Data<mat-icon fontIcon="refresh"></mat-icon></button>
+            <!-- <button (click)="picker.open()">
+                {{ dateSelected | date : 'mediumDate' }}
+                <input matInput [matDatepicker]="picker" [(ngModel)]="dateSelected" [max]="today"
+                    (dateChange)="loadBookings()">
+                <mat-datepicker #picker xPosition="end"></mat-datepicker>
+                <mat-icon fontIcon="calendar_month"></mat-icon>
+            </button> -->
+            <mat-form-field>
+                <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange" (dateChange)="getUsersBooking()">
+                  <input matStartDate formControlName="start" placeholder="Start Date">
+                  <input matEndDate formControlName="end" placeholder="End Date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field> 
+        </div>
+        <button id="close" (click)="dialogRef.close()"><mat-icon fontIcon="close"></mat-icon></button>
+    </div>
+    <div id="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <!-- Render table headers based on column visibility -->
+                    <ng-container *ngFor="let column of displayedColumns">
+                        <th *ngIf="columnVisibility[column]">{{ column }}</th>
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+
+                <ng-container *ngFor="let booking of bookings">
+                    <tr>
+                        <!-- Render data for each visible column -->
+                        <ng-container *ngFor="let column of allColumns">
+                            <td *ngIf="columnVisibility[column]">{{ booking[column] }}</td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+                <tr>
+                    <td> total bookings = {{bookingcounter}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Unique Customer = {{numberofCustomer}}</td>  
+                    <td></td>
+                    <td></td>
+                    <td>Unique agent = {{numberOfAgents}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>grandTotal={{grandtotal}}</td>
+                    <td>Total Tax={{totalTax}}</td>
+                    <td>Total Discount={{totalDiscount}}</td>
+                    
+                </tr>
+            </tbody>
+        </table> 
+    </div> 
+    <ng-template #noBookings>
+        <p id="no-bookings">No bookings found for {{ dateSelected | date : 'medium' }}</p>
+    </ng-template>
+</div>

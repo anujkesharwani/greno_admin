@@ -1,0 +1,73 @@
+h3,h4 {
+    margin: 0px;
+}
+
+.mainContainer {
+    background: #EDF1F7;
+    font-family: Lato !important;
+    padding: 32px;
+    height: 100%;
+
+    $primary-text: #54595F;
+    $button-background: #444;
+
+    .heading {
+        display: flex;
+        gap: 4px;
+
+        h3 {
+            flex-grow: 1;
+            color: $primary-text;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            align-self: center;
+        }
+
+        button {
+            background: $button-background;
+            color: white;
+        }
+
+        #b1 {
+            border-radius: 6px 0px 0px 6px;
+        }
+
+        #b2 {
+            border-radius: 0px 6px 6px 0px;
+        }
+    }
+
+    .rows {
+        padding: 8px 16px;
+        background-color: white;
+        margin-top: 8px;
+        display: flex;
+        gap: 24px;
+
+        h3 {
+            flex-grow: 1;
+            color: $primary-text;
+            font-size: 16px;
+            font-weight: 400;
+            align-self: center;
+        }
+
+        h4 {
+            color: $primary-text;
+            font-size: 14px;
+            font-weight: 400;
+            align-self: center;
+        }
+
+        button {
+            border-radius: 5px;
+            border: 1px solid $button-background;
+            background: white;
+        }
+    }
+}
+
+mat-paginator{
+    background: #EDF1F7;
+}

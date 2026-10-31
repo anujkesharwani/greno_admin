@@ -1,0 +1,11 @@
+<div class="modal-101">
+  <p>{{type}} FAQ</p>
+  <div class="box">
+      <input matInput id="email-1" placeholder="Question" [value]="question" (input)="change($event,'question')" />
+
+      <input matInput id="email-1" placeholder="Answer" [value]="answer" (input)="change($event,'answer')" />
+    <div class="buttons_inside">
+      <button (click)="saveQuestion()" >Save</button>
+      <button class="cancel" (click)="closeModal()" >Cancel</button>
+    </div>
+</div>

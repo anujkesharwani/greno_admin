@@ -1,0 +1,6 @@
+<div class="mainContainer">
+        <div class="rows" *ngFor="let item of data">
+            <h3>{{item.name}}</h3>
+            <mat-slide-toggle [checked]="item.tick"></mat-slide-toggle>
+        </div>
+</div>

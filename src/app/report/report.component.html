@@ -1,0 +1,24 @@
+<section>
+    <!-- <mat-card *ngFor="let report of reports">
+        <mat-card-header>
+            <mat-icon color="primary">{{report.icon}}</mat-icon>
+            <mat-card-title>{{report.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{report.description}}</p>
+            <button mat-stroked-button routerLink=":id" color="primary">See Report</button>
+        </mat-card-content>
+    </mat-card> -->
+
+    <mat-card *ngFor="let data of data">
+        <mat-card-content>
+            <div>
+                <img src="assets/icon/report/frame.svg" alt="">
+            </div>
+            <div>
+                <h1>Full orders data</h1>
+                <button mat-flat-button routerLink="table">View</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</section>

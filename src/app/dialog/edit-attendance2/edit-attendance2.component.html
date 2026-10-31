@@ -1,0 +1,30 @@
+<section class="mainContainer">
+    <div class="heading">
+        <h2>Edit Attendance</h2>
+        <img src="assets/icon/dialog/close2.svg" alt="" (click)="closeDialog()">
+    </div>
+    <div class="row-1">
+        <h3>Agent Name</h3>
+        <h3>Ravi Sharma</h3>
+    </div>
+
+    <h4>Day- Saturday</h4>
+
+    <div class="box">
+        <div class="row-2">
+            <img src="assets/icon/dialog/green-clock.svg" alt="">
+            <h3>Working hours</h3>
+        </div>
+        
+        <ul *ngFor="let item of timings">
+            <li>{{item}}
+                <mat-slide-toggle></mat-slide-toggle>
+            </li><hr>
+        </ul>
+    </div>
+
+    <div class="btnn">
+        <button mat-flat-button id="b1" (click)="closeDialog()">Cancel</button>
+        <button mat-flat-button id="b2" (click)="closeDialog()">Save</button>
+    </div>
+</section>

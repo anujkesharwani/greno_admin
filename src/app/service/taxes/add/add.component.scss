@@ -1,0 +1,28 @@
+section{
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	.heading{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 2px dashed #c7c7c7;
+	}
+	form{
+		.body{
+			padding: 20px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap:10px;
+			mat-form-field:nth-child(3){
+				grid-column: 1/3;
+			}
+		}
+		.actions{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap:20px;
+		}
+	}
+}

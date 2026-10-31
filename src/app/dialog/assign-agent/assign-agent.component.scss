@@ -1,0 +1,146 @@
+h2,
+h3 {
+    margin: 0px;
+}
+
+.container {
+    padding: 21px 28px;
+    width: 600px;
+    font-family: Lato;
+
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            color: #000;
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+    .row-2 {
+        display: flex;
+        gap: 8px;
+
+        h3 {
+            color: #848484;
+            font-size: 20px;
+            font-weight: 400;
+        }
+    }
+
+    // .row-3 {
+    //     display: flex;
+    //     justify-content: center;
+
+    //     color: #444;
+    //     font-size: 20px;
+    //     font-weight: 400;
+
+    //     select {
+    //         margin-top: 32px;
+    //         width: 92%;
+    //         padding: 16px 24px;
+
+    //         border-radius: 4px;
+    //         border: 1.5px #E4E9F2;
+    //         background: #FFF;
+    //         box-shadow: 0px 2px 6px 0px rgba(22, 22, 22, 0.10);
+
+    //         option {
+    //             padding: 16px;
+    //             height: 10%;
+    //             border-bottom: 1px solid #E4E9F2;
+    //         }
+
+    //         p{
+    //             padding: 20px;
+    //         }
+
+
+
+    //     }
+
+    //     hr {
+    //         background-color: #E4E9F2;
+    //     }
+
+    // }
+
+    .row-3 {
+        margin: 32px 20px 0px 20px;
+
+
+        #d1 {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 16px 24px;
+
+
+            border-radius: 4px;
+            border: 1.5px solid#E4E9F2;
+            background: #FFF;
+            box-shadow: 0px 2px 6px 0px rgba(22, 22, 22, 0.10);
+
+            h2 {
+                color: #444;
+                font-size: 20px;
+                font-weight: 400;
+            }
+        }
+
+        #d2 {
+            border-radius: 4px;
+            border: 1px solid #E4E9F2;
+            background: #FFF;
+            box-shadow: 0px 4px 8px 0px rgba(21, 21, 21, 0.20);
+
+            margin-top: 8px;
+
+            h2 {
+                color: #666;
+                font-size: 20px;
+                font-weight: 400;
+                padding: 16px;
+
+
+            }
+
+            hr {
+                background-color: #E4E9F2;
+                margin: 0px 16px;
+
+            }
+        }
+    }
+
+    .btnn {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 40px;
+
+        button {
+            border-radius: 6px;
+            border: 2px solid #5688FF;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: 500;
+            width: 30%;
+        }
+
+        #b1 {
+            background-color: #fff;
+            color: #5688FF;
+        }
+
+        #b2 {
+            background-color: #5688FF;
+            color: #fff;
+        }
+    }
+
+
+}

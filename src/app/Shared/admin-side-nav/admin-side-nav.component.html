@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <ul>
+        <div class="col " *ngFor="let label of labels">
+                <li routerLinkActive="active">
+                    <button mat-button extended [routerLink]="label.link">
+                        <mat-icon>{{label.icon}}</mat-icon>
+                        {{label.name}}
+                    </button>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

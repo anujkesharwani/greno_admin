@@ -1,0 +1,58 @@
+/* Main Container */
+.main-container {
+  padding: 50px 0px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #9f9f9f;
+}
+
+/* Content Container */
+.containerr {
+  background-color: #9f9f9f;
+  padding: 0px 50px;
+}
+
+/* Box for Sign Out Button */
+.boxx {
+  background-color: white;
+  height: 85vh;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+  /* Admin Icon */
+  img {
+    margin: auto;
+    width: 20vw;
+  }
+}
+
+/* Sign Out Button */
+button {
+  display: flex;
+  position: relative;
+  top: -10vh;
+  width: 25vw;
+  color: white;
+  padding: 8px 24px;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #444;
+  margin: auto;
+}
+
+/* Left Vector Image */
+.left-vector,
+.right-vector {
+  display: inline-flex;
+  width: 250px;
+  position: relative;
+  top: -22vh;
+}
+
+/* Right Vector Image */
+.right-vector {
+  position: relative;
+  left: 67vw;
+}

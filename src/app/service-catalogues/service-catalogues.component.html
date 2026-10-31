@@ -1,0 +1,68 @@
+<div class="wrapper-card"   *ngIf="AuthService.userPermissions"
+>
+  <div class="header">
+    <div>
+      <span>Total Service Catalogues: {{ serviceCatalogues.length }}</span>
+      <span class="mx-5">In Use Service Catalogues: {{ useCount }}</span>
+      <span>Active Service Catalogues: {{ activeCount }}</span>
+    </div>
+    <div >
+      <button (click)="catalogueModal()" *ngIf="AuthService.userPermissions['serviceCatalogues']=='can_edit'">
+        New Catalogue <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div class="content">
+    <div
+      class="inner-section d-flex"
+      *ngFor="let catalogue of serviceCatalogues"
+    >
+      <div>
+        <span class="slot-name">{{ catalogue.name }}</span>
+        <span class="time"
+          >Created On :
+          {{ utils.formatDate(catalogue.created.seconds, "DD MMM YYYY") }}</span
+        >
+        <!-- <span class="time">Active On Areas : 0</span> -->
+      </div>
+      <div class="icons"  *ngIf="AuthService.userPermissions['serviceCatalogues']=='can_edit'">
+        <!-- <img
+          matTooltip="Create Duplicate"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/copy.svg"
+          (click)="makeCatalogueCopy(catalogue)"
+        /> -->
+        <span
+          matTooltip="Enable/Disable"
+          matTooltipPosition="above"
+          class="d-flex mx-2"
+        >
+          <label class="switch">
+            <input
+              type="checkbox"
+              [checked]="catalogue.active"
+              (change)="changeStatus(catalogue.id, !catalogue.active)"
+            />
+            <span class="slider round"></span>
+          </label>
+        </span>
+        <img
+          matTooltip="Edit"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/edit.svg"
+          (click)="catalogueModal(catalogue)"
+        />
+        <img
+          matTooltip="Delete"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/delete.svg"
+          (click)="deleteCatalogue(catalogue.id)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

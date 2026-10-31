@@ -1,0 +1,36 @@
+<section class="mainContainer">
+    <div class="heading">
+        <div class="left">
+            <h2>Credit Details</h2>
+        </div>
+        <div class="right">
+            <img src="assets/icon/dialog/clock.svg" alt="">
+            <h3>{{data.time}}</h3>
+        </div>
+    </div>
+
+    <div class="row-1">
+        <h3>Transaction ID:</h3>
+        <h3>{{data.id}}</h3>
+    </div>
+
+    <div class="row-2">
+        <h2>Amount</h2>
+        <input type="text" [(ngModel)]="data.amount">
+    </div>
+    <div class="row-2" style="gap: 57px;">
+        <h2>Sender</h2>
+        <input type="text" [(ngModel)]="data.sender">
+    </div>
+
+    <div class="row-3">
+        <h2>Reason</h2>
+        <textarea name="reason" id="reason" cols="30" rows="10" [(ngModel)]="data.reason"></textarea>
+        <!-- <input type="text" [(ngModel)]="data.reason"> -->
+    </div>
+
+    <div class="btnn">
+        <button mat-flat-button id="b1">Cancel</button>
+        <button mat-flat-button id="b2">Add Debit</button>
+    </div>
+</section>

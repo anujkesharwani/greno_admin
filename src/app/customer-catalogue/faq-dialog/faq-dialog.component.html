@@ -1,0 +1,13 @@
+<div *ngIf="faq" id="wrapper">
+    <h1 class="heading">{{ editMode ? 'Edit' : 'Add New' }} FAQ <app-switch
+            [checked]="faq.show"></app-switch>
+    </h1>
+    <div id="form">
+        <input type="text" placeholder="Question" [(ngModel)]="faq.question">
+        <input type="text" placeholder="Answer" [(ngModel)]="faq.answer">
+    </div>
+    <div id="action-btns">
+        <button id="save-btn" (click)="save()">{{ editMode ? 'Update' : 'Add' }}</button>
+        <button id="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
+</div>

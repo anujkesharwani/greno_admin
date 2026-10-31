@@ -1,0 +1,57 @@
+<section class="mainContainer">
+  <div class="row-1">
+    <button mat-flat-button id="b1">&nbsp;
+      <img src="assets/icon/report/filter.svg" alt="">
+      Clear Filter
+    </button>
+    <button mat-flat-button id="b2">&nbsp;
+      <img src="assets/icon/report/export.svg" alt="">
+      Export
+    </button>
+    <button mat-flat-button id="b3">
+      Enter a date range &nbsp;
+      <img src="assets/icon/report/calendar.svg" alt="">
+    </button>
+  </div>
+
+  <div class="containerr">
+    <h3>Orders Report (145)</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Contact No.</th>
+          <th>Items</th>
+          <th>Status</th>
+          <th>Type</th>
+          <th>Order Date</th>
+          <th>Time Of Order</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{item.id}}</td>
+          <td>{{item.contact}}</td>
+          <td>{{item.items}}</td>
+          <td>
+            <span [ngClass]="item.status == 'Delivered'?'status-yes':'status-no'">
+              {{item.status}}
+            </span>
+          </td>
+          <td>{{item.type}}</td>
+          <td>
+            <span class="orderDate">{{item.date}}</span>
+          </td>
+          <td>{{item.time}}</td>
+          <td>
+            <span class="amount">{{item.amount | currency:'INR'}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</section>

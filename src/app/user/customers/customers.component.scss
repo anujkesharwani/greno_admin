@@ -1,0 +1,95 @@
+.containerr {
+    padding: 2em;
+    color: #444;
+    background: #F0F0F3;
+    font-family: Lato;
+    font-weight: 400;
+  }
+  /* User Details */
+  .user-details {
+    justify-content: flex-start;
+    display: flex;
+  }
+  .user-image {
+    img {
+      width: 4em;
+      margin-right: 1em;
+    }
+  }
+  /* Basic Details */
+  .basic-details {
+    display: flex;
+  
+    .flex {
+      display: flex;
+      margin: auto 3em;
+      flex-direction: column;
+    }
+  
+    /* Basic Details images */
+    img {
+      width: 1em;
+    }
+  }
+  
+  /* Contact Details */
+  .contact-details {
+    display: flex;
+    width: 30%;
+    justify-content: end;
+    align-content: center;
+    button {
+      border-radius: 50px;
+      border: 1px solid #D9E4FF;
+      background: #fff;
+      font-size: 8px;
+      width: 40px;
+      padding: 8px;
+      height: 40px;
+      margin: auto 15px;
+    }
+  }
+  .previousBookings {
+    margin-top: 2em;
+    background-color: white;
+    padding: 1em;
+    legend {
+      font-size: 15px;
+    }
+    table {
+      border-collapse: collapse;
+      padding: 5px;
+      width: 100%;
+      text-align: center;
+      .Completed {
+        border-radius: 8px;
+        background: rgba(196, 255, 174, 0.4);
+        padding: 4px 8px;
+        color: #579540;
+        align-items: flex-start;
+      }
+      .In {
+        border-radius: 8px;
+        background: #ffedd4;
+        padding: 4px 8px;
+        color: #d37f07;
+        align-items: flex-start;
+      }
+    }
+    table th,
+    table td {
+      font-weight: 500;
+      border-left: none;
+      font-size: 14px;
+      border-right: none;
+      text-align: center;
+      padding: 7px;
+    }
+    table tbody tr:nth-child(odd){
+      background-color: #F7F9FC;
+    }
+  }
+.boxx{
+    background-color: white;
+    padding: 1em;
+}  

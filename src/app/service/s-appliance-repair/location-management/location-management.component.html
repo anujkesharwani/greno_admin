@@ -1,0 +1,37 @@
+<section class="mainContainer">
+    <h2>Location Management</h2>
+    <div class="search">
+        <div class="left">
+            <input type="text" placeholder="Search Area To Add">
+            <img src="assets/icon/service/search.svg" alt="">
+        </div>
+        <div class="right">
+            <button mat-flat-button (click)="openAddAddressDialog()">
+                <img src="assets/icon/service/add2.svg" alt="">
+                Add New Location
+            </button>
+        </div>
+    </div>
+    <div class="row-1">
+        <div class="small-card left" *ngFor="let item of data">
+            <h3>
+                {{item.h1}} <br> {{item.h2}}
+            </h3>
+            <h2 class="right-side">
+                <img src="assets/icon/service/edit.svg" alt="">
+                <mat-slide-toggle></mat-slide-toggle>
+                <img src="assets/icon/service/delete2.png" alt="" class="delete">
+            </h2>
+        </div>
+        <div class="small-card right" *ngFor="let item of data">
+            <h3>
+                {{item.h1}} <br> {{item.h2}}
+            </h3>
+            <h2 class="right-side">
+                <img src="assets/icon/service/edit.svg" alt="">
+                <mat-slide-toggle></mat-slide-toggle>
+                <img src="assets/icon/service/delete2.png" alt="" class="delete">
+            </h2>
+        </div>
+    </div>
+</section>

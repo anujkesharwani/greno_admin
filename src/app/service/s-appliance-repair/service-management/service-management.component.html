@@ -1,0 +1,23 @@
+<section class="mainContainer">
+    <h2>Service Management</h2>
+    <section class="cards">
+        <div class="card-plus" (click)="openAddNewServiceDialog()">
+            <img src="assets/icon/service/big-add.svg" alt="">
+        </div>
+        <div class="card-1" *ngFor="let item of data">
+            <div>
+                <img [src]="item.imgSource" alt="" id="profile">
+            </div>
+            <div class="bottom">
+                <h3>{{item.heading}}</h3>
+                <h4>{{item.amount | currency:'INR'}}</h4>
+                <div class="btnn">
+                    <mat-slide-toggle checked="true"></mat-slide-toggle>
+                    <img src="assets/icon/service/edit.svg" alt="" (click)="openEditServiceDialog()">
+                    <img src="assets/icon/service/delete2.png" alt="" class="delete">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,49 @@
+<div class="wrapper-card">
+  <div class="header">
+    <div>
+      <span>Users</span>
+      <span class="mx-5">Total Users : 4</span>
+      <span>City Managers : {{ managerCount }}</span>
+      <span class="mx-5">Accountant : {{ accountantCount }}</span>
+      <span>Operators: {{ operatorCount }}</span>
+    </div>
+    <button (click)="opencCreateUserDialog()">
+      New User<mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+  <hr />
+  <div class="content">
+    <div class="section">
+      <p>City Managers : {{ managerCount }}</p>
+      <div class="users-list">
+        <app-user-card
+          *ngFor="let in of [].constructor(managerCount)"
+        ></app-user-card>
+      </div>
+    </div>
+    <div class="section">
+      <p>Accountant : {{ accountantCount }}</p>
+      <div class="users-list">
+        <app-user-card
+          *ngFor="let in of [].constructor(accountantCount)"
+        ></app-user-card>
+      </div>
+    </div>
+    <div class="section">
+      <p>Operator : {{ operatorCount }}</p>
+      <div class="users-list">
+        <app-user-card
+          *ngFor="let in of [].constructor(operatorCount)"
+        ></app-user-card>
+      </div>
+    </div>
+    <div class="section">
+      <p>Custom Users : {{ customeUserCount }}</p>
+      <div class="users-list">
+        <app-user-card
+          *ngFor="let in of [].constructor(customeUserCount)"
+        ></app-user-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,197 @@
+section{
+	height: calc(100vh - 130px);
+    overflow-y: scroll;
+	.heading{
+		display: flex;
+		padding: 20px;
+		justify-content: space-between;
+		border-bottom: 2px solid #c7c7c7;
+
+		h3{
+			align-self: center;
+			margin: 0px;
+		}
+	}
+	.dropArea{
+		border: 2px dashed #c7c7c7;
+		img{
+			width: 200px;
+			height: 200px;
+			object-fit: contain;
+			margin:0 auto;
+		}
+	}
+	form{
+		.body{
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			gap:10px;
+			.assets{
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap:20px;
+				.dropArea{
+					border: 2px dashed #c7c7c7;
+					padding: 20px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 8px;
+					height: 100px;
+					p{
+						margin: 0;
+						color:#c7c7c7;
+					}
+					video{
+						height: 100%;
+					}
+					&.image{
+						overflow: scroll;
+						display: flex;
+						max-width: 300px;
+						flex-wrap: wrap;
+						img{
+							width: 50px;
+							height: 50px;
+							object-fit: contain;
+							border-radius: 8px;
+							box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.12);
+						}
+					}
+				}
+			}
+			.grid{
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap:20px;
+				align-items: center;
+				justify-content: center;
+				.fullWidth{
+					grid-column: 1/3;
+				}
+				mat-slide-toggle{
+					margin-bottom: 20px;
+				}
+			}
+			#blogEditor{
+				box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.12);
+				border-radius: 8px;
+				border: 1px solid #c7c7c7;
+				padding: 10px 20px;
+			}
+			.subHeading{
+				display: flex;
+				justify-content: space-between;
+				border-bottom: 2px solid rgb(86, 151, 255);
+				align-items: center;
+			}
+			.coupons{
+				.searchBar{
+					display: flex;
+					align-items: center;
+					border-radius: 8px;
+					background:#FFF;
+					box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.20), 0px 2px 2px 0px rgba(0, 0, 0, 0.12), 0px 0px 2px 0px rgba(0, 0, 0, 0.14);
+					overflow: hidden;
+					padding: 5px;
+					input{
+						border: none;
+						height: 100%;
+						width: 100%;
+						padding: 5px;
+						&:focus{
+							outline: none;
+						}
+					}
+				}
+			}
+			table{
+				width: 100%;
+				margin-top: 15px;
+				thead{
+					color: rgb(86, 151, 255);
+					background: white;
+				}
+				tbody{
+					tr:nth-child(even){
+						background: #f7f7f7;
+					}
+					tr:nth-child(odd){
+						background: #ffffff;
+					}
+					td.badges{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						.percentage{
+							padding: 5px 20px;
+							border-radius: 8px;
+							background:#6D8FF5;
+							color:white;
+							margin: auto;
+							display: block;
+							width: min-content;
+						}
+						.fixed{
+							padding: 20px;
+							border-radius: 8px;
+							background: #B556FF;
+							color:white;
+							margin: auto;
+							display: block;
+							width: min-content;
+						}
+					}
+				}
+			}
+			.taxes{
+				display: flex;
+				flex-direction: column;
+				gap:15px;
+			}
+		}
+		.actions{
+			display: flex;
+			padding: 20px;
+			justify-content: flex-end;
+			border-top: 2px solid #c7c7c7;
+
+			gap:20px;
+		}
+	}
+	.padding{
+		padding: 8px;
+		display: flex;
+		flex-direction: column;
+		gap:20px;
+		.section{
+			background:  #f1f1f1;
+			padding: 12px;;
+			border-radius: 8px;
+			th,td{
+				background: #f1f1f1;
+			}
+		}
+		.variants{
+			td{
+				input{
+					max-width: 70px;
+					border: 1px solid #444;
+					border-radius: 8px;
+					box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
+					padding: 5px;
+				}
+			}
+			td:nth-child(1){
+				input{
+					max-width: 200px;
+				}
+			}
+
+			gap: 16px;
+
+		}
+	}
+	
+}

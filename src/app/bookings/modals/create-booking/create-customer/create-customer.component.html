@@ -1,0 +1,278 @@
+<div
+  mat-dialog-content
+  id="creatCustomerModal"
+  tabindex="-2"
+  role="dialog"
+  aria-labelledby="creatCustomerModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-between">
+        <div class="header-title">
+          <span class="modal-title" id="creatCustomerModalLabel">
+            Create New Customer
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="21"
+            viewBox="0 0 19 21"
+            fill="none"
+            style="margin-left: 10px"
+          >
+            <path
+              d="M10 13.252V15.3414C9.3744 15.1203 8.7013 15 8 15C4.68629 15 2 17.6863 2 21H0C0 16.5817 3.58172 13 8 13C8.6906 13 9.3608 13.0875 10 13.252ZM8 12C4.685 12 2 9.315 2 6C2 2.685 4.685 0 8 0C11.315 0 14 2.685 14 6C14 9.315 11.315 12 8 12ZM8 10C10.21 10 12 8.21 12 6C12 3.79 10.21 2 8 2C5.79 2 4 3.79 4 6C4 8.21 5.79 10 8 10ZM14 16V13H16V16H19V18H16V21H14V18H11V16H14Z"
+              fill="#145889"
+            />
+          </svg>
+        </div>
+        <div class="header-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+            (click)="onNoClick()"
+          >
+            <path
+              d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+              fill="#E82C2C"
+            />
+          </svg>
+        </div>
+      </div>
+      <form [formGroup]="customerForm">
+        <div class="modal-body">
+          <div id="recaptcha-container"></div>
+          <div class="customer-container">
+            <div style="grid-column: 1 / span 2" class="input-box">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                class="mx-2"
+              >
+                <path
+                  d="M6.36556 7.6821C7.302 9.3288 8.6712 10.698 10.3179 11.6344L11.2024 10.3961C11.4965 9.9845 12.0516 9.8573 12.4956 10.0998C13.9024 10.8683 15.4571 11.3353 17.0789 11.4637C17.599 11.5049 18 11.9389 18 12.4606V16.9234C18 17.4361 17.6122 17.8657 17.1022 17.9181C16.5723 17.9726 16.0377 18 15.5 18C6.93959 18 0 11.0604 0 2.5C0 1.96227 0.0274201 1.42771 0.0818901 0.89776C0.1343 0.38775 0.56394 0 1.07665 0H5.53942C6.0611 0 6.49513 0.40104 6.5363 0.92109C6.66467 2.54288 7.1317 4.09764 7.9002 5.50444C8.1427 5.9484 8.0155 6.50354 7.6039 6.79757L6.36556 7.6821ZM3.84425 7.0252L5.7442 5.66809C5.20547 4.50514 4.83628 3.27183 4.64727 2H2.00907C2.00303 2.16632 2 2.333 2 2.5C2 9.9558 8.0442 16 15.5 16C15.667 16 15.8337 15.997 16 15.9909V13.3527C14.7282 13.1637 13.4949 12.7945 12.3319 12.2558L10.9748 14.1558C10.4258 13.9425 9.8956 13.6915 9.3874 13.4061L9.3293 13.373C7.3697 12.2587 5.74134 10.6303 4.627 8.6707L4.59394 8.6126C4.30849 8.1044 4.05754 7.5742 3.84425 7.0252Z"
+                  fill="#878787"
+                />
+              </svg>
+              <input
+                id="mblNo"
+                type="text"
+                formControlName="phone"
+                placeholder="Mobile Number"
+                [disabled]="isValidMobile"
+              />
+            </div>
+
+            <div class="modal-footer" *ngIf="!showOTP && !isValidMobile">
+              <button class="btn1" (click)="sendOtp()">Send OTP</button>
+              <button (click)="onNoClick()" class="btn2">Cancel</button>
+            </div>
+
+            <div
+              *ngIf="showOTP"
+              style="grid-column: 1 / span 2"
+              class="input-box"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                class="mx-2"
+              >
+                <path
+                  d="M6.36556 7.6821C7.302 9.3288 8.6712 10.698 10.3179 11.6344L11.2024 10.3961C11.4965 9.9845 12.0516 9.8573 12.4956 10.0998C13.9024 10.8683 15.4571 11.3353 17.0789 11.4637C17.599 11.5049 18 11.9389 18 12.4606V16.9234C18 17.4361 17.6122 17.8657 17.1022 17.9181C16.5723 17.9726 16.0377 18 15.5 18C6.93959 18 0 11.0604 0 2.5C0 1.96227 0.0274201 1.42771 0.0818901 0.89776C0.1343 0.38775 0.56394 0 1.07665 0H5.53942C6.0611 0 6.49513 0.40104 6.5363 0.92109C6.66467 2.54288 7.1317 4.09764 7.9002 5.50444C8.1427 5.9484 8.0155 6.50354 7.6039 6.79757L6.36556 7.6821ZM3.84425 7.0252L5.7442 5.66809C5.20547 4.50514 4.83628 3.27183 4.64727 2H2.00907C2.00303 2.16632 2 2.333 2 2.5C2 9.9558 8.0442 16 15.5 16C15.667 16 15.8337 15.997 16 15.9909V13.3527C14.7282 13.1637 13.4949 12.7945 12.3319 12.2558L10.9748 14.1558C10.4258 13.9425 9.8956 13.6915 9.3874 13.4061L9.3293 13.373C7.3697 12.2587 5.74134 10.6303 4.627 8.6707L4.59394 8.6126C4.30849 8.1044 4.05754 7.5742 3.84425 7.0252Z"
+                  fill="#878787"
+                />
+              </svg>
+              <input
+                id="otp"
+                type="text"
+                formControlName="otp"
+                placeholder="Enter OTP"
+              />
+            </div>
+            <div class="modal-footer" *ngIf="showOTP">
+              <button class="btn1" (click)="submitOtp()">Submit OTP</button>
+              <button (click)="onNoClick()" class="btn2">Cancel</button>
+            </div>
+          </div>
+          <div *ngIf="showDetails">
+            <div style="grid-column: 1 / span 2" class="input-box">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="mx-2"
+              >
+                <path
+                  d="M12 3C17.5228 3 22 7.47715 22 13C22 18.5228 17.5228 23 12 23C6.47715 23 2 18.5228 2 13C2 7.47715 6.47715 3 12 3ZM12.1597 17C10.1243 17 8.29182 17.8687 7.01276 19.2556C8.38039 20.3474 10.114 21 12 21C13.9695 21 15.7727 20.2883 17.1666 19.1081C15.8956 17.8074 14.1219 17 12.1597 17ZM12 5C7.58172 5 4 8.58172 4 13C4 14.8106 4.6015 16.4807 5.61557 17.8214C7.25639 16.0841 9.58144 15 12.1597 15C14.6441 15 16.8933 16.0066 18.5218 17.6342C19.4526 16.3267 20 14.7273 20 13C20 8.58172 16.4183 5 12 5ZM12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10C8 7.79086 9.79086 6 12 6ZM12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8Z"
+                  fill="#878787"
+                />
+              </svg>
+              <input
+                formControlName="name"
+                type="text"
+                placeholder="Customer's Name"
+              />
+            </div>
+
+            <div class="input-box">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="mx-2"
+              >
+                <path
+                  d="M9 2V4H15V2H17V4H21C21.5523 4 22 4.44772 22 5V21C22 21.5523 21.5523 22 21 22H3C2.44772 22 2 21.5523 2 21V5C2 4.44772 2.44772 4 3 4H7V2H9ZM20 12H4V20H20V12ZM8 14V16H6V14H8ZM13 14V16H11V14H13ZM18 14V16H16V14H18ZM7 6H4V10H20V6H17V8H15V6H9V8H7V6Z"
+                  fill="#878787"
+                />
+              </svg>
+              <input
+                formControlName="dateOfBirth"
+                type="date"
+                placeholder="Date of Birth"
+              />
+            </div>
+
+            <div class="input-box">
+              <select
+                formControlName="gender"
+                class="form-select select-container"
+              >
+                <option value="" selected disabled hidden>Gender</option>
+                <option *ngFor="let gender of genderOptions" [value]="gender">
+                  {{ gender }}
+                </option>
+              </select>
+            </div>
+            <div class="customerPic">
+              <label class="btn2" for="uploadPic">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  class="mx-2"
+                >
+                  <rect width="24" height="24" fill="#FBFBFB" />
+                  <path
+                    d="M3 19H21V21H3V19ZM13 5.82843V17H11V5.82843L4.92893 11.8995L3.51472 10.4853L12 2L20.4853 10.4853L19.0711 11.8995L13 5.82843Z"
+                    fill="#007EDA"
+                  />
+                </svg>
+                <span>Upload Profile Pic</span>
+                <input
+                  type="file"
+                  accept="image/gif, image/jpeg, image/png"
+                  (change)="imgUpload($event)"
+                  id="uploadPic"
+                  style="display: none"
+                />
+              </label>
+              <button
+                (click)="
+                  imgSrc =
+                    'https://ik.imagekit.io/xji6otwwkb/Profile.png?updatedAt=1680849745697'
+                "
+                class="btn2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                  class="mx-2"
+                >
+                  <path
+                    d="M17.5 6H22.5V8H20.5V21C20.5 21.5523 20.0523 22 19.5 22H5.5C4.94772 22 4.5 21.5523 4.5 21V8H2.5V6H7.5V3C7.5 2.44772 7.94772 2 8.5 2H16.5C17.0523 2 17.5 2.44772 17.5 3V6ZM18.5 8H6.5V20H18.5V8ZM9.5 4V6H15.5V4H9.5Z"
+                    fill="#E82C2C"
+                  />
+                </svg>
+                Remove Pic
+              </button>
+              <img id="pic-container" [src]="imgSrc" alt="Customer Avatar" />
+            </div>
+
+            <span class="modal-title my-2" id="availableAgentsModalLabel">
+              Enter Address Details
+            </span>
+
+            <div class="modal-body">
+              <div class="address-container">
+                <div class="input-box">
+                  <mat-select
+                    formControlName="stateId"
+                    placeholder="State"
+                    (valueChange)="getCityList($event)"
+                  >
+                    <mat-option
+                      *ngFor="let state of stateList"
+                      value="{{ state.id }}"
+                      >{{ state.state }}</mat-option
+                    >
+                  </mat-select>
+                </div>
+                <div class="input-box">
+                  <mat-select
+                    formControlName="cityId"
+                    placeholder="City"
+                    (valueChange)="getAreaList($event)"
+                  >
+                    <mat-option
+                      *ngFor="let city of cityList"
+                      value="{{ city.id }}"
+                      >{{ city.name }}</mat-option
+                    >
+                  </mat-select>
+                </div>
+                <div class="input-box" style="grid-column: 1 / span 2">
+                  <mat-select formControlName="area" placeholder="Area">
+                    <mat-option
+                      *ngFor="let area of areaList"
+                      value="{{ area.id }}"
+                      >{{ area.name }}</mat-option
+                    >
+                  </mat-select>
+                </div>
+                <div style="grid-column: 1 / span 2" class="input-box">
+                  <input
+                    type="text"
+                    formControlName="address1"
+                    placeholder="House/Flat/Block/Building"
+                  />
+                </div>
+                <div class="input-box">
+                  <input
+                    type="number"
+                    formControlName="pincode"
+                    placeholder="Pincode"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer" *ngIf="showDetails">
+          <button class="btn1" (click)="saveCustomer()">Submit</button>
+          <button (click)="onNoClick()" class="btn2">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

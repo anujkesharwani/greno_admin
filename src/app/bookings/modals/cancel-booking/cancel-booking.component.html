@@ -1,0 +1,62 @@
+<div
+  class="wrapper"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-between">
+        <div class="header-title">
+          <span class="modal-title">
+            Cancel Booking
+          </span>
+        </div>
+        <div class="header-btn" (click)="dialogRef.close()">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <path
+                d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+                fill="#E82C2C"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="modal-body">
+        <form
+          [formGroup]="inputForm"
+          class="otpBoxes"
+          (ngSubmit)="inputForm.valid && cancelSubmit()"
+        >
+          <div class="input-wrap">
+            <mat-form-field panelClass="themeDD" class="themeDD gray w-100">
+              <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+              <mat-label>Select Cancellation Reason</mat-label>
+              <mat-select matInput formControlName="cancelReason">
+                  <mat-option value="">Select</mat-option>
+                  <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="inputForm.value.cancelReason === 'Other'" class="w-100 mt-3 reason-text roundedElement">
+              <textarea matInput placeholder="Describe Your Reason" formControlName="cancelReasonText"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="cta info">Submit</button>
+            <button type="button" (click)="dialogRef.close()" class="cta empty mx-3">Back</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

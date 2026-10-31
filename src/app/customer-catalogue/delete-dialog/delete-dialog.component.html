@@ -1,0 +1,10 @@
+<div id="wrapper">
+    <h1 class="heading">Are you sure you want to delete this{{ (data && data.item) ? (' ' + data.item) : '' }}?</h1>
+    <div id="icon-container">
+        <mat-icon fontIcon="delete_outline"></mat-icon>
+    </div>
+    <div id="action-btns">
+        <button id="del-btn" (click)="del()">Yes</button>
+        <button id="cancel-btn" (click)="cancel()">No</button>
+    </div>
+</div>

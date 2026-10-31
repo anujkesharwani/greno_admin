@@ -1,0 +1,16 @@
+<section class="mainContainer">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Timings</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td>{{item.day}}</td>
+                <td>{{item.timings}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

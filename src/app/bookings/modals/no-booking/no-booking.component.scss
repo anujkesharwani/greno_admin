@@ -1,0 +1,71 @@
+#noBookingModal{
+  background: white;
+  position: relative;
+}
+  
+  .modal-title {
+    // color: $heading !important;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .modal-header {
+    font-size: 18px !important;
+  }
+  
+  .modal-dialog {
+    height: 90vh !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .modal-content {
+    width: 707px !important;
+    height: fit-content;
+    flex-shrink: 0;
+    border-radius: 14px;
+    position: relative;
+    overflow-y: auto;
+  }
+  
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  svg,
+  mat-icon {
+    cursor: pointer;
+  }
+  
+  .header-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .no-booking-container{
+    padding: 45px;
+    .no-booking-image{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        img{
+            width: 90px;
+        }
+    }
+    .no-booking-text{
+        text-align: center;
+        color: #808080;
+        font-size: 21px;
+        margin-bottom: 0px;
+    }
+  }
+  
+  
+
+  

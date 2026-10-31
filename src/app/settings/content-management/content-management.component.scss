@@ -1,0 +1,194 @@
+* {
+    box-shadow: none !important;
+    font-family: Lato;
+    overflow: hidden;
+  }
+  
+  .main {
+    background-color: #edf1f7;
+  }
+  
+  .mat-tab {
+    background: #fff;
+  
+    .banner-card {
+      width: 95%;
+      margin: auto;
+      display: flex;
+      height: 400px;
+      padding: 5px 25px;
+      margin-top: 30px;
+    }
+  }
+  .body {
+    background-color: #edf1f7;
+  
+    height: 800px;
+  }
+  
+  .content {
+    display: flex;
+    margin-top: 40px;
+    // width: 980px;
+  
+    .card-1 {
+      border-radius: 8px;
+      border: 2px dashed var(--border, #e4e9f2);
+      width: 780px;
+      display: inline;
+      text-align: center;
+      .add-img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+      .text {
+        padding: 120px 0px;
+        display: inline-flex;
+      }
+    }
+    .card-2 {
+      border-radius: 8px;
+      border: 2px solid var(--border, #e4e9f2);
+      margin-left: 20px;
+  
+      width: 980px;
+      .row {
+        display: flex;
+        width: 100%;
+        h6 {
+          display: flex;
+          margin-top: 15px;
+          margin-bottom: 2px;
+        }
+        p {
+          display: flex;
+          color: #444;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          margin-top: 2px;
+          margin-left: 2px;
+        }
+  
+        .edit-icon {
+          padding: 0px 0px;
+          width: 20px;
+          height: 16px;
+          // padding: auto;
+          margin-left: 258px;
+          margin-top: -34px;
+          cursor: pointer;
+        }
+  
+        .delete-icon {
+          padding: 0px 0px;
+          width: 20px;
+          height: 16px;
+          // padding: auto;
+          margin-left: 10px;
+          margin-top: -34px;
+          cursor: pointer;
+        }
+      }
+      .row-1 {
+        margin-top: -10px;
+        h6 {
+          color: #444;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+      .row-2 {
+        margin-top: -10px;
+  
+        h6 {
+          display: flex;
+          margin-top: 10px;
+          color: #444;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+        p {
+          color: #7d7d7d;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          margin-left: 3px;
+        }
+      }
+      .row-3 {
+        display: flex;
+        margin-top: -15px;
+        h6 {
+          display: flex;
+          color: #444;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+        p {
+          color: #7d7d7d;
+          font-family: Lato;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+  .cancel {
+    margin-top: 30px;
+    .card {
+      width: 95%;
+      margin-left: 27px;
+      padding: 10px 20px;
+      height: 100%;
+    }
+    .container {
+      .input {
+        padding: 3px 5px;
+        width: 400px;
+        border: #fff;
+        border-bottom: 1px solid #444444;
+        margin-top: 30px;
+        outline: 0;
+      }
+      .delete-icon-2 {
+        position: absolute;
+        margin-top: 25px;
+        margin-left: -30px;
+        cursor: pointer;
+      }
+    }
+    .button-container {
+      padding: 10px 100px;
+  
+      .button {
+        color: #5688ff;
+        border: 2px solid #5688ff;
+        padding: 10px;
+        margin: 20px 20px;
+      }
+    }
+  }
+  
+  mat-slide-toggle {
+    margin-left: 200px;
+    margin-top: -40px;
+  }
+  

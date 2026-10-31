@@ -1,0 +1,65 @@
+<div class="containerr">
+    <section class="row-1">
+        <div class="cardd" *ngFor="let card of card">
+            <img src="assets/icon/wallet/user.png" alt="">
+
+            <div class="content">
+                <h2>₹ 22,03,450</h2>
+                <h3>Total wallet balance of all agent</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="row-2">
+        <div class="left">
+            <button mat-flat-button>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                Choose Agent
+            </button>
+            <div class="im">
+                <input type="text" placeholder="Search Search Name or ID">
+                <img src="assets/icon/wallet/Search.svg" alt="">
+            </div>
+        </div>
+        <div class="right">
+            <button mat-flat-button id="b1" (click)="openAddMoneyToWalletDialog()">
+                <img src="assets/icon/wallet/wallet-add.svg" alt="">
+                &nbsp; Add Money To Wallet
+            </button>
+            <button mat-flat-button id="b2">
+                Enter a date range &nbsp;
+                <img src="assets/icon/wallet/calendar-outline.svg" alt="">
+            </button>
+        </div>
+    </section>
+
+    <section class="row-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Agent ID</th>
+                    <th>Agent Name</th>
+                    <th>Current Wallet Balance</th>
+                    <th>Date of transaction</th>
+                    <th>Total Topup</th>
+                    <th>Total Widthraw</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of tab" (click)="detailsNavigate()">
+                    <td>#JC54564</td>
+                    <td>Mark Otto</td>
+                    <td><button mat-flat-button>₹1,500</button></td>
+                    <td class="date">12 Jan 23 ;12:00 PM</td>
+                    <td><button mat-flat-button>₹1,500</button></td>
+                    <td><button mat-flat-button>₹1,500</button></td>
+                    <td><mat-icon>keyboard_arrow_right</mat-icon></td>
+                </tr>
+            </tbody>
+            
+
+        </table>
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+        </mat-paginator>
+    </section>
+</div>

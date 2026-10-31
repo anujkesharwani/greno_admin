@@ -1,0 +1,40 @@
+.mainContainer {
+    padding: 32px;
+    font-family: Lato !important;
+    background: #EDF1F7;
+    $border: #E4E9F2;
+    $text-primary: #252836;
+    $blue:#5688FF;
+
+    .content {
+        border-radius: 8px;
+        border: 2px solid $border;
+        background: white;
+        padding: 24px 32px;
+        display: grid;
+        
+        h2 {
+            color: $text-primary;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 24px;
+
+            border-radius: 8px;
+            border: 2px solid $border;
+            padding: 16px;
+        }
+
+        button {
+            border-radius: 6px;
+            background-color: $blue;
+            color: white;
+            margin-top: 16px;
+            justify-self: end;
+        }
+    }
+}

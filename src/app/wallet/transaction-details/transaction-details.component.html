@@ -1,0 +1,96 @@
+<div class="mainContainer">
+    <img src="assets/icon/transaction-details/back-button.svg" alt="" (click)="location.back()" id="back">
+    <div class="heading">
+        <h2>Agent Details</h2>
+
+        <div class="rows">
+            <section>
+                <img src="assets/icon/transaction-details/profile.svg" alt="" style="height: 80px;">
+            </section>
+            <section>
+                <h3>Name: Arun Arora</h3>
+                <h3>Email: Example@gmail.com</h3>
+            </section>
+            <section>
+                <h3>Robert Robertson, 1234 NW Bobcat Lane</h3>
+                <h3>Phone: 9995566633</h3>
+            </section>
+            <section class="btnn">
+                <img src="assets/icon/transaction-details/call.svg" alt="" class="round">
+                <img src="assets/icon/transaction-details/mail.svg" alt="" class="round">
+                <button mat-flat-button (click)="openDialog()">
+                    <img src="assets/icon/transaction-details/wallet.svg" alt="">
+                    &nbsp; Add Money To Wallet
+                </button>
+            </section>
+        </div>
+    </div>
+
+    <div class="last-transactoion">
+        <h2>Last Transaction</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Transaction</th>
+                    <th>Agent ID</th>
+                    <th>Date & Time</th>
+                    <th>Phone Number</th>
+                    <th>Amount</th>
+                    <th>Transaction Type</th>
+                    <th>Agent Bank Ac</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of tableData">
+                    <td>{{item.transaction}}</td>
+                    <td>{{item.agentID}}</td>
+                    <td>{{item.dateNtime}}</td>
+                    <td>
+                        <img src="assets/icon/transaction-details/call2.svg" alt="">&nbsp;
+                        {{item.phoneNumber}}
+                    </td>
+                    <td>
+                        <span class="green">{{item.amount | currency:'INR'}}</span>
+                    </td>
+                    <td>
+                        <span [ngClass]="item.type =='Withdrawal'?'red':item.type == 'Topup'?'green':'blue'">
+                            {{item.type}} 
+                                <img src="assets/icon/transaction-details/arrow-1.svg" alt="" *ngIf="item.type == 'Withdrawal'">
+                                <img src="assets/icon/transaction-details/arrow-2.svg" alt="" *ngIf="item.type == 'Topup'">
+                                <img src="assets/icon/transaction-details/arrow-3.svg" alt="" *ngIf="item.type == 'Job Fee'">
+                        </span>
+                    </td>
+                    <td>{{item.acc}}</td>
+                    <td>
+                        <span [ngClass]="item.status == 'Failed'?'red':'green'">
+                            {{item.status}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+</div>

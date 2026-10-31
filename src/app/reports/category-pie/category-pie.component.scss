@@ -1,0 +1,27 @@
+.chart-container {
+  background-color: #fff;
+  padding: 1em;
+  border: 1px solid #054BAE;
+  border-radius: 14px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  #no-bookings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
+
+#yes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

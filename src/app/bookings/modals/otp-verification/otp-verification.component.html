@@ -1,0 +1,123 @@
+<div
+  class="wrapper"
+  id="otpVerificationModal"
+  role="dialog"
+  aria-labelledby="otpVerificationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="header-btn" (click)="dialogRef.close()">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <path
+                d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+                fill="#E82C2C"
+              />
+            </svg>
+          </span>
+        </div>
+
+        <p class="note">Please enter the Verification Code</p>
+
+        <form
+          [formGroup]="otpInputForm"
+          class="otpBoxes"
+          (ngSubmit)="otpInputForm.valid && verifyOtp()"
+        >
+          <div class="input-wrap">
+            <div id="inputs" class="inputBox">
+              <input
+                id="input1"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt1"
+                maxlength="1"
+                (keyup)="focusNext($event, 1)"
+              />
+            </div>
+            <div id="inputs" class="inputBox">
+              <input
+                id="input2"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt2"
+                maxlength="1"
+                (keyup)="focusNext($event, 2)"
+              />
+            </div>
+            <div id="inputs" class="inputBox">
+              <input
+                id="input3"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt3"
+                maxlength="1"
+                (keyup)="focusNext($event, 3)"
+              />
+            </div>
+            <div id="inputs" class="inputBox">
+              <input
+                id="input4"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt4"
+                maxlength="1"
+                (keyup)="focusNext($event, 4)"
+              />
+            </div>
+            <div id="inputs" class="inputBox">
+              <input
+                id="input5"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt5"
+                maxlength="1"
+                (keyup)="focusNext($event, 5)"
+              />
+            </div>
+            <div id="inputs" class="inputBox">
+              <input
+                id="input6"
+                class="inputOTP"
+                type="text"
+                formControlName="inpt6"
+                maxlength="1"
+                (keyup)="focusNext($event, 6)"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="cta info">Verify OTP</button>
+          </div>
+        </form>
+
+        <span style="cursor: pointer" class="note d-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 12 12"
+            fill="none"
+          >
+            <path
+              d="M6 1C8.7614 1 11 3.23857 11 6C11 8.7614 8.7614 11 6 11C3.23857 11 1 8.7614 1 6H2C2 8.20915 3.79086 10 6 10C8.20915 10 10 8.20915 10 6C10 3.79086 8.20915 2 6 2C4.62511 2 3.41224 2.69367 2.69226 3.75012L4 3.75V4.75H1V1.75H2L1.99995 2.99959C2.91217 1.78537 4.36437 1 6 1ZM6.5 3.5L6.4999 5.7925L8.1213 7.4142L7.4142 8.1213L5.4999 6.2065L5.5 3.5H6.5Z"
+              fill="#9F9F9F"
+            />
+          </svg>
+          &nbsp;Resend Code
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

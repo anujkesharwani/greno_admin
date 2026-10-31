@@ -1,0 +1,262 @@
+<section>
+  <form [formGroup]="serviceForm" (ngSubmit)="handleSubmit()">
+    <div class="body">
+      <mat-tab-group>
+        <mat-tab label="Description">
+          <div class="padding">
+            <mat-form-field appearance="outline">
+              <mat-label>Service Name</mat-label>
+              <input matInput type="text" formControlName="name" />
+            </mat-form-field>
+            <div id="blogEditor"></div>
+            <div class="grid">
+              <mat-form-field appearance="outline" class="fullWidth">
+                <mat-label>HSN Code</mat-label>
+                <input matInput type="text" formControlName="hsnCode" />
+              </mat-form-field>
+              <mat-slide-toggle formControlName="allowReviews"
+                >Allow Reviews</mat-slide-toggle
+              >
+              <mat-form-field appearance="outline">
+                <mat-label>Review Editable Period In Minutes</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="reviewEditable"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Assets">
+          <div class="padding">
+            <div class="assets section">
+              <div class="dropArea" (click)="selectVideo()">
+                <p *ngIf="!this.serviceForm.value.video">
+                  <i class="ri-image-line"></i> Upload intro view (.mp4)
+                </p>
+                <video
+                  controls
+                  *ngIf="this.serviceForm.value.video"
+                  [src]="this.serviceForm.value.video"
+                ></video>
+              </div>
+              <div class="dropArea image" (click)="selectImage()">
+                <p *ngIf="!this.serviceForm.value.image.length">
+                  <i class="ri-image-line"></i> Upload Images (jpg,png)
+                </p>
+                <ng-container *ngIf="this.serviceForm.value.image.length">
+                  <img
+                    *ngFor="let item of this.serviceForm.value.image"
+                    [src]="item"
+                    alt=""
+                  />
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="subHeading">
+              <h5>Suggestive Services</h5>
+            </div>
+            <div class="coupons section">
+              <div class="searchBar">
+                <i class="ri-search-line"></i>
+                <input
+                  type="search"
+                  placeholder="Search coupons"
+                  [matAutocomplete]="serviceAutoComplete"
+                  (input)="serviceSearchSubject.next(serviceInput.value)"
+                  #serviceInput
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #serviceAutoComplete="matAutocomplete"
+                  (optionSelected)="haveSelectedService($event)"
+                  [displayWith]="returnBlank"
+                >
+                  <mat-option
+                    *ngFor="let option of filteredServices"
+                    [value]="option"
+                  >
+                    {{ option.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Sub-Category</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let service of selectedServices; let i = index">
+                    <td>{{ service.name }}</td>
+                    <td>{{ service.category.name }}</td>
+                    <td>{{ service.subCategory.name }}</td>
+                    <td>{{ service.price }}</td>
+                    <td>
+                      <button
+                        type="button"
+                        (click)="selectedServices.splice(i, 1)"
+                        mat-icon-button
+                        color="warn"
+                      >
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Pricing">
+          <div class="padding">
+            <div class="subHeading">
+              <h5>Taxes</h5>
+            </div>
+            <div class="taxes section">
+              <mat-radio-group>
+                <mat-radio-button> Inclusive </mat-radio-button>
+                <mat-radio-button> Exclusive </mat-radio-button>
+              </mat-radio-group>
+              <!-- <mat-checkbox *ngFor="let tax of taxes">{{tax.name}} - {{tax.rate}}</mat-checkbox> -->
+              <mat-form-field appearance="outline">
+                <mat-select multiple formControlName="taxes">
+                  <mat-option *ngFor="let tax of taxes" [value]="tax">{{
+                    tax.name
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="subHeading">
+              <h5>Coupons</h5>
+            </div>
+            <div class="coupons section">
+              <div class="searchBar">
+                <i class="ri-search-line"></i>
+                <input
+                  type="search"
+                  [matAutocomplete]="discountAutoComplete"
+                  placeholder="Search coupons"
+                  (input)="discountSearchSubject.next(discountInput.value)"
+                  #discountInput
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #discountAutoComplete="matAutocomplete"
+                  (optionSelected)="haveSelectedCoupon($event)"
+                  [displayWith]="returnBlank"
+                >
+                  <mat-option
+                    *ngFor="let option of filteredDiscounts"
+                    [value]="option"
+                  >
+                    {{ option.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Value</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let discount of selectedDiscounts; let i = index">
+                    <td>{{ discount.name }}</td>
+                    <td>{{ discount.code }}</td>
+                    <td>{{ discount.amount }}</td>
+                    <td class="badges">
+                      <span [class]="discount.type">
+                        {{ discount.type }}
+                      </span>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        mat-icon-button
+                        color="warn"
+                        (click)="selectedDiscounts.splice(i, 1)"
+                      >
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="subHeading">
+              <h5>Suggestive Services</h5>
+            </div>
+            <div class="coupons">
+              <div class="searchBar">
+                <i class="ri-search-line"></i>
+                <input
+                  type="search"
+                  placeholder="Search coupons"
+                  [matAutocomplete]="serviceAutoComplete"
+                  (input)="serviceSearchSubject.next(serviceInput.value)"
+                  #serviceInput
+                />
+                <mat-autocomplete
+                  autoActiveFirstOption
+                  #serviceAutoComplete="matAutocomplete"
+                  (optionSelected)="haveSelectedService($event)"
+                  [displayWith]="returnBlank"
+                >
+                  <mat-option
+                    *ngFor="let option of filteredServices"
+                    [value]="option"
+                  >
+                    {{ option.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Sub-Category</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let service of selectedServices; let i = index">
+                    <td>{{ service.name }}</td>
+                    <td>{{ service.category.name }}</td>
+                    <td>{{ service.subCategory.name }}</td>
+                    <td>{{ service.clothes[0].cost || 0 }}</td>
+                    <td>
+                      <button
+                        type="button"
+                        (click)="selectedServices.splice(i, 1)"
+                        mat-icon-button
+                        color="warn"
+                      >
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div></mat-tab
+        ></mat-tab-group
+      >
+    </div>
+  </form>
+</section>

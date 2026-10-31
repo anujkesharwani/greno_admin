@@ -1,0 +1,22 @@
+.chartsSection{
+    height: 60vh;
+    display: grid;
+    grid-template-areas: "chart1 chart1 chart2 chart2 chart3 chart3" "chart4 chart4 chart5 chart5 chart5 chart5";
+    gap:20px;
+    padding: 20px;
+    app-chart-container:nth-child(1){
+        grid-area: chart1;
+    }
+    app-chart-container:nth-child(2){
+        grid-area: chart2;
+    }
+    app-chart-container:nth-child(3){
+        grid-area: chart3;
+    }
+    app-chart-container:nth-child(4){
+        grid-area: chart4;
+    }
+    app-chart-container:nth-child(5){
+        grid-area: chart5;
+    }
+}

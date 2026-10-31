@@ -1,0 +1,30 @@
+.wrapper {
+    padding: 50px 150px 150px 150px;
+
+    .buttons {
+        button {
+            width: 242.82px;
+            height: 59.06px;
+            border-radius: 20px;
+            color: #454545;
+            border: 1.09px solid #199DE9;
+            margin: 0 15px;
+            background: #fff;
+    
+            &:hover {
+                background: rgba(20, 88, 137, 0.1019607843);
+            }
+
+            &.active {
+                color: #fff;
+                background: linear-gradient(107deg, #199DE9 10.98%, #199DE9 49.96%, #199DE9 85.23%);
+
+
+            }
+        }
+    }
+
+    .content {
+        margin-top: 50px;
+    }
+}

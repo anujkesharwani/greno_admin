@@ -1,0 +1,170 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="d-flex heading-text">
+      <span class="blue-bold-text">Create New Admin Panel User</span>
+      <!-- <mat-icon class="blue-bold-text">add</mat-icon> -->
+    </div>
+    <div class="modal-close-icon">
+      <mat-icon (click)="closeDialog()">close</mat-icon>
+    </div>
+  </div>
+  <hr class="my-4" />
+  <div>
+    <form [formGroup]="userForm">
+      <label for="" class="label">Email </label>
+
+      <div
+        class="input_field space_between"
+        [ngClass]="{
+          'invalid-field':
+            userForm.controls['email'].invalid &&
+            userForm.controls['email'].touched
+        }"
+      >
+        <div>
+          <img src="" alt="" />
+          <input
+            type="email"
+            placeholder="Enter email"
+            formControlName="email"
+            (change)="isEmailValid()"
+            [readonly]="isReadonly()"
+          />
+        </div>
+        <span *ngIf="isEmailExist"
+          >*Account already exists: @Customer’s Name</span
+        >
+      </div>
+
+      <label for="" class="label">Name Of User</label>
+      <div
+        class="input_field space_between"
+        [ngClass]="{
+          'invalid-field':
+            userForm.controls['name'].invalid &&
+            userForm.controls['name'].touched
+        }"
+      >
+        <div class="input_role_name">
+          <img src="" alt="" />
+          <input
+            type="text"
+            placeholder="Enter user name"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div class="flex_space_between imgUpload">
+        <div>
+          <input
+            type="file"
+            #fileInput
+            style="display: none"
+            (change)="changePhoto($event)"
+            accept="image/*"
+          />
+          <button (click)="fileInput.click()">
+            <img
+              src="assets/add-user/upload.svg"
+              class="upload_picture_icon"
+              alt=""
+            />
+            Upload Photo
+          </button>
+          <p *ngIf="isImgSizeValid">*Image size should be</p>
+          <p *ngIf="isImgSizeValid">less than 500kb</p>
+        </div>
+        <div>
+          <button (click)="removePhoto()" class="remove_btn">
+            <img
+              src="assets/add-user/delete.svg"
+              class="remove_picture_icon"
+              alt=""
+            />
+            Remove
+          </button>
+        </div>
+        <div>
+          <img
+            class="profile_section"
+            [src]="this.userForm.value.img"
+            alt="Profile Photo"
+          />
+        </div>
+      </div>
+
+      <div>
+        <mat-form-field panelClass="select_option" class="areadd w-100 mb-3">
+          <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+          <mat-label>Select Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.id">{{
+              role.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <section class="vertical_scroll">
+        <div class="droplist">
+          <div class="space_between droplist_heading" (click)="toggleArea()">
+            <p>City & Area Permissions</p>
+            <img src="assets/add-user/downarrow.svg" alt="" />
+          </div>
+          <div *ngIf="isArea">
+            <div *ngFor="let area of areas; let i = index">
+              <div class="city space_between" (click)="toggleCity(i)">
+                <p>{{ area.city.name }}</p>
+                <div class="flex">
+                  <span
+                    matTooltip="Enable/Disable"
+                    matTooltipPosition="above"
+                    class="d-flex mx-2"
+                    (click)="onCityChange($event,area.cityId)"
+                  >
+                    <label class="switch">
+                      <input type="checkbox" [checked]="isCityActive(area.cityId)"/>
+                      <span class="slider round"></span>
+                    </label>
+                  </span>
+                  <img src="assets/add-user/downarrow.svg" alt="" />
+                </div>
+              </div>
+              <div *ngIf="area.expanded">
+                <div 
+                  *ngFor="let district of area.area; let j = index"
+                  class="space_between district"
+                >
+                  <p>{{district.formatted_address}}</p>
+                  <span
+                    matTooltip="Enable/Disable"
+                    matTooltipPosition="above"
+                    class="d-flex mx-2"
+                    (click)="onCheckboxChange($event,district.areaId,area.cityId)"
+
+                  >
+                    <label class="switch">
+                      <input type="checkbox" [checked]="isActive(district.areaId)"  />
+                      <span class="slider round"></span>
+                    </label>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <button class="btn btn-success me-3" (click)="onSubmit()">
+          Submit
+        </button>
+        <button class="btn btn-secondary" (click)="closeDialog()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

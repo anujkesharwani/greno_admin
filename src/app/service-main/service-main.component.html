@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="buttons">
+    <button (click)="changeTab('area')" [ngClass]="{ active: tabStatus.area }">
+      Area wise Catalogue
+    </button>
+    <button
+      (click)="changeTab('service')"
+      [ngClass]="{ active: tabStatus.service }"
+    >
+      Service Catalogue
+    </button>
+    <button
+      (click)="changeTab('items')"
+      [ngClass]="{ active: tabStatus.items }"
+    >
+      Items
+    </button>
+    <button (click)="changeTab('slot')" [ngClass]="{ active: tabStatus.slot }">
+      Slot Management
+    </button>
+  </div>
+  <div class="content">
+    <app-area-wise-catalogue *ngIf="tabStatus.area"></app-area-wise-catalogue>
+    <app-service-catalogues *ngIf="tabStatus.service"></app-service-catalogues>
+    <app-time-slots *ngIf="tabStatus.slot"></app-time-slots>
+    <app-items *ngIf="tabStatus.items"></app-items>
+  </div>
+</div>

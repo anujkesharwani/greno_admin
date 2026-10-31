@@ -1,0 +1,22 @@
+<div class="wrapper-card" >
+    <div class="header">
+        <span>Total Slots: {{timeSlots.length}}</span>
+        <span class="mx-5">Active Slots: {{activeCount}}</span>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="inner-section d-flex" *ngFor="let slot of timeSlots">
+            <div>
+                <span class="slot-name">{{slot.name.split(' ')[0]}}</span>
+                <span class="time">Time Duration : {{slot.name.split(' ')[1].replace('(', '').replace(')', '')}}</span>
+            </div>
+            <span class="d-flex"  *ngIf="AuthService.userPermissions && 
+            AuthService.userPermissions['slotManagement']=='can_edit'">
+                <label class="switch">
+                  <input type="checkbox" [checked]="slot.active" (change)="changeSlotStatus(slot.id, !slot.active)"/>
+                  <span class="slider round"></span>
+                </label>
+            </span>
+        </div>
+    </div>
+</div>

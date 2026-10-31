@@ -1,0 +1,44 @@
+<section class="mainContainer">
+    <div class="heading">
+        <h2>Edit Attendance</h2>
+        <img src="assets/icon/dialog/close2.svg" alt="" (click)="closeDialog()">
+    </div>
+    <div class="row-1">
+        <h3>Agent Name</h3>
+        <h3>Ravi Sharma</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Status</th>
+                <th><span class="time">08:00 AM - 10:00 AM</span></th>
+                <th><span class="time">012:00 PM - 02:00 PM</span> </th>
+                <th><span class="time">012:00 PM - 02:00 PM</span> </th>
+                <th><span class="time">012:00 PM - 02:00 PM</span> </th>
+                <th><span class="time">012:00 PM - 02:00 PM</span> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of tableData" (click)="openDialog()">
+                <td>{{item.date}}</td>
+                <td>{{item.day}}</td>
+                <td><span [ngClass]="item.status =='Present'?'present':'absent'">{{item.status}}</span></td>
+                <ng-container *ngFor="let time of item.timing">
+                    <td *ngIf="time == 'yes';"><mat-icon>done</mat-icon></td>
+                    <td *ngIf="time != 'yes';"><mat-icon>minimize</mat-icon></td>
+                    <!-- <td *ngIf="time == 'yes'; ngIfElse other"><mat-icon>done</mat-icon></td>
+                    <td #other><mat-icon>minimize</mat-icon></td> -->
+                </ng-container>
+                <td><img src="assets/icon/dialog/right-arrow.svg" alt=""></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btnn">
+        <button mat-flat-button id="b1" (click)="closeDialog()">Cancel</button>
+        <button mat-flat-button id="b2" (click)="closeDialog()">Save</button>
+    </div>
+</section>

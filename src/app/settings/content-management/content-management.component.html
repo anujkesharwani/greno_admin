@@ -1,0 +1,92 @@
+<div class="body">
+    <!-- Main card -->
+    <mat-card class="banner-card">
+      <mat-card-header>Banner Management</mat-card-header>
+      <!-- Middle Contents -->
+      <div class="content">
+        <!-- Upload card -->
+        <mat-card class="card-1" (click)="addBannerDialog()">
+          <div class="text">
+            <img src="../../assets/Vector.svg" alt="" class="add-img" />
+            <p>Select a file to upload</p>
+          </div>
+        </mat-card>
+        <!-- Banner Card -->
+        <mat-card class="card-2" *ngFor="let details of bannerData">
+          <mat-card-header>
+            <img src="{{ details.img }}" alt="" style="width: 100%;"/>
+          </mat-card-header>
+          <div class="container">
+            <div class="row">
+              <section>
+                <h6>
+                  Title :
+                  <p>{{ details.title }}</p>
+                </h6>
+              </section>
+              <mat-slide-toggle color="primary"></mat-slide-toggle>
+              <img class="edit-icon" src="../../assets/edit.svg" (click)="editBanner(details)"/>
+              <img class="delete-icon" src="../../assets/delete.svg" (click)="deleteBanner(details.id)" />
+            </div>
+            <div class="row-1">
+              <h6>Banner 1</h6>
+            </div>
+            <div class="row-2">
+              <h6>
+                Banner URL :
+                <p>{{ details.bannerUrl }}</p>
+              </h6>
+            </div>
+            <div class="row-3">
+              <h6>
+                Start :
+                <p>{{ details.start }}</p>
+              </h6>
+              <h6 style="margin-left: 70px">
+                End :
+                <p>{{ details.end }}</p>
+              </h6>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </mat-card>
+
+    <!-- Cancellation Reason -->
+    <div class="cancel">
+      <mat-card class="card">
+        <mat-card-title>Cancellation Reason</mat-card-title>
+
+        <div class="container">
+          <input type="text" placeholder="Reason 1" class="input" />
+          <img src="../../assets/delete.svg" alt="" class="delete-icon-2" />
+        </div>
+        <div class="container">
+          <input type="text" placeholder="Reason 2" class="input" />
+          <img src="../../assets/delete.svg" alt="" class="delete-icon-2" />
+        </div>
+        <div class="container">
+          <input type="text" placeholder="Reason 3" class="input" />
+          <img src="../../assets/delete.svg" alt="" class="delete-icon-2" />
+        </div>
+
+        <div class="button-container">
+          <button mat-stroked-button color="primary" class="button">
+            <img
+              src="../../assets/add.svg"
+              alt=""
+              style="width: 16px; height: 16px; margin-right: 10px"
+            />Add Reason
+          </button>
+          <button
+            mat-flat-button
+            class="button"
+            color="primary"
+            style="color: #fff; width: 120px"
+          >
+            Save
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>

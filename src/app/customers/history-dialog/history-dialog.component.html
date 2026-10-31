@@ -1,0 +1,40 @@
+<section>
+	<h3>History</h3>
+	<div class="orders">
+		<div class="order" *ngFor="let order of data">
+			<div class="head">
+				<span>Id: {{order.id}}</span>
+				<strong>Total: {{order.billing.grandTotal | currency:'INR'}}</strong>
+				<strong class="success">Booked At: {{order.createdAt.toDate() | date}}</strong>
+			</div>
+			<div class="body">
+				<h6>Slot Details</h6>
+				<div class="slot">
+					<strong>Date: {{order.timeSlot?.date?.toDate() | date:'shortDate'}}</strong>
+					<strong>Time: {{order.timeSlot?.time?.toDate() | date:'shortTime'}}</strong>
+				</div>
+				<h6>Address</h6>
+				<address>
+					{{order.address?.addressLine1}},
+					{{order.address?.addressLine2}},
+					Pincode - {{order.address?.pinCode}}
+				</address>
+				<h6>Booked Services</h6>
+				<div class="services">
+					<div class="service" *ngFor="let service of order.services">
+						<div class="serviceHead">
+							<img [src]="service.image" alt="">
+							<span>{{service.name}}</span>
+						</div>
+						<div class="variants">
+							<div class="variant" *ngFor="let variant of service.variants">
+								{{variant.name}} - {{variant.price}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

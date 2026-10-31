@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        border: 1px solid #054BAE;
+        background: transparent;
+        border-radius: 20px;
+        padding: 2px 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        color: #054BAE;
+
+        .mat-icon {
+            margin-left: 15px;
+        }
+
+        &:hover {
+            background-color: #054BAE;
+            color: #fff;
+        }
+    }
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    
+    img {
+        cursor: pointer;
+    }
+}

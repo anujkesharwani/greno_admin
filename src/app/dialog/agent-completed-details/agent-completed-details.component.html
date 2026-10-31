@@ -1,0 +1,109 @@
+<section class="container">
+    <!-- Booking details box -->
+    <div class="details-box">
+        <!-- Header for Booking details box -->
+        <div class="header">
+            <h6>Customer Details</h6>
+            <button (click)="closeDialog()">
+                <img src="../../assets/icon/bookingDetails/closeButton.svg" alt="Close Button">
+            </button>
+        </div>
+
+        <!-- User details section -->
+        <section class="user-details">
+            <div class="user-image">
+                <img src="../../assets/Human pic/Human pic.svg" alt="User Image">
+            </div>
+            <div class="basic-details">
+                <div class="flex">
+                    <p>Name: Arun Arora</p>
+                    <p>Email: user@example.com</p>
+                </div>
+                <div class="flex">
+                    <p>
+                        <img src="../../assets/icon/bookingDetails/location.svg" width="20px" alt="Location Icon">
+                        Robert Robertson, 1234 NW Bobcar Lane
+                    </p>
+                    <p>Phone: 954866898892</p>
+                </div>
+            </div>
+            <div class="status">Completed</div>
+            <div class="contact-details">
+                <button><img src="../../assets/icon/bookingDetails/phone.svg" alt="Phone Button"></button>
+                <button><img src="../../assets/icon/bookingDetails/mail.svg" alt="Mail Button"></button>
+            </div>
+        </section>
+
+        <!-- Booking details section -->
+        <section class="booking-details">
+            <h6>Booking Details</h6>
+            <div class="booking-info">
+                <p>Booking ID: #SD-E34-RF3EFG3</p>
+                <p>Service Time & Date: 22 July, 12:00 PM</p>
+                <p>Job Duration: 2 hr 30 mins</p>
+                <p class="assignedStatus">Accepted</p>
+            </div>
+        </section>
+
+        <!-- Services list -->
+        <section class="BookingSection">
+            <div class="Service_Actions">
+                <div class="service-box">
+                    <div class="services">
+                        <!-- Services header -->
+                        <div class="services-header">
+                            <h6>Services</h6>
+                        </div>
+
+                        <!-- Individual service items -->
+                        <div class="services-list" *ngFor="let service of services">
+                            <div class="service-container">
+                                <img src="{{service.serviceImage}}" alt="{{service.serviceType}}">
+                                <div class="serviceType">
+                                    <p>{{service.serviceType}}</p>
+                                    <div class="serviceInfo">{{service.serviceInfo}}
+                                        <li>{{service.serviceDuration}}</li>
+                                    </div>
+                                </div>
+                                <div class="amount">₹ {{service.amount}}</div>
+                            </div>
+                            <div class="agentDetails">
+                                <img src="{{service.agentDetails.agentImage}}" alt="{{service.agentDetails.agentName}}">
+                                <div class="agentInfo">
+                                    <div class="agentName">Agent Name <br> {{service.agentDetails.agentName}}</div>
+                                    <div class="agentContact">Agent Contact <br>
+                                        +91-{{service.agentDetails.agentContact}}</div>
+                                    <div class="agentEmail">Agent Email <br> {{service.agentDetails.agentEmail}}</div>
+                                </div>
+                            </div>
+                            <ul class="serviceDetail">
+                                <li>Total Service: 02</li>
+                                <li>Job Duration: {{services[0].serviceDuration}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <!-- Action buttons -->
+                    <button mat-stroked-button color="primary">See Proof Images</button>
+                </div>
+            </div>
+
+            <!-- Billing Summary -->
+            <div class="billingSummary">
+                <header class="header">Billing Summary</header>
+                <div class="billingInfo">
+                    <p>Total Duration <span>2 hr 30 mins</span></p>
+                    <p>Item Discount <span>-₹60</span></p>
+                    <p>Discount <span>-₹360</span></p>
+                    <p>Discount Price <span>₹ 3360</span></p>
+                    <p>GST <span>₹ 161</span></p>
+                    <p>Completion Time <span>Free</span></p>
+                </div>
+                <div class="totalAmount">
+                    <h6>Total Amount </h6><span>₹ 1502</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

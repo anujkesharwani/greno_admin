@@ -1,0 +1,36 @@
+<div *ngIf="banner" id="wrapper">
+    <h1 class="heading">{{ editMode ? 'Edit' : 'Add New' }} {{ this.data.bannerType | titlecase }} Banner <app-switch
+            [checked]="banner.show"></app-switch>
+    </h1>
+    <input type="url" placeholder="URL on Click" id="url-input" [(ngModel)]="banner.redirectUrl">
+    <div id="upload-container">
+        <h2 class="heading">Banner Image</h2>
+        <div id="btns-and-image">
+            <div id="btns-container">
+                <div id="btns">
+                    <input type="file" accept="image/jpeg, image/png" (change)="uploadImage($event)" #bannerInput
+                        hidden>
+                    <ng-template #uploadBtn>
+                        <button id="upload-btn" (click)="bannerInput.click()"><mat-icon
+                                fontIcon="upload"></mat-icon>Upload</button>
+                    </ng-template>
+                    <button *ngIf="banner.imageUrl; else uploadBtn" id="remove-btn"
+                        (click)="deleteImage(); bannerInput.value = ''"><mat-icon
+                            fontIcon="delete_outline"></mat-icon>Remove</button>
+                </div>
+                <div *ngIf="!banner.imageUrl" id="helper">
+                    Maximum size: {{maxSizeInMB}}MB
+                    <br>
+                    Dimension: {{dimensions.join('x')}}px
+                </div>
+            </div>
+            <div *ngIf="banner.imageUrl" id="image-container">
+                <img [src]="banner.imageUrl">
+            </div>
+        </div>
+    </div>
+    <div id="action-btns">
+        <button id="save-btn" (click)="save()">{{ editMode ? 'Update' : 'Add' }}</button>
+        <button id="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<div
+  class="wrapper"
+  id="jobImagesModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="jobImagesModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="images-container">
+          <div>
+            <p class="heading" *ngIf="!data.after">Upload Pictures Before Work</p>
+            <p class="heading" *ngIf="data.after">Pictures Before Work</p>
+          </div>
+          <div class="d-flex align-items-center img-wrapper">
+            <ng-container *ngIf="data.picsBefore">
+              <img *ngFor="let pic of data.picsBefore" src="{{ pic }}" />
+            </ng-container>
+            <ng-container *ngIf="beforePics">
+              <img *ngFor="let pic of beforePics" src="{{ pic.disp }}" />
+            </ng-container>
+            <label for="imgUpload" class="upload-btn flex-center-col">
+              <!-- <input type="file" style="display: none" id="imgUpload" /> -->
+              <input multiple type="file" id="imgUpload" hidden #imageSelector (change)="uploadFile($event, false)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.9876 24.1969V5.4178L12.6365 8.76893L10.3923 6.5247L16.4524 0.464604C17.0718 -0.154868 18.0771 -0.154868 18.6966 0.464604L24.7567 6.5247L22.5125 8.76893L19.1619 5.41831V24.1974L15.9876 24.1969ZM35.1495 17.5746H31.9758V29.5751C31.9758 30.892 30.8921 31.9757 29.5753 31.9757H5.57473C4.25739 31.9757 3.17421 30.892 3.17421 29.5751V17.5746H0V29.5751C0 32.6452 2.50574 35.1499 5.57473 35.1499H29.5753C32.6453 35.1499 35.15 32.6441 35.15 29.5751L35.1495 17.5746Z"
+                  fill="#585858"
+                />
+              </svg>
+              <span class="upload-btn-text">Upload Image</span>
+            </label>
+          </div>
+        </div>
+
+        <div *ngIf="data.after" class="images-container">
+          <div>
+            <p class="heading">Upload Pictures After Work</p>
+          </div>
+          <div class="d-flex align-items-center img-wrapper">
+            <ng-container *ngIf="data.picsAfter">
+              <img *ngFor="let pic of data.picsAfter" src="{{ pic }}" />
+            </ng-container>
+            <ng-container *ngIf="afterPics">
+              <img *ngFor="let pic of afterPics" src="{{ pic.disp }}" />
+            </ng-container>
+            <label for="imgUpload1" class="upload-btn flex-center-col">
+              <!-- <input type="file" style="display: none" id="imgUpload" /> -->
+              <input multiple type="file" id="imgUpload1" hidden #imageSelector (change)="uploadFile($event, true)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.9876 24.1969V5.4178L12.6365 8.76893L10.3923 6.5247L16.4524 0.464604C17.0718 -0.154868 18.0771 -0.154868 18.6966 0.464604L24.7567 6.5247L22.5125 8.76893L19.1619 5.41831V24.1974L15.9876 24.1969ZM35.1495 17.5746H31.9758V29.5751C31.9758 30.892 30.8921 31.9757 29.5753 31.9757H5.57473C4.25739 31.9757 3.17421 30.892 3.17421 29.5751V17.5746H0V29.5751C0 32.6452 2.50574 35.1499 5.57473 35.1499H29.5753C32.6453 35.1499 35.15 32.6441 35.15 29.5751L35.1495 17.5746Z"
+                  fill="#585858"
+                />
+              </svg>
+              <span class="upload-btn-text">Upload Image</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <input
+          type="button"
+          value="Submit"
+          (click)="saveImages()"
+          class="cta info"
+        />
+        <input
+          type="button"
+          value="Cancel"
+          class="cta fail"
+          (click)="dialogRef.close()"
+          aria-label="Close"
+        />
+      </div>
+    </div>
+  </div>
+</div>

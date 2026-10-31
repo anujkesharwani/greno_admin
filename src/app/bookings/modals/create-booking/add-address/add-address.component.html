@@ -1,0 +1,82 @@
+<div
+  mat-dialog-content
+  id="addAddressModal"
+  tabindex="-2"
+  role="dialog"
+  aria-labelledby="addAddressModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-between">
+        <div class="header-title">
+          <span class="modal-title" id="availableAgentsModalLabel">
+            Add New Address
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="22"
+            viewBox="0 0 18 22"
+            fill="none"
+            style="margin-left: 10px"
+          >
+            <path
+              d="M9 18.8995L13.9497 13.9497C16.6834 11.2161 16.6834 6.78392 13.9497 4.05025C11.2161 1.31658 6.78392 1.31658 4.05025 4.05025C1.31658 6.78392 1.31658 11.2161 4.05025 13.9497L9 18.8995ZM9 21.7279L2.63604 15.364C-0.87868 11.8492 -0.87868 6.15076 2.63604 2.63604C6.15076 -0.87868 11.8492 -0.87868 15.364 2.63604C18.8787 6.15076 18.8787 11.8492 15.364 15.364L9 21.7279ZM8 8V5H10V8H13V10H10V13H8V10H5V8H8Z"
+              fill="#145889"
+            />
+          </svg>
+        </div>
+        <div class="header-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+            (click)="onNoClick()"
+          >
+            <path
+              d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+              fill="#E82C2C"
+            />
+          </svg>
+        </div>
+      </div>
+      <form [formGroup]="addAddressForm" (ngSubmit)="addAddressForm.valid && handleSubmit()">
+        <div class="modal-body">
+          <div class="address-container">
+            <div style="grid-column: 1 / span 2" class="input-box">
+              <input type="text" formControlName="name" placeholder="Address Name" />
+            </div>
+            <div class="input-box">
+              <mat-select formControlName="stateId" placeholder="State" (valueChange)="getCityList($event)">
+                <mat-option *ngFor="let state of stateList" value="{{state.id}}">{{state.state}}</mat-option>
+              </mat-select>
+            </div>
+            <div class="input-box">
+              <mat-select formControlName="cityId" placeholder="City" (valueChange)="getAreaList($event)">
+                <mat-option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</mat-option>
+              </mat-select>
+            </div>
+            <div class="input-box" style="grid-column: 1 / span 2">
+              <mat-select formControlName="area" placeholder="Area">
+                <mat-option *ngFor="let area of areaList" value="{{area.id}}">{{area.name}}</mat-option>
+              </mat-select>
+            </div>
+            <div style="grid-column: 1 / span 2" class="input-box">
+              <input type="text" formControlName="address1" placeholder="House/Flat/Block/Building" />
+            </div>
+            <div class="input-box">
+              <input type="number" formControlName="pincode" placeholder="Pincode" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn1" type="submit">Submit</button>
+          <button (click)="onNoClick()" class="btn2">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

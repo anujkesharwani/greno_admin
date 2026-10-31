@@ -1,0 +1,73 @@
+<section>
+  <div class="searchBar">
+    <div class="searchField">
+      <i class="ri-search-line"></i>
+      <input
+        type="search"
+        [(ngModel)]="searchcoupon"
+        (input)="onSearchCoupons()"
+      />
+    </div>
+    <button mat-stroked-button color="primary" (click)="onAddCouponClicked()">
+      <i class="ri-add-fill"></i>Add Coupon
+    </button>
+  </div>
+  <div class="taxes">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Value</th>
+          <th>Description</th>
+          <th>Minimum Required Amount</th>
+          <th>Maximum Discount Amount</th>
+          <th>Max Uses (Daily)</th>
+          <th>Max Uses (Weekly)</th>
+          <th>Visibility</th>
+          <th>Created On</th>
+          <th>Last Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coupon of coupons">
+          <td>{{ coupon.name | titlecase }}</td>
+          <td>{{ coupon.type }}</td>
+          <td>{{ coupon.value }}</td>
+          <td>{{ coupon.description }}</td>
+          <td>{{ coupon.minimumRequiredAmount }}</td>
+          <td>{{ coupon.maximumDiscountAmount }}</td>
+          <td>{{ coupon.maxUsesPerUserDaily }}</td>
+          <td>{{ coupon.maxUsesPerUserWeekly }}</td>
+          <td>{{ coupon.visibilityEnabled }}</td>
+          <td>{{ coupon.createdOn?.toDate() | date : "short" }}</td>
+          <td>{{ coupon.lastUpdated?.toDate() | date : "short" }}</td>
+          <td>
+            <div class="actions">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="onEditCouponClicked(coupon)"
+              >
+                <i class="ri-edit-line"></i>
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="onDeleteCouponClicked(coupon)"
+              >
+                <i class="ri-delete-bin-line"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <ng-container *ngIf="!coupons.length">
+        <tr>
+          <td colspan="12" class="no-coupons-message">No coupons available.</td>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="row">
+    <div class="customer">
+      <span>{{ booking.currentUser.name }}</span>
+      <button mat-icon-button><mat-icon>call</mat-icon></button>
+      <button mat-icon-button><mat-icon>history</mat-icon></button>
+    </div>
+    <div class="timmings">
+      <mat-icon>hourglass_empty</mat-icon>
+      <p class="allStage">
+        <span>All Stage</span>
+        <span>{{ booking.createdAt.toDate() | date : "shortTime" }}</span>
+      </p>
+      <p class="allStage">
+        <span>This Stage</span>
+        <span>{{ booking.createdAt.toDate() | date : "shortTime" }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <p>Id: #{{ booking.id }}</p>
+  </div>
+  <div class="services">
+    <div class="service" *ngFor="let service of booking.services">
+      <span class="name">{{ service.name }}</span>
+      <ol class="variants">
+        <li *ngFor="let variant of service.variants">
+          <span class="name">{{ variant.name }}</span>
+          <span class="price">{{ variant.price }}</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <span class="bookingTime">
+      Created At:{{ booking.createdAt.toDate() | date : "short" }}
+    </span>
+    <span class="slotTime">
+      Slot: {{ booking.timeSlot?.time?.toDate() | date : "shortDate" }} -
+      {{ booking.timeSlot?.time?.toDate() | date : "shortTime" }}
+    </span>
+  </div>
+  <div class="row">
+    <span class="bookingTime">
+      {{ booking.createdAt.toDate() | date : "shortTime" }}
+    </span>
+    <span class="slotTime">
+      {{ booking.timeSlot?.time?.toDate() | date : "shortTime" }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.mainContainer {
+    border-radius: 8px;
+    background: #FFF;
+    margin-top: 24px;
+    font-family: Lato;
+
+    table {
+
+        th {
+            color: var(--primary-text-color, #444);
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        td {
+            color: #444;
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+}

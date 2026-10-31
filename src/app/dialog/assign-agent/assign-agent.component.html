@@ -1,0 +1,38 @@
+<div class="container">
+    <section class="row-1">
+        <h2>Assign Agent</h2>
+        <img src="assets/icon/dialog/close2.svg" alt="" (click)="closeDialog()">
+    </section>
+
+    <section class="row-2">
+        <h3>Booking ID :</h3>
+        <h3>#UL4520</h3>
+    </section>
+
+    <section class="row-3">
+        <div id="d1" (click)="clicked = !clicked">
+            <h2>{{agentName}}</h2>
+            <img src="assets/icon/dialog/down.svg" alt="">
+        </div>
+
+        <div id="d2" *ngIf="clicked" (click)="clicked = !clicked">
+            <h2 (click)="agentName = 'Raghu veer Singh'">Raghu veer Singh</h2>
+            <hr>
+            <h2 (click)="agentName = 'Jitendra Guju'">Jitendra Guju</h2>
+            <hr>
+            <h2 (click)="agentName = 'Jitendra Guju'">Jitendra Guju</h2>
+        </div>
+
+        <!-- <select name="agentName">
+            <option value="a"><p>Natraj Jash</p></option>
+            <option value="b">Raghu veer Singh</option>
+            <option value="c">Jitendra Guju</option>
+            <option value="d">Jitendra Guju</option>
+        </select> -->
+    </section>
+
+    <section class="btnn">
+        <button mat-flat-button id="b1">Cancel</button>
+        <button mat-flat-button id="b2">Save</button>
+    </section>
+</div>

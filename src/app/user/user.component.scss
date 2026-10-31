@@ -1,0 +1,137 @@
+* {
+  font-family: Lato;
+  box-shadow: none !important;
+}
+
+.main {
+  background: #edf1f7;
+  height: 100%;
+  overflow: scroll;
+}
+
+.search {
+  margin-top: 40px;
+  margin-left: 40px;
+  .container {
+    display: flex;
+    margin-left: -20px;
+    .input {
+      width: 400px;
+      padding: 5px 50px;
+      display: flex;
+      outline: 0;
+      border: 1px solid #d6dbe0;
+    }
+
+    .search-icon {
+      margin-left: -390px;
+    }
+    .clear-filter {
+      background-color: #fff;
+      border: 1px solid #0074c1;
+      border-radius: 5px;
+      height: 40px;
+      display: inline-block;
+      margin-left: 650px;
+      color: #0074c1;
+      font-weight: 600;
+      padding: 0px 10px;
+    }
+    .date-range {
+      background-color: #0074c1;
+      border: 1px solid #0074c1;
+      border-radius: 5px;
+      height: 40px;
+      display: inline-block;
+      margin-left: 20px;
+      color: #fff;
+      padding: 0px 10px;
+    }
+  }
+}
+
+.container-1 {
+  .card {
+    padding: 20px 50px;
+    width: 94%;
+    margin: 30px 33px;
+    .bill-container {
+      display: flex;
+      .row {
+        width: 159px;
+        height: 77px;
+        display: flex;
+        margin-top: 20px;
+        margin-left: 20px;
+
+        .bill-card {
+          display: inline;
+          border-radius: 8px;
+          border: 1px solid #5688ff;
+          padding: 10px 20px;
+          height: 75px;
+          margin-left: -20px;
+        }
+        h6 {
+          text-align: center;
+          color: #5688ff;
+          text-align: center;
+          font-family: Lato;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 120%; /* 26.4px */
+        }
+        p {
+          color: #5688ff;
+          font-family: Lato;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 120%;
+        }
+      }
+    }
+  }
+}
+
+.table-container {
+
+  .table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    tr {
+      border: 1px solid #e4e9f2;
+      th {
+        height: 50px;
+        text-align: left;
+        padding: 8px;
+        color: var(--primary-text-color, #444);
+
+        font-family: Lato;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+      td {
+        text-align: left;
+      }
+    }
+    .bill {
+      color: #579540;
+      text-align: center;
+      font-family: Lato;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    .icon-btn {
+      margin-right: 10px;
+      width: 25px;
+      cursor: pointer;
+    }
+  }
+}

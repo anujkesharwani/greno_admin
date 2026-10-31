@@ -1,0 +1,94 @@
+<div
+  class="wrapper"
+  id="jobImagesModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="jobImagesModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ng-container class="split" *ngFor="let service of data.services">
+          <span (click)="setCurrService(service)">{{ service.name }}</span>
+        </ng-container>
+      </div>
+
+      <div class="modal-body">
+        <input
+          type="text"
+          class="search"
+          (input)="searchClothes($event)"
+          placeholder="Search Clothes in this Service.."
+        />
+
+        <ng-container *ngFor="let item of filteredItems">
+          <div class="item">
+            <img [src]="item.image" [alt]="item.name" />
+            <div class="cost">
+              <p>{{ item.name }}</p>
+              <p id="sub-text">₹ {{ item.cost }}</p>
+            </div>
+            <div class="quant">
+              <button *ngIf="!data.isDelivery" (click)="decreaseQuant(item)">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="23"
+                  height="24"
+                  viewBox="0 0 23 24"
+                  fill="none"
+                >
+                  <rect
+                    x="0.258065"
+                    y="0.258065"
+                    width="22.4839"
+                    height="23.4839"
+                    rx="5.74194"
+                    fill="#094A28"
+                    stroke="#D1D3D4"
+                    stroke-width="0.516129"
+                  />
+                  <line
+                    x1="8.64516"
+                    y1="12.3548"
+                    x2="15.3548"
+                    y2="12.3548"
+                    stroke="#D1D3D4"
+                    stroke-width="1.29032"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+              <span> {{ item.quantity }}</span>
+              <button *ngIf="!data.isDelivery" (click)="increaseQuant(item)">
+                +
+              </button>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="total">Sub-Total - ₹ {{ subTotal }}</div>
+
+        <button class="addService cta info">Add Service</button>
+      </div>
+
+      <div class="modal-footer">
+        <input
+          type="button"
+          (click)="bookNow()"
+          value="Continue (₹ {{
+            data.isDelivery ? data.billing.grandTotal : subTotal
+          }})"
+          class="cta info"
+        />
+        <input
+          type="button"
+          value="Cancel"
+          class="cta fail"
+          (click)="dialogRef.close()"
+          aria-label="Close"
+        />
+      </div>
+    </div>
+  </div>
+</div>

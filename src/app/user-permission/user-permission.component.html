@@ -1,0 +1,108 @@
+<div class="wrapper-card user">
+  <div class="header d-flex">
+    <div>
+      <span>Users </span>
+      <span class="mx-5">Total Users :{{users.length}}</span>
+    </div>
+    <button class="button" (click)="openAddUserModal()">New User</button>
+  </div>
+  <hr />
+  <div class="content">
+    <div class="header-inner">
+      <div class="grid_container">
+        <div *ngFor="let user of users" class="userCard" >
+          <div class="user_detail">
+            <div class="userImg">
+              <img
+                [src]="user?.['userDetail'].img"
+                alt=""
+              />
+            </div>
+            <div>
+              <p>{{user?.['userDetail'].name}}<img src="" alt="" /></p>
+              <p class="role_detail">{{getRoleName(user?.['userDetail'].role)}}</p>
+              <p class="user_email">{{user?.['userDetail'].email}}</p>
+            </div>
+          </div>
+          <div class="icons">
+            <span
+              matTooltip="Enable/Disable"
+              matTooltipPosition="above"
+              class="d-flex mx-2"
+            >
+              <label class="switch">
+                <input type="checkbox" [checked]="user?.['userDetail'].active" (change)="changeUserStatus(user.id,!user?.['userDetail'].active)"/>
+                <span class="slider round"></span>
+              </label>
+            </span>
+            <span>
+              <img
+                matTooltip="Edit"
+                matTooltipPosition="above"
+                class="mx-2"
+                src="/assets/icon/service/pencil-line.svg"
+                (click)="editUser(user)"
+              />
+            </span>
+            <span>
+              <img
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                class="mx-2"
+                src="/assets/icon/service/delete.svg"
+                (click)="deleteUser(user.id)"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wrapper-card permission">
+  <div class="header d-flex">
+    <div>
+      <span>Roles </span>
+      <span class="mx-5">Total Role: {{roles.length}}</span>
+    </div>
+    <button class="button" (click)="openAddPermissionModal()">
+      New Role
+    </button>
+  </div>
+  <hr />
+  <div class="content">
+    <div *ngFor="let role of roles" class="inner-section d-flex">
+      <div>
+        <span>Role :{{role?.['roleDetail'].roleName}} </span>
+      </div>
+      <div class="icons">
+        <span
+          matTooltip="Enable/Disable"
+          matTooltipPosition="above"
+          class="d-flex mx-2"
+        >
+          <label class="switch">
+            <input type="checkbox" [checked]="role?.['roleDetail'].active" (change)="changeRoleStatus(role.id, !role?.['roleDetail'].active)"/>
+            <span class="slider round"></span>
+          </label>
+        </span>
+        <img
+          matTooltip="Edit"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/pencil-line.svg"
+          (click)="editRole(role)"
+        />
+        <img
+          matTooltip="Delete"
+          matTooltipPosition="above"
+          class="mx-2"
+          src="/assets/icon/service/delete.svg"
+          (click)="deletePermission(role?.['id'])" 
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+

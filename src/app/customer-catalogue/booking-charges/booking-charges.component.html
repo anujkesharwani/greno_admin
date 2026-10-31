@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="d-flex heading-text">
+          <span class="blue-bold-text">Add Charges</span>
+        </div>
+        <div class="modal-close-icon">
+          <mat-icon (click)="closeDialog()">close</mat-icon>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+      <form
+        [formGroup]="chargeAddForm"
+        class=""
+        (ngSubmit)="chargeAddForm.valid && addCharge()"
+      >
+      <div class="icons mt-3">
+            <mat-form-field class="w-100 mb-3">
+              <input matInput formControlName="name" placeholder="Name">
+            </mat-form-field>
+            <mat-form-field class="w-100 mb-3">
+                <input matInput formControlName="amount" type="number" placeholder="Amount">
+              </mat-form-field>
+            <div class="d-flex align-items-center mb-3">
+              <span class="me-2">Is Active</span>
+              <label class="switch">
+                <input type="checkbox" formControlName="active"/>
+                <span class="slider round"></span>
+              </label>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="d-flex">
+            <button class="btn btn-primary me-3" type="submit">Submit</button>
+            <button class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

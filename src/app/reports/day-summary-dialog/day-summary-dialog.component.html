@@ -1,0 +1,192 @@
+<div id="dialog">
+    <div id="header">
+        <div>
+            <h4>Day Summary</h4>
+            <p>{{ refreshedAt }}</p>
+        </div>
+        <div id="header-buttons">
+            <button id="hidden-for-focus"></button>
+            <button (click)="downloadExcel()">Download as
+                Excel</button>
+            <button (click)="downloadPDF()">Download as PDF</button>
+            <button (click)="refresh()">Refresh Data<mat-icon fontIcon="refresh"></mat-icon></button>
+            <button (click)="picker.open()">
+                {{ dateSelected | date : 'mediumDate' }}
+                <input matInput [matDatepicker]="picker" [(ngModel)]="dateSelected" [max]="today"
+                    (dateChange)="refresh()">
+                <mat-datepicker #picker xPosition="end"></mat-datepicker>
+                <mat-icon fontIcon="calendar_month"></mat-icon>
+            </button>
+        </div>
+        <button id="close" (click)="dialogRef.close()"><mat-icon fontIcon="close"></mat-icon></button>
+    </div>
+     <table>
+        <tr>
+            <th>
+                Total Sales
+            </th>
+            <td>
+                {{ summary && summary.sales >= 0 ? '₹' + summary.sales : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Discount
+            </th>
+            <td>
+                {{ summary && summary.discount >= 0 ? '₹' + summary.discount : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Taxes
+            </th>
+            <td>
+                {{ summary && summary.taxes >= 0 ? '₹' + summary.taxes : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Job Acceptance Charge
+            </th>
+            <td>
+                {{ summary && summary.jobAcceptanceCharge >= 0 ? '₹' + summary.jobAcceptanceCharge : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Cancelled Amount
+            </th>
+            <td>
+                {{ summary && summary.cancelledAmount >= 0 ? '₹' + summary.cancelledAmount : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Bookings
+            </th>
+            <td>
+                {{ summary && summary.bookings >= 0 ? summary.bookings : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Bookings in Progress
+            </th>
+            <td>
+                {{ summary && summary.bookingsInProgress >= 0 ? summary.bookingsInProgress : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Bookings Completed
+            </th>
+            <td>
+                {{ summary && summary.bookingsCompleted >= 0 ? summary.bookingsCompleted : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Bookings Cancelled
+            </th>
+            <td>
+                {{ summary && summary.bookingsCancelled >= 0 ? summary.bookingsCancelled : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Bookings Expired
+            </th>
+            <td>
+                {{ summary && summary.bookingsExpired >= 0 ? summary.bookingsExpired : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Discounted Bookings
+            </th>
+            <td>
+                {{ summary && summary.discountedBookings >= 0 ? summary.discountedBookings : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Available Agents
+            </th>
+            <td>
+                {{ summary && summary.availableAgents >= 0 ? summary.availableAgents : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Unavailable Agents
+            </th>
+            <td>
+                {{ summary && summary.unavailableAgents >= 0 ? summary.unavailableAgents : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Booking Accepted Agents
+            </th>
+            <td>
+                {{ summary && summary.bookingAcceptedAgents >= 0 ? summary.bookingAcceptedAgents : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Unique Customers
+            </th>
+            <td>
+                {{ summary && summary.uniqueCustomers >= 0 ? summary.uniqueCustomers : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Unique Agents
+            </th>
+            <td>
+                {{ summary && summary.uniqueAgents >= 0 ? summary.uniqueAgents : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Services
+            </th>
+            <td>
+                {{ summary && summary.services >= 0 ? summary.services : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total No. of Ratings
+            </th>
+            <td>
+                {{ summary && summary.noOfRatings >= 0 ? summary.noOfRatings : '-' }}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Average Rating
+            </th>
+            <td>
+                <div id="ratings" *ngIf="summary && summary.totalRatings >= 0 && summary.noOfRatings >= 0; else noRatings">
+                    <mat-icon fontIcon="star"></mat-icon>
+                    {{summary.totalRatings / summary.noOfRatings }}
+                </div>
+                <ng-template #noRatings>-</ng-template>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2">Pie Chart</th>
+        </tr>
+        <!-- <tr>
+            <td colspan="2">
+                <div class="chart-container">
+                    <app-category-pie [chartData]="chartData"></app-category-pie>
+                </div>
+            </td>
+        </tr> -->
+    </table> 
+</div>

@@ -1,0 +1,72 @@
+.user-card {
+  width: 377px;
+  height: fit-content;
+  border-radius: 16px;
+  border: 2px solid #b1b1b1;
+  padding: 8px 12px;
+  background: #fff;
+
+  .head1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #094A28;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #b1b1b1;
+        border-radius: 35.636px;
+        object-fit: contain;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 5px;
+
+        span {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        mat-icon {
+          cursor: pointer;
+          margin: 12px 3px 0 3px;
+          font-size: 16px;
+        }
+
+        .sub-text {
+          color: var(--text-black, #454545);
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .actions {
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .head2 {
+    span {
+      color: var(--text-black, #454545);
+      font-size: 16px;
+      font-weight: 400;
+      margin-left: 38px;
+    }
+  }
+}

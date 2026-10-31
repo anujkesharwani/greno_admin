@@ -1,0 +1,27 @@
+.mainContainer {
+    padding: 32px;
+
+    $blue: #5688FF;
+
+    .btnn {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+
+        button {
+            width: 40%;
+            border-radius: 6px;
+            border: 2px solid $blue;
+        }
+
+        #b1 {
+            background-color: white;
+            color: $blue;
+        }
+
+        #b2 {
+            background-color: $blue;
+            color: white;
+        }
+    }
+}

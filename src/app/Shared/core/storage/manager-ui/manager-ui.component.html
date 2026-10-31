@@ -1,0 +1,43 @@
+<div class="wrapper">
+	<section>
+		<div class="heading">
+			<h3>Media Manager</h3>
+			<div class="actions">
+				<input multiple type="file" hidden #imageSelector (change)="uploadFile($event)">
+				<button mat-flat-button color="primary" (click)="getFiles()"><mat-icon>refresh</mat-icon>
+					Refresh</button>
+				<button mat-flat-button color="primary" (click)="imageSelector.click()">Add Asset</button>
+			</div>
+		</div>
+		<div class="assets">
+			<ng-container *ngFor="let asset of assets;let i = index">
+				<div class="assetContainer"
+					[ngClass]="{select:managerSettings.multiple ? selectedIndexes.includes(i) : selectedIndex == i}"
+					(click)="selectImage(i)">
+					<img [src]="asset.url" *ngIf="asset.mediaType == 'image'">
+					<video controls [src]="asset.url" *ngIf="asset.mediaType == 'video'"></video>
+					<div class="link">
+						<p [matTooltip]="asset.name">{{asset.name}}</p>
+						<button mat-icon-button (click)="copyLink($event,asset)"><mat-icon>link</mat-icon></button>
+					</div>
+				</div>
+			</ng-container>
+			<h3 *ngIf="assets.length == 0">Loading...</h3>
+		</div>
+		<div class="actions finalActions">
+			<div class="selected">
+				<ng-container *ngIf="assets[selectedIndex]">
+					<p>{{assets[selectedIndex]?.name}}</p>
+					<button mat-icon-button
+						(click)="selectedIndex = -1;selectedIndexes=[]"><mat-icon>close</mat-icon></button>
+				</ng-container>
+			</div>
+			<div class="actions">
+				<button color="warn" (click)="deleteImage()" mat-flat-button>Delete Image</button>
+				<button color="primary" mat-flat-button [disabled]="!this.assets[this.selectedIndex]"
+					(click)="select()">Select Image</button>
+				<button color="primary" mat-stroked-button (click)="dialogRef.close(null)">Cancel</button>
+			</div>
+		</div>
+	</section>
+</div>

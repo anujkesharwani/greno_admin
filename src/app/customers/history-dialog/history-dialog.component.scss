@@ -1,0 +1,143 @@
+// <section>
+// 	<h3>History</h3>
+// 	<div class="orders">
+// 		<div class="order" *ngFor="let order of data">
+// 			<div class="head">
+// 				<span>Id: {{order.id}}</span>
+// 				<strong>Total: {{order.billing.grandTotal}}</strong>
+// 				<strong class="success">Booked At: {{order.createdAt.toDate() | date}}</strong>
+// 			</div>
+// 			<div class="body">
+// 				<div class="slot">
+// 					<strong>Date: {{order.timeSlot?.date?.toDate() | date:'shortDate'}}</strong>
+// 					<strong>Time: {{order.timeSlot?.time?.toDate() | date:'shortTime'}}</strong>
+// 				</div>
+// 				<div class="services">
+// 					<div class="service" *ngFor="let service of order.services">
+// 						<div class="serviceHead">
+// 							<img [src]="service.image" alt="">
+// 							<span>{{service.name}}</span>
+// 						</div>
+// 						<div class="variants">
+// 							<div class="variant" *ngFor="let variant of service.variants">
+// 								{{variant.name}} - {{variant.price}}
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	</div>
+// </section>
+
+// styles this html, it's used to see the order history of a person
+
+section{
+	border-radius: 20px;
+	background: white;
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+	overflow-y: auto;
+	height: 80vh;
+	min-width: 400px;
+	h3{
+		font-size: 20px;
+		color: #333;
+		margin-bottom: 20px;
+		position: sticky;
+		top: 0;
+		background: white;
+		margin: 0;
+		padding: 30px;
+	}
+	.orders{
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap:20px;
+		.order{
+			display: flex;
+			flex-direction: column;
+			gap:10px;
+			border-bottom: 1px solid #eee;
+			padding: 20px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+			background: white;
+			border-radius: 20px;
+			h6{
+				font-size: 14px;
+				color: #224279;
+				margin-bottom: 10px;
+			}
+			.head{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 10px;
+				background: #f5f5f5;
+				border-radius: 15px;
+				span{
+					font-size: 14px;
+					color: #666;
+				}
+				strong{
+					font-size: 14px;
+					color: #333;
+					&.success{
+						color: #4caf50;
+					}
+				}
+			}
+			.body{
+				background: #f5f5f5;
+				padding: 10px;
+				border-radius: 15px;
+				.slot{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					padding: 10px;
+					border-bottom: 1px solid #eee;
+					strong{
+						font-size: 14px;
+						color: #333;
+					}
+				}
+				.services{
+					.service{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						padding: 10px;
+						border-bottom: 1px solid #eee;
+						.serviceHead{
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							img{
+								width: 50px;
+								height: 50px;
+								border-radius: 50%;
+								margin-right: 10px;
+							}
+							span{
+								font-size: 14px;
+								color: #333;
+							}
+						}
+						.variants{
+							.variant{
+								font-size: 14px;
+								color: #333;
+							}
+						}
+					}
+				}
+			}
+			address{
+				font-size: 14px;
+				color: #333;
+				margin-bottom: 10px;
+			}
+		}
+	}
+}

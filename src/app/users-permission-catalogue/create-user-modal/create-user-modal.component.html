@@ -1,0 +1,206 @@
+<div
+  mat-dialog-content
+  id="createUserModal"
+  tabindex="-2"
+  role="dialog"
+  aria-labelledby="createUserModalLabel"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-between">
+        <div class="header-title">
+          <span class="modal-title" id="createUserModalLabel">
+            Create New Admin Panel User
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="21"
+            viewBox="0 0 19 21"
+            fill="none"
+            style="margin-left: 10px"
+          >
+            <path
+              d="M10 13.252V15.3414C9.3744 15.1203 8.7013 15 8 15C4.68629 15 2 17.6863 2 21H0C0 16.5817 3.58172 13 8 13C8.6906 13 9.3608 13.0875 10 13.252ZM8 12C4.685 12 2 9.315 2 6C2 2.685 4.685 0 8 0C11.315 0 14 2.685 14 6C14 9.315 11.315 12 8 12ZM8 10C10.21 10 12 8.21 12 6C12 3.79 10.21 2 8 2C5.79 2 4 3.79 4 6C4 8.21 5.79 10 8 10ZM14 16V13H16V16H19V18H16V21H14V18H11V16H14Z"
+              fill="#145889"
+            />
+          </svg>
+        </div>
+        <div class="header-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+            (click)="onNoClick()"
+          >
+            <path
+              d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+              fill="#E82C2C"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="divide-X"></div>
+
+      <div class="modal-body">
+        <div class="input-box">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            class="mx-2"
+          >
+            <path
+              d="M12 11H20.5329C20.5769 11.3847 20.6 11.7792 20.6 12.1837C20.6 14.9184 19.6204 17.2204 17.9224 18.7837C16.4367 20.1551 14.404 20.9592 11.9796 20.9592C8.46933 20.9592 5.43266 18.947 3.9551 16.0123C3.34695 14.8 3 13.4286 3 11.9796C3 10.5306 3.34695 9.1592 3.9551 7.94698C5.43266 5.01226 8.46933 3 11.9796 3C14.4 3 16.4326 3.88983 17.9877 5.33878L16.5255 6.80101C15.3682 5.68153 13.8028 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.5265 19 18.1443 16.3923 18.577 13H12V11Z"
+              fill="#878787"
+            />
+          </svg>
+          <input
+            type="text"
+            placeholder="Gmail for Google Sign in"
+            matInput
+            formControlName="searchInput"
+            class="search-input"
+          />
+        </div>
+
+        <mat-form-field panelClass="themeDD" class="themeDD gray w-100">
+          <mat-label>Role Based Permissions</mat-label>
+          <mat-select>
+            <mat-option value="">Role Based Permissions</mat-option>
+            <mat-option value="">Custom Permissions</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field panelClass="themeDD" class="themeDD gray w-100">
+          <mat-label>Select Role</mat-label>
+          <mat-select>
+            <mat-option value="">City Manager</mat-option>
+            <mat-option value="">Accountant</mat-option>
+            <mat-option value="">Operator</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="tabs">
+          <div class="tabs-head">
+            <span>City & Area Permissions</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M12.0003 10.8296L7.0505 15.7793L5.6363 14.3651L12.0003 8.00108L18.3643 14.3651L16.95 15.7793L12.0003 10.8296Z"
+                fill="#145889"
+              />
+            </svg>
+          </div>
+          <div class="tabs-body">
+            <div>
+              <div class="city-tab">
+                <span>Jaipur</span>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" [checked]="true" />
+                    <span class="slider round"></span>
+                  </label>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M12.0003 10.8296L7.0505 15.7793L5.6363 14.3651L12.0003 8.00108L18.3643 14.3651L16.95 15.7793L12.0003 10.8296Z"
+                      fill="#145889"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="area-label">
+                <span>Vaishali Nagar</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="area-label">
+                <span>Malviya Nagar</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="area-label">
+                <span>Jagatpura</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <div class="city-tab">
+                <span>Lucknow</span>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" [checked]="true" />
+                    <span class="slider round"></span>
+                  </label>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M12.0003 10.8296L7.0505 15.7793L5.6363 14.3651L12.0003 8.00108L18.3643 14.3651L16.95 15.7793L12.0003 10.8296Z"
+                      fill="#145889"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="area-label">
+                <span>Gomti Nagar</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="area-label">
+                <span>Hazratganj</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="area-label">
+                <span>Alambagh</span>
+                <label class="switch">
+                  <input type="checkbox" [checked]="true" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divide-X"></div>
+
+      <div class="modal-footer">
+        <button class="btn1">Submit</button>
+        <button (click)="onNoClick()" class="btn2">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

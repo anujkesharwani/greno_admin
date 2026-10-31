@@ -1,0 +1,36 @@
+<div class="mainContainer">
+    <h2>General Settings</h2>
+
+    <div class="heading">
+        <section>
+            <img src="assets/icon/settings/profile.svg" alt="" id="profile">
+        </section>
+        <section style="flex-grow: 1;">
+            <div class="row-1">
+                <h3>Name</h3>
+                <input type="text" placeholder="Vivek Raj">
+                <img src="assets/icon/settings/edit.png" alt="" id="edit">
+            </div>
+            <div class="row-2">
+                <h3>Language</h3>
+                <select name="language" id="language">
+                    <option value="english" selected>English</option>
+                    <option value="hindi">Hindi</option>
+                </select>
+                <h4>User manager account</h4>
+            </div>
+        </section>
+    </div>
+
+    <div class="users-list" (click)="clicked = !clicked">
+        <h3>Check users</h3>
+        <img src="assets/icon/settings/right-arrow.png" alt="" [ngClass]="clicked ? 'rotate':''" >
+    </div>
+
+    <div class="u-list" *ngIf="clicked">
+        <ul *ngFor="let user of users">
+           <li>{{user}}</li> 
+           <li><a href="">permission</a></li>
+        </ul>
+    </div>
+</div>

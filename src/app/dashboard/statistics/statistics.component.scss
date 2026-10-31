@@ -1,0 +1,96 @@
+:host {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .three {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .four {
+        grid-template-columns: repeat(4, 1fr);
+
+        .stat:nth-child(1) {
+            // available agents
+            border-radius: 16px;
+            border: 1px solid  #edecec;
+            background: linear-gradient(93deg, #FFFFFF 5.37%, #FFE8E8 84.38%);
+        }
+
+        .stat:nth-child(2) {
+            // pending bookings
+            border-radius: 16px;
+            border: 2px solid  #f0f0f3;
+            background: linear-gradient(93deg, #FFF 5.37%, #EEECFF 84.38%);
+        }
+
+        .stat:nth-child(3) {
+            // rejected bookings
+            border-radius: 16px;
+            border: 1px solid#eeeceb;
+            background: linear-gradient(93deg, #FFF 5.37%, #FEE9DE 84.38%);
+        }
+
+        .stat:nth-child(4) {
+            // in progress bookings
+            border-radius: 16px;
+            border: 1px solid #f1f2f2;
+            background: linear-gradient(93deg, #FFF 5.37%, #aff6e5 84.38%);
+        }
+    }
+
+    .stats {
+        display: grid;
+        width: 100%;
+        gap: 20px;
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 16px;
+            border: 2px solid  #f3efe3;
+            background: linear-gradient(93deg, #FFF 5.37%, #FFF3DA 84.38%);
+            padding: 10px 20px;
+
+            img {
+                // width: 50px;
+                // height: 50px;
+                width: 129px;
+                height: 140px;
+                top: 222px;
+                left: 969px;
+                gap: 0px;
+                opacity: 0px;
+
+            }
+
+            .detail {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                .title {
+                    color: var(--Button,#00421F);
+                    font-family: Inter;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 36px;
+                    /* 36px */
+                }
+
+                .value {
+                    color: #6942EB;
+                    font-family: Inter;
+                    font-size: 50px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 150%;
+                    /* 75px */
+                }
+            }
+        }
+    }
+}

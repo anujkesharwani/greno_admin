@@ -1,0 +1,126 @@
+<div class="wrapper-card" *ngIf="AuthService.userPermissions">
+  <div class="header d-flex">
+    <div>
+      <span>Total Cities: {{ totalCities }}</span>
+      <span class="mx-5">Active Cities: {{ activeCities }}</span>
+      <span class="mx-5">Total Areas: {{ totalAreas }}</span>
+      <span class="mx-5">Active Areas: {{ activeAreas }}</span>
+    </div>
+    <button *ngIf="AuthService.userPermissions['areaWiseCatalogue']=='can_edit'" class="button" (click)="openAddCityModal()">Add City</button>
+  </div>
+  <hr />
+  <div class="content">
+    <mat-accordion>
+      <mat-expansion-panel
+        class="inner-section d-flex"
+        *ngFor="let city of areas"
+      >
+        <mat-expansion-panel-header>
+          <div class="header-inner">
+            <div>
+              <span class="area-name">{{ city.city }} - {{ city.state }}</span>
+              <span class="time">Total Areas : {{ city?.areas?.length }}</span>
+              <span class="time"
+                >Active Areas : {{ getActiveAreas(city.areas) }}</span
+              >
+            </div>
+            <div class="icons" *ngIf="AuthService.userPermissions['areaWiseCatalogue']=='can_edit'">
+              <button
+                class="button mx-5"
+                (click)="openAddAreaModal(city); $event.stopPropagation()"
+              >
+                Add Areas <mat-icon>location_on</mat-icon>
+              </button>
+              <span class="d-flex">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="city.cityActive"
+                    (change)="
+                      changeCityStatus(
+                        city.stateId,
+                        city.cityId,
+                        !city.cityActive
+                      )
+                    "
+                  />
+                  <span class="slider round"></span>
+                </label>
+              </span>
+              <img 
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                class="mx-2"
+                src="/assets/icon/service/delete.svg"
+                (click)="
+                  $event.stopPropagation();
+                  deleteCity(city.stateId, city.cityId)
+                "
+              />
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="">
+          <div class="areas" *ngFor="let area of city.areas">
+            <span>{{ area.name }} | {{ area.locality }}</span>
+            <div class="icons">
+              <mat-form-field panelClass="themeDD" class="themeDD mx-4">
+                <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                <mat-label>Select Catalogue</mat-label>
+                <mat-select
+                [disabled]="AuthService.userPermissions['areaWiseCatalogue']=='can_edit'?false : true"
+
+                  [(value)]="area.serviceCatalogue"
+                  (selectionChange)="
+                    updateAreaCatalogue(
+                      $event,
+                      city.stateId,
+                      city.cityId,
+                      area.id
+                    )
+                  "
+                >
+                  <mat-option value="">Select</mat-option>
+
+                  <mat-option
+                    *ngFor="let catalogue of serviceCatalogues"
+                    [value]="catalogue.id"
+                    >{{ catalogue.name }}</mat-option
+                  >
+
+                </mat-select>
+              </mat-form-field>
+              <span class="mx-4 d-flex" *ngIf="AuthService.userPermissions['areaWiseCatalogue']=='can_edit'">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="area.active"
+                    (change)="
+                      changeAreaStatus(
+                        city.stateId,
+                        city.cityId,
+                        area.id,
+                        !area.active
+                      )
+                    "
+                  />
+                  <span class="slider round"></span>
+                </label>
+              </span>
+              <img *ngIf="AuthService.userPermissions['areaWiseCatalogue']=='can_edit'"
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                class="mx-2 cursor-pointer"
+                src="/assets/icon/service/delete.svg"
+                (click)="
+                  $event.stopPropagation();
+                  deleteArea(city.stateId, city.cityId, area.id)
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

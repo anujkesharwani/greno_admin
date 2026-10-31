@@ -1,0 +1,31 @@
+h3{
+    margin: 0px;
+}
+.mainContainer {
+    padding: 70px 35px 235px 35px;
+    background: #EDF1F7;
+    font-family: Lato !important;
+    $text-primary:#54595F;
+
+    display: grid;
+    gap: 8px;
+
+    .rows {
+        background-color: white;
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        h3 {
+            color: $text-primary;
+            font-size: 18px;
+            font-weight: 500;
+            align-self: center;
+        }
+
+        img{
+            height: 32px;
+        }
+    }
+}

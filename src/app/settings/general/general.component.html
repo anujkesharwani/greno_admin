@@ -1,0 +1,11 @@
+<ng-container *ngIf="!clicked">
+    <div class="mainContainer">
+        <div class="rows" *ngFor="let item of settings" (click)="navigateTo(item.link)">
+            <h3>{{item.name}}</h3>
+            <img src="assets/icon/settings/right-arrow.png" alt="">
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="clicked">
+    <router-outlet></router-outlet>
+</ng-container>

@@ -1,0 +1,59 @@
+<div
+  class="wrapper"
+  id="invoiceModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="invoiceModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-between">
+        <span class="stage-title mx-2" id="bookingsModalLabel"
+          ><strong>Invoice</strong>
+        </span>
+        <span class="book-id" id="bookingsModalLabel">#{{ data.id }}</span>
+      </div>
+
+      <div class="modal-body">
+        <div class="invoice-data">
+          <div
+            class="flex-between my-3"
+            *ngFor="let variantItem of data.variants"
+          >
+            <span>{{ variantItem.name }}</span>
+            <span>X {{ variantItem.quantity }}</span>
+            <span
+              >₹{{
+                variantItem.cost * variantItem.quantity | number : "1.0-0"
+              }}</span
+            >
+          </div>
+          <div class="flex-between my-3">
+            <span>Sub Total</span>
+            <span>₹{{ data.billing.subTotal }}</span>
+          </div>
+          <div class="flex-between my-3" *ngIf="data.billing.discount">
+            <span class="text-wrap w-25">Discount/Coupon Applied</span>
+            <span>₹{{ data.billing.discount | number : "1.0-0" }}</span>
+          </div>
+          <div class="flex-between my-3">
+            <span>GST</span>
+            <span>₹{{ data.billing.tax | number : "1.0-0" }}</span>
+          </div>
+          <div class="divide-X"></div>
+          <div class="flex-between my-3">
+            <strong>Total Amount</strong>
+            <strong>₹{{ data.billing.grandTotal | number : "1.0-0" }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="markAsDone()">
+          Mark as {{ data.isDelivery ? "Delivery" : "Pickup" }} Completed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

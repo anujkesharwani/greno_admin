@@ -1,0 +1,113 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="d-flex heading-text">
+          <span class="blue-bold-text">Select Area of &nbsp;</span>
+          <span class="blue-bold-text"> {{data.selectedArea.city}} - {{data.selectedArea.state}}</span>
+          <mat-icon class="blue-bold-text">location_on</mat-icon>
+        </div>
+        <div class="modal-close-icon">
+          <mat-icon (click)="closeDialog()">close</mat-icon>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+      <form
+        [formGroup]="areaAddForm"
+        class=""
+        (ngSubmit)="areaAddForm.valid && addAreaInCity()"
+      >
+       <div class="searchbox">
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            >
+            <path
+                d="M22.0412 20.1561L27.7514 25.8663L25.8658 27.7519L20.1556 22.0417C18.1024 23.6843 15.4985 24.667 12.6665 24.667C6.0425 24.667 0.666504 19.291 0.666504 12.667C0.666504 6.04299 6.0425 0.666992 12.6665 0.666992C19.2905 0.666992 24.6665 6.04299 24.6665 12.667C24.6665 15.499 23.6838 18.1029 22.0412 20.1561ZM19.3661 19.1667C20.9965 17.4865 21.9998 15.1945 21.9998 12.667C21.9998 7.51032 17.8232 3.33366 12.6665 3.33366C7.50984 3.33366 3.33317 7.51032 3.33317 12.667C3.33317 17.8237 7.50984 22.0003 12.6665 22.0003C15.194 22.0003 17.486 20.997 19.1662 19.3666L19.3661 19.1667Z"
+                fill="#8983D9"
+            />
+            </svg>
+            <input type="text"
+                    placeholder="Search areas by name"
+                    aria-label=""
+                    matInput
+                    formControlName="searchInput"
+                    [matAutocomplete]="auto"
+                    class="search-input"
+                    (input)="getAreaOnSearch($event)">
+            <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)='onAreaDropdownSelect($event)'>
+                <mat-option *ngFor="let option of areaOptions" value="{{option.formatted_address}}|{{option.geometry.location.lat}},{{option.geometry.location.lng}}">{{option.formatted_address}}</mat-option>
+            </mat-autocomplete> -->
+
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option (click)="onAreaDropdownSelect(option)" *ngFor="let option of areaOptions" value="{{option.formatted_address}}">{{option.formatted_address}}</mat-option>
+            </mat-autocomplete>
+            
+        </div>
+        
+
+        <div class="mt-3">
+          <mat-form-field class="w-100">
+            <mat-label>Radius (meter)</mat-label>
+            <input matInput placeholder="Ex. 200"  formControlName="radius" (change)="setCircle()">
+          </mat-form-field>
+        </div>
+
+
+        <div class="google-map-container mt-3">
+          <google-map
+            height="100%"
+            width="100%"
+            [center]="currentPosition"
+            [zoom]="zoom"
+            (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)"
+          >
+            <map-marker
+              #markerElem
+              [options]="marker.options"
+              [title]="marker.title"
+              [position]="marker.position"
+              (mapDragend)="newPosition($event)"
+            ></map-marker>
+            <map-polygon [paths]="vertices" />
+            <map-circle
+              [center]="currentPosition"
+              [radius]="circleRadius"
+              [options]="mapOptionsCircle"
+              (circleClick)="moveMap($event)"
+              fillColor="red"
+            />
+          </google-map>
+        </div>
+
+        <div class="icons mt-6">
+          <mat-form-field panelClass="areadd" class="areadd w-100 mb-3">
+              <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+              <mat-label>Select Catalogue</mat-label>
+              <mat-select formControlName="category">
+                  <mat-option value="">Select</mat-option>
+                  <mat-option *ngFor="let catalogue of data.serviceCatalogues" [value]="catalogue.id">{{catalogue.name}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          <div class="d-flex align-items-center mb-3">
+              <span class="me-2">Is Active</span>
+              <label class="switch">
+                <input type="checkbox" formControlName="active"/>
+                <span class="slider round"></span>
+              </label>
+            </div>
+      </div>
+
+
+        <div class="d-flex justify-content-center">
+          <div class="d-flex">
+            <button class="btn btn-primary me-3" type="submit">Submit</button>
+            <button class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

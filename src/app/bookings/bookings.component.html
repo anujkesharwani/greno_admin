@@ -1,0 +1,303 @@
+<div class="wrapper">
+  <div class="header-cards">
+    <div class="searchbox">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+      >
+        <path
+          d="M22.0412 20.1561L27.7514 25.8663L25.8658 27.7519L20.1556 22.0417C18.1024 23.6843 15.4985 24.667 12.6665 24.667C6.0425 24.667 0.666504 19.291 0.666504 12.667C0.666504 6.04299 6.0425 0.666992 12.6665 0.666992C19.2905 0.666992 24.6665 6.04299 24.6665 12.667C24.6665 15.499 23.6838 18.1029 22.0412 20.1561ZM19.3661 19.1667C20.9965 17.4865 21.9998 15.1945 21.9998 12.667C21.9998 7.51032 17.8232 3.33366 12.6665 3.33366C7.50984 3.33366 3.33317 7.51032 3.33317 12.667C3.33317 17.8237 7.50984 22.0003 12.6665 22.0003C15.194 22.0003 17.486 20.997 19.1662 19.3666L19.3661 19.1667Z"
+          fill="#054BAE"
+        />
+      </svg>
+      <input
+        type="text"
+        placeholder="Search your bookings"
+        aria-label=""
+        matInput
+        [formControl]="bookingSearchControl"
+        [matAutocomplete]="auto"
+        class="search-input"
+        (input)="onSearchChange($event)"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onBookingDropdownSelect($event)"
+      >
+        <mat-option *ngFor="let option of options" value="{{ option.id }}"
+          >{{ option.id }} | {{ option.mainCategory.name }} |
+          {{ option.billing.grandTotal | number : "1.0-1" }}</mat-option
+        >
+      </mat-autocomplete>
+    </div>
+    <div class="headerBtns">
+      <form style="margin-top: 1px" [formGroup]="dateInputForm">
+        <label
+          type="button"
+          for="datePicker"
+          type="button"
+          class="header-btn calender"
+        >
+          <span style="margin-right: 8px">Jump to</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+          >
+            <path
+              d="M9.5 1V3H15.5V1H17.5V3H21.5C22.0523 3 22.5 3.44772 22.5 4V20C22.5 20.5523 22.0523 21 21.5 21H3.5C2.94772 21 2.5 20.5523 2.5 20V4C2.5 3.44772 2.94772 3 3.5 3H7.5V1H9.5ZM20.5 11H4.5V19H20.5V11ZM8.5 13V15H6.5V13H8.5ZM13.5 13V15H11.5V13H13.5ZM18.5 13V15H16.5V13H18.5ZM7.5 5H4.5V9H20.5V5H17.5V7H15.5V5H9.5V7H7.5V5Z"
+              fill="#FCFCFC"
+            />
+          </svg>
+          <input
+            type="date"
+            (change)="dispDate()"
+            formControlName="date"
+            id="datePicker"
+            [max]="maxFutureDate"
+          />
+        </label>
+      </form>
+
+      <button class="header-btn" (click)="openCreateBookingDialog()">
+        Create Booking
+      </button>
+    </div>
+  </div>
+
+  <div class="booking-container">
+    <div class="booking-filter-container"></div>
+    <div class="date-container" [class.full-width]="bookingService.isFullWidth">
+      <div class="booking-date-wrapper">
+        <div
+          class="booking-date"
+          *ngFor="let item of bookingDateRange | keyvalue"
+        >
+          <div class="bookings-inner">
+            <div class="date">
+              <div
+                class="date-text"
+                [ngClass]="{ inactive: !item.value.isActive }"
+                (click)="
+                  onClickDateRange(item.value.fullDate, item.value.isActive)
+                "
+              >
+                {{ item.value.dateText }}
+              </div>
+            </div>
+            <div class="bookings">
+              <span
+                class="text-white {{
+                  getObjectValueOnKey(bookingStatus.value, 'css-class')
+                }}"
+                *ngFor="let bookingStatus of item.value.bookingCount | keyvalue"
+                >{{ getObjectValueOnKey(bookingStatus.value, "count") }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="booking-board-container"
+      [class.full-width]="bookingService.isFullWidth"
+    >
+      <div class="booking-category-outer">
+        <div
+          [ngStyle]="{
+            visibility: bookingService.isFullWidth ? 'hidden' : 'visible'
+          }"
+          class="booking-category-container"
+        >
+          <div *ngIf="!bookingService.isFullWidth" class="heading">
+            Booking & Category Codes
+          </div>
+          <div class="booking-category-container-inner">
+            <div
+              *ngIf="
+                !bookingService.isFullWidth &&
+                getObjectSize(activeBookingStages)
+              "
+              class="booking-category-main"
+            >
+              <div class="sub-heading">Booking Stage</div>
+              <div class="booking-stage-container">
+                <div
+                  class="booking-stage"
+                  *ngFor="let item of activeBookingStages | keyvalue"
+                >
+                  <div
+                    class="color {{ getObjectValueOnKey(item.value, 'color') }}"
+                  ></div>
+                  <div class="text">
+                    {{ getObjectValueOnKey(item.value, "text") }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div
+              *ngIf="!bookingService.isFullWidth && activeCategory.length > 0"
+              class="booking-category-main"
+            >
+              <div class="sub-heading">Category</div>
+              <div class="booking-stage-container border-0">
+                <div class="booking-stage" *ngFor="let item of activeCategory">
+                  <div class="icon">
+                    <img [src]="item.image" alt="" />
+                  </div>
+                  <div class="text">{{ item.name }}</div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="collapse-icon-container">
+          <div
+            class="icon-container"
+            (click)="bookingService.isFullWidth = !bookingService.isFullWidth"
+          >
+            <mat-icon *ngIf="!bookingService.isFullWidth"
+              >keyboard_arrow_left</mat-icon
+            >
+            <mat-icon *ngIf="bookingService.isFullWidth"
+              >keyboard_arrow_right</mat-icon
+            >
+          </div>
+        </div>
+      </div>
+      <div class="booking-board-main">
+        <div class="booking-board-outer">
+          <div class="booking-slots-container d-flex flex-wrap">
+            <div class="booking-slot-time" *ngFor="let item of timeSlots">
+              <span class="slot-text">{{ item.name }}</span>
+              <span class="d-flex">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="item.active"
+                    (change)="changeSlotStatus($event, item.id, !item.active)"
+                  />
+                  <span class="slider round"></span>
+                </label>
+              </span>
+            </div>
+          </div>
+          <div class="booking-slots-item-container">
+            <ng-container
+              *ngIf="
+                selectedDateBookingFiltered &&
+                selectedDateBookingFiltered.length
+              "
+            >
+              <div
+                class="booking-slot-item-row"
+                *ngFor="let item of selectedDateBookingFiltered"
+              >
+                <div
+                  class="booking-slot-item"
+                  *ngIf="item"
+                  [ngClass]="getBookingSlotCss(item)"
+                >
+                  <div
+                    class="booking-slot-item-inner"
+                    [ngClass]="getBookingSlotGradient(item.stage)"
+                    *ngIf="!(item.stage === 'washInProgress')"
+                    (click)="onClickBooking(item)"
+                  >
+                    <div class="slot-id">{{ item.id }}</div>
+                    <div class="slot-description-container">
+                      <div class="description-text" *ngIf="item">
+                        {{ item.services[0].name }}
+                      </div>
+                      <div
+                        class="icon-container ms-2 d-flex align-items-center"
+                      >
+                        <!-- service icon -->
+                        <ng-container *ngFor="let service of item.services">
+                          <div
+                            matTooltip="{{ service.name }}"
+                            [matTooltipPosition]="'above'"
+                            class="image d-flex ms-2 align-items-center"
+                          >
+                            <img [src]="service.image" [alt]="service.name" />
+                          </div>
+                        </ng-container>
+
+                        <!-- customer avatar -->
+                        <div
+                          matTooltip="{{ item.currentUser.name }}"
+                          [matTooltipPosition]="'above'"
+                          class="image d-flex ms-2 align-items-center"
+                        >
+                          <img
+                            [src]="
+                              item.currentUser.avatar
+                                ? item.currentUser.avatar
+                                : 'https://ik.imagekit.io/xji6otwwkb/Profile.png?updatedAt=1680849745697'
+                            "
+                            [alt]="item.currentUser.name"
+                          />
+                        </div>
+
+                        <!-- agent avatar -->
+                        <div
+                          *ngIf="
+                            item.assignedAgent !== '' &&
+                            item.agentData &&
+                            item.stage !== 'allotmentPending'
+                          "
+                          matTooltip="{{ item.agentData!.agentName }}"
+                          [matTooltipPosition]="'above'"
+                          class="image d-flex ms-2 align-items-center"
+                        >
+                          <img
+                            [src]="item.agentData!.agentPic"
+                            [alt]="item.agentData!.agentName"
+                          />
+                        </div>
+
+                        <!-- job type -->
+                        <div
+                          class="job-status {{
+                            item.isDelivery ? 'Delivery' : 'Pickup'
+                          }}"
+                        >
+                          <p>
+                            {{ item.isDelivery ? "Delivery" : "Pickup" }}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="price-container">
+                        &#8377;
+                        {{ item.billing["grandTotal"] | number : "1.0-0" }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="booking-slots-border-container">
+            <div class="booking-slot-line"></div>
+            <div class="booking-slot-line"></div>
+            <div class="booking-slot-line"></div>
+            <div class="booking-slot-line"></div>
+            <div class="booking-slot-line"></div>
+            <div class="booking-slot-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-cards">
+    <app-expandable-cards
+      (selectedBookingFilter)="onChangeBookingFilter($event)"
+    ></app-expandable-cards>
+  </div>
+</div>

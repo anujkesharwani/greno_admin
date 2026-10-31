@@ -1,0 +1,55 @@
+<div class="containerr">
+    <div class="boxx">
+    <p>Customer Details </p>
+    <section class="user-details">
+        <div class="user-image">
+          <img src="\assets\Human pic\Human pic.svg" alt="User Image">
+        </div>
+        <div class="basic-details">
+          <div class="flex">
+            <p>Name: Arun Arora</p>
+            <p>Email: user@example.com</p>
+          </div>
+          <div class="flex">
+            <p><img src="\assets\icon\bookingDetails\location.svg" width="20px" alt="Location Icon">
+              Robert Robertson,1234 NW Bobcar Lane
+            </p>
+            <p>Phone: 954866898892</p>
+          </div>
+        </div>
+        <div class="contact-details">
+            <button><img src="\assets\icon\bookingDetails\phone.svg" alt="Phone Button"></button>
+            <button><img src="\assets\icon\bookingDetails\mail.svg" alt="Mail Button"></button>
+        </div>
+    </section>
+</div>
+      <section class="previousBookings">
+          <legend>Last 5 Booking of Arun</legend>
+          <table>
+            <thead>
+                <tr>
+                    <th>Order#</th>
+                    <th>Service</th>
+                    <th>Payment Mode</th>
+                    <th>Service Table</th>
+                    <th>Job </th>
+                    <th>Status</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let booking of bookings">
+                    <td>{{booking.order}}</td>
+                    <td>{{booking.service}}</td>
+                    <td>{{booking.paymentMode}}</td>
+                    <td>{{booking.serviceTime}}</td>
+                    <td>{{booking.jobDuration}}</td>
+                    <td><span ngClass={{booking.status}}>{{booking.status}}</span></td>
+                    <td><span ngClass={{booking.status}}>₹ {{booking.totalAmount}}</span></td>
+                    <td><mat-icon>keyboard_arrow_down</mat-icon></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-agent-completed-details/>
+      </section>
+    </div>

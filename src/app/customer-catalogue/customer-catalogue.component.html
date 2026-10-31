@@ -1,0 +1,286 @@
+<mat-accordion multi>
+  <mat-expansion-panel
+    class="remove-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Banner Management for Mobile </mat-panel-title>
+      <mat-panel-description>
+        <span>Total Banner Sections: {{ mobileBannerSections.length }}</span>
+        <span class="mx-5">Total Banners: {{ nMobileBanners }}</span>
+        <app-switch
+          checkedBackgroundColor="#fcfcfc"
+          uncheckedThumbColor="#fcfcfc"
+          checkedThumbColor="#3e3e3e"
+          borderColor="#fcfcfc"
+          [checked]="showMobileBanners"
+          (switch)="setAllMobileBannersShow($event)"
+        ></app-switch>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <app-banner-section
+        [bannerSections]="mobileBannerSections"
+        (addBanner)="addMobileBanner($event)"
+        (switchBannerSectionShow)="setMobileBannerSectionShow($event)"
+        (switchBannerShow)="setMobileBannerShow($event)"
+        (editBanner)="editMobileBanner($event)"
+        (deleteBanner)="deleteMobileBanner($event)"
+      ></app-banner-section>
+    </ng-template>
+  </mat-expansion-panel>
+  <!-- <mat-expansion-panel
+    class="remove-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Banner Management for Desktop </mat-panel-title>
+      <mat-panel-description>
+        <span>Total Banner Sections: {{ desktopBannerSections.length }}</span>
+        <span class="mx-5">Total Banners: {{ nDesktopBanners }}</span>
+        <app-switch
+          checkedBackgroundColor="#fcfcfc"
+          uncheckedThumbColor="#fcfcfc"
+          checkedThumbColor="#3e3e3e"
+          borderColor="#fcfcfc"
+          [checked]="showDesktopBanners"
+          (switch)="setAllDesktopBannersShow($event)"
+        ></app-switch>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <app-banner-section
+        [bannerSections]="desktopBannerSections"
+        (addBanner)="addDesktopBanner($event)"
+        (switchBannerSectionShow)="setDesktopBannerSectionShow($event)"
+        (switchBannerShow)="setDesktopBannerShow($event)"
+        (editBanner)="editDesktopBanner($event)"
+        (deleteBanner)="deleteDesktopBanner($event)"
+      ></app-banner-section>
+    </ng-template>
+  </mat-expansion-panel> -->
+  <mat-expansion-panel
+    class="m1-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Contact Management </mat-panel-title>
+      <mat-panel-description>
+        <span>Total Mobile Numbers: {{ mobileNumbers.length }}</span>
+        <span class="mx-5"
+          >Total WhatsApp Numbers: {{ whatsappNumbers.length }}</span
+        >
+        <span>Total Emails: {{ emails.length }}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div id="contact-sections">
+        <div class="contact-section">
+          <div
+            class="contact-item"
+            *ngFor="
+              let number of mobileNumbers;
+              let i = index;
+              trackBy: trackByIndex
+            "
+          >
+            <label for="mobile-{{ i + 1 }}"
+              ><mat-icon fontIcon="call_outline"></mat-icon>Contact No.
+              {{ i + 1 }}</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="mobileNumbers[i]"
+              id="mobile-{{ i + 1 }}"
+            />
+          </div>
+        </div>
+        <div class="contact-section">
+          <div
+            class="contact-item"
+            *ngFor="
+              let number of whatsappNumbers;
+              let i = index;
+              trackBy: trackByIndex
+            "
+          >
+            <label for="whatsapp-{{ i + 1 }}"
+              ><img src="assets/whatsapp.png" alt="WhatsApp Icon" />WhatsApp No.
+              {{ i + 1 }}</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="whatsappNumbers[i]"
+              id="whatsapp-{{ i + 1 }}"
+            />
+          </div>
+        </div>
+        <div class="contact-section">
+          <div
+            class="contact-item"
+            *ngFor="let email of emails; let i = index; trackBy: trackByIndex"
+          >
+            <label for="email-{{ i + 1 }}"
+              ><mat-icon fontIcon="mail_outline"></mat-icon>Email
+              {{ i + 1 }}</label
+            >
+            <input
+              type="email"
+              [(ngModel)]="emails[i]"
+              id="email-{{ i + 1 }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="areContactsChanged()" class="action-btns">
+        <button class="save-btn" (click)="saveContacts()">Save</button>
+        <button class="cancel-btn" (click)="cancelContacts()">Cancel</button>
+      </div>
+    </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    class="m1-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Customer and Agent Contact Time Management
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div class="line-input-container">
+        Time Period to show Agent Contact Details
+        <input type="number" min="0" [(ngModel)]="timePeriod" />
+        minutes
+      </div>
+      <div *ngIf="isTimePeriodChanged()" class="action-btns">
+        <button class="save-btn" (click)="saveTime()">Save</button>
+        <button class="cancel-btn" (click)="cancelTime()">Cancel</button>
+      </div>
+    </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    class="m1-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Customer Booking Fixed Charges </mat-panel-title>
+      <mat-icon
+        (click)="openAddBookingCharges(null)"
+        style="color: #fff"
+        matTooltip="Add"
+        [matTooltipPosition]="'above'"
+        >add_circle</mat-icon
+      >
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div class="d-flex" style="width: 40%" *ngFor="let charge of charges">
+        <p style="width: 80%; font-size: 16px">
+          {{ charge.name }} - {{ charge.amount }}
+        </p>
+        <div class="d-flex" style="align-items: center">
+          <label class="switch">
+            <input
+              type="checkbox"
+              [checked]="charge.active"
+              (change)="updChargeStatus(charge.id, !charge.active)"
+            />
+            <span class="slider round"></span>
+          </label>
+          <mat-icon class="mx-2" (click)="openAddBookingCharges(charge)"
+            >edit</mat-icon
+          >
+          <mat-icon
+            (click)="delCharge(charge.id)"
+            fontIcon="delete_outline"
+          ></mat-icon>
+        </div>
+      </div>
+    </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    class="m1-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Customer Booking Cancellation Time & Charge
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div class="line-input-container">
+        Grace Period for No-Charge Booking Cancellation
+        <input type="number" min="0" [(ngModel)]="gracePeriod" />
+        minutes
+      </div>
+      <div class="line-input-container">
+        Charge of Booking Cancellation after Grace Period
+        <select [(ngModel)]="chargeType">
+          <option ngValue="percent">Percentage of Booking Amount</option>
+          <option ngValue="fixed">Fixed Cancellation Charge</option>
+        </select>
+        <span *ngIf="chargeType === 'fixed'" id="currency">₹</span>
+        <input type="number" min="0" [(ngModel)]="chargeValue" />
+        <span *ngIf="chargeType === 'percent'">%</span>
+      </div>
+      <div *ngIf="isCancellationChanged()" class="action-btns">
+        <button class="save-btn" (click)="saveCancellation()">Save</button>
+        <button class="cancel-btn" (click)="cancelCancellation()">
+          Cancel
+        </button>
+      </div>
+    </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    class="m1-mat-expansion-panel-padding"
+    [expanded]="true"
+    [disabled]="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> FAQs </mat-panel-title>
+      <mat-panel-description>
+        <span>Total FAQs: {{ faqs.length }}</span>
+        <button class="add-btn mx-5" id="add-faq" (click)="addFaq()">
+          Add FAQ<mat-icon fontIcon="add_circle"></mat-icon>
+        </button>
+        <app-switch
+          checkedBackgroundColor="#fcfcfc"
+          uncheckedThumbColor="#fcfcfc"
+          checkedThumbColor="#3e3e3e"
+          borderColor="#fcfcfc"
+          [checked]="showFaqs"
+          (switch)="setAllFaqsShow($event)"
+        ></app-switch>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <ul id="faqs">
+        <li *ngFor="let faq of faqs; let i = index">
+          <div>
+            <p><strong>Question: </strong>{{ faq.question }}</p>
+            <p><strong>Answer: </strong>{{ faq.answer }}</p>
+          </div>
+          <div class="icon-action-btns">
+            <app-switch
+              size="50"
+              [checked]="faq.show"
+              (switch)="setFaqShow(i, $event)"
+            ></app-switch>
+            <button (click)="editFaq(i)">
+              <mat-icon fontIcon="edit_outline"></mat-icon>
+            </button>
+            <button class="delete-btn" (click)="deleteFaq(i)">
+              <mat-icon fontIcon="delete_outline"></mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>

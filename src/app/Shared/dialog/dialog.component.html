@@ -1,0 +1,8 @@
+<div class="mainContainer">
+  <h2>{{ data.message }}</h2>
+  <h2>{{ data?.data?.id }}</h2>
+  <div class="btnn">
+    <button mat-flat-button id="b1" (click)="closeDialog(true)">Yes</button>
+    <button mat-flat-button id="b2" (click)="closeDialog(false)">Cancel</button>
+  </div>
+</div>

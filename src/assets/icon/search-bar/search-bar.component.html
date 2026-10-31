@@ -1,0 +1,65 @@
+<div class="containerr">
+    <!-- Top Bar Section -->
+    <section class="topBar">
+        <!-- Search Bar -->
+        <div class="searchBar">
+            <button class="arrowDown"><img src="\assets\icon\searchBar\arrowDown.svg" alt="Arrow Down Icon"></button>
+            <input id="searchBar" [ngModel]="searchBar" (ngModelChange)="valueChange($event)" />
+        </div>
+        <!-- Actions -->
+        <div class="actions">
+            <button class="light-button"><img src="\assets\icon\searchBar\repeat.svg" alt="Repeat Icon" /></button>
+            <button class="light-button"><img src="\assets\icon\searchBar\filter.svg" alt="Filter Icon" />Sort by</button>
+            <button class="light-button stroked">Enter a data range<img src="\assets\icon\searchBar\calender.svg" alt="Calendar Icon" /></button>
+        </div>
+    </section>
+
+    <!-- Agent List Section -->
+    <section class="agentList">
+        <!-- Displayed when no items are found -->
+        <div *ngIf="filteredItems.length===0" class="notFound">
+            <img src="/assets/icon/searchBar/agentList/notFound.svg" alt="Not Found Icon" />
+            <p>Oops! Nothing was found for this search!</p>
+        </div>
+
+        <!-- Displayed when there are items in the list -->
+        <div class="list" *ngIf="filteredItems.length!==0">
+            <table border="none">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Agent Name</th>
+                        <th>Booking ID</th>
+                        <th>Email</th>
+                        <th>Start Time</th>
+                        <th>Total Service</th>
+                        <th>Agent ID</th>
+                        <th>Rating</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let agent of filteredItems">
+                    <tr>
+                        <td><img src={{agent.agentPhoto}} alt="Agent Photo" /></td>
+                        <td>{{agent.agentName}}</td>
+                        <td>#{{agent.bookingID}}</td>
+                        <td>{{agent.email}}</td>
+                        <td>{{agent.startTime}}</td>
+                        <td>{{agent.totalService}}</td>
+                        <td>#{{agent.agentID}}</td>
+                        <td>
+                            <p class="rating">{{agent.rating}}</p>
+                        </td>
+                        <td>
+                            <p ngClass={{agent.status}}>{{agent.status}}</p>
+                        </td>
+                        <td>
+                            <p class="total">₹{{agent.total}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

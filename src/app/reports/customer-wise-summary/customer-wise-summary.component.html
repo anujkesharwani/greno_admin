@@ -1,0 +1,58 @@
+<div id="dialog">
+    <div id="header">
+      <div>
+        <h4>Customer wise Summary</h4>
+        <p>{{ refreshedAt }}</p>
+      </div>
+      <div id="header-buttons">
+        <button id="hidden-for-focus"></button>
+        <button (click)="downloadExcel()">Download as Excel</button>
+        <button (click)="downloadPDF()">Download as PDF</button>
+        <button (click)="refresh()">Refresh Data</button>
+        <button (click)="picker.open()">
+          {{ dateSelected | date : 'mediumDate' }}
+          <input matInput [matDatepicker]="picker" [(ngModel)]="dateSelected" [max]="today"
+                 (dateChange)="refresh()">
+          <mat-datepicker #picker xPosition="end"></mat-datepicker>
+          <mat-icon fontIcon="calendar_month"></mat-icon>
+        </button>
+        <!-- <mat-form-field>
+          <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange" (dateChange)="getUsersBoooking()">
+            <input matStartDate formControlName="start" placeholder="Start Date">
+            <input matEndDate formControlName="end" placeholder="End Date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field> -->
+      </div>
+      <button id="close" (click)="dialogRef.close()"><mat-icon fontIcon="close"></mat-icon></button>
+    </div>
+    <div id="summary-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Customer Id</th>
+            <th>Customer Name</th>
+            <th>Total Discount</th>
+            <th>Total Taxes</th>
+            <th>Total Bookings</th>
+            <th>Bookings Cancelled</th>
+            <!-- Add more headers as needed -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let summary of customerSummary">
+            <td>{{ summary && summary.id ? summary.id : '-' }}</td>
+            <td>{{ summary && summary.name ? summary.name : '-' }}</td>
+            <td>{{ summary && summary.totalDiscount >= 0 ? '₹' + summary.totalDiscount: '-' }}</td>
+            <td>{{ summary && summary.taxes >= 0 ? '₹' + summary.taxes : '-' }}</td>
+            <td>{{ summary && summary.totalBooking >= 0 ? summary.totalBooking : '-' }}</td>
+            <td>{{ summary && summary.discarded >= 0 ? summary.discarded : '-' }}</td>
+            <!-- Add more columns as needed -->
+          </tr>
+          <!-- Add more rows if there are more properties in the summary object -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

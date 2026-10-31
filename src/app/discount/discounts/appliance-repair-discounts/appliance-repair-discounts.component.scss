@@ -1,0 +1,23 @@
+.mainContainer {
+    margin-top: 24px;
+
+    $border-color: #D7D7D7;
+    $green-background: #DFFBEC;
+    $red-background: #F2BDBD;
+
+    .table {
+        border: 1px solid $border-color;
+
+        .green{
+            background-color: $green-background;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .red{
+            background-color: $red-background;
+            border-radius: 8px;
+            padding: 4px;
+        }
+    }
+}

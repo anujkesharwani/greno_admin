@@ -1,0 +1,777 @@
+<div
+  class="wrapper"
+  id="bookingsModalUpdated"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bookingsModalLabelUpdated"
+  aria-hidden="true"
+  *ngIf="AuthService.userPermissions"
+>
+  <div class="modal-dialog" role="document">
+    <div
+      class="modal-content"
+      [ngClass]="{
+        discarded:
+          dataUpdated.stage === utils.stageMaster.discarded.key ||
+          dataUpdated.stage === utils.stageMaster.expired.key
+      }"
+    >
+      <div class="modal-header flex-between">
+        <div class="header-title">
+          <div
+            class="heading-circle header-tab {{ dataUpdated.colorClass }}"
+          ></div>
+          <span
+            class="stage-title mx-2 {{ dataUpdated.color }}"
+            id="bookingsModalLabel"
+          >
+            {{ dataUpdated.name }}
+          </span>
+          <span class="book-id" id="bookingsModalLabel">{{
+            dataUpdated.id
+          }}</span>
+        </div>
+        <div class="header-btn">
+          <!-- job type -->
+          <div
+            class="job-status {{
+              dataUpdated.isDelivery ? 'Delivery' : 'Pickup'
+            }}"
+          >
+            <p>
+              {{ dataUpdated.isDelivery ? "Delivery" : "Pickup" }}
+            </p>
+          </div>
+          <span
+            *ngIf="AuthService.userPermissions['otp']"
+            [ngStyle]="{
+              color: dataUpdated.stageStatus ? '#b0b0b0' : '#145889'
+            }"
+          >
+            {{ dataUpdated.jobOTP }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="20"
+              viewBox="0 0 18 20"
+              fill="none"
+              (click)="copyToClipboard(dataUpdated.jobOTP)"
+            >
+              <path
+                d="M3.9998 4V1C3.9998 0.44772 4.44752 0 4.9998 0H16.9998C17.5521 0 17.9998 0.44772 17.9998 1V15C17.9998 15.5523 17.5521 16 16.9998 16H13.9998V18.9991C13.9998 19.5519 13.5499 20 12.993 20H1.00666C0.45059 20 0 19.5554 0 18.9991L0.00259995 5.00087C0.00269995 4.44811 0.45264 4 1.00942 4H3.9998ZM2.00242 6L2.00019 18H11.9998V6H2.00242ZM5.9998 4H13.9998V14H15.9998V2H5.9998V4Z"
+                [attr.fill]="dataUpdated.stageStatus ? '#b0b0b0' : '#145889'"
+              />
+            </svg>
+          </span>
+          <span
+            class="mx-2"
+            (click)="downloadInvoice()"
+            *ngIf="dataUpdated.title == bookingStages.completed.key"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
+            >
+              <path
+                d="M14.0833 13.0003H17.3333L13 17.3337L8.66667 13.0003H11.9167V8.66699H14.0833V13.0003ZM16.25 4.33366H5.41667V21.667H20.5833V8.66699H16.25V4.33366ZM3.25 3.24144C3.25 2.64805 3.73478 2.16699 4.33171 2.16699H17.3333L22.7497 7.58366L22.75 22.7422C22.75 23.345 22.268 23.8337 21.6738 23.8337H4.32618C3.73182 23.8337 3.25 23.3404 3.25 22.7592V3.24144Z"
+                [attr.fill]="dataUpdated.stageStatus ? '#b0b0b0' : '#0D99FF'"
+              />
+            </svg>
+          </span>
+          <span
+            class="close-btn"
+            (click)="
+              dialogRef.close(data); _bookingService.refreshCounts.next(true)
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <path
+                d="M18.001 15.8797L25.4256 8.45508L27.5469 10.5764L20.1223 18.001L27.5469 25.4256L25.4256 27.5469L18.001 20.1223L10.5764 27.5469L8.45508 25.4256L15.8797 18.001L8.45508 10.5764L10.5764 8.45508L18.001 15.8797Z"
+                fill="#E82C2C"
+              />
+            </svg>
+          </span>
+          <span class="copyClipboardMessage" *ngIf="showOtpmessage">
+            Copied to clipboard
+          </span>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="AuthService.userPermissions['progressBar']">
+          <div class="timeline">
+            <!-- pickup timeline -->
+            <div class="timeline-line">
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesPickup[1].status
+                    ? '#06a3b8'
+                    : '#b0b0b0',
+                  width: '24.5%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesPickup[2].status
+                    ? '#145889'
+                    : '#b0b0b0',
+                  width: '25%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesPickup[3].status
+                    ? '#007eda'
+                    : '#b0b0b0',
+                  width: '27%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesPickup[4].status
+                    ? '#d7c206'
+                    : '#b0b0b0',
+                  width: '25%',
+                  height: '3px'
+                }"
+              ></div>
+            </div>
+            <ng-container *ngFor="let timelineStage of timelineStagesPickup">
+              <div *ngIf="timelineStage.show === true">
+                <div class="timeline-item">
+                  <span class="blunt">
+                    {{ timelineStage.status ? timelineStage.date : "---" }}
+                  </span>
+                  <span class="blunt">
+                    {{ timelineStage.status ? timelineStage.time : "---" }}
+                  </span>
+                  <div
+                    [ngStyle]="{
+                      'background-color': timelineStage.status
+                        ? timelineStage.color
+                        : '#b0b0b0'
+                    }"
+                    class="circle time-tab"
+                  ></div>
+                  <span
+                    [ngStyle]="{
+                      color: timelineStage.status
+                        ? timelineStage.color
+                        : '#b0b0b0'
+                    }"
+                    class="timeline-text"
+                    >{{ timelineStage.title }}</span
+                  >
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="job-status job Pickup">
+            <p>Pickup</p>
+          </div>
+
+          <!-- delivery timeline -->
+          <div class="timeline">
+            <div class="timeline-line">
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesDelivery[1].status
+                    ? '#06a3b8'
+                    : '#b0b0b0',
+                  width: '24.5%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesDelivery[2].status
+                    ? '#145889'
+                    : '#b0b0b0',
+                  width: '25%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesDelivery[3].status
+                    ? '#007eda'
+                    : '#b0b0b0',
+                  width: '27%',
+                  height: '3px'
+                }"
+              ></div>
+              <div
+                [ngStyle]="{
+                  'background-color': timelineStagesDelivery[4].status
+                    ? '#d7c206'
+                    : '#b0b0b0',
+                  width: '25%',
+                  height: '3px'
+                }"
+              ></div>
+            </div>
+            <ng-container *ngFor="let timelineStage of timelineStagesDelivery">
+              <div *ngIf="timelineStage.show === true">
+                <div class="timeline-item">
+                  <span class="blunt">
+                    {{ timelineStage.status ? timelineStage.date : "---" }}
+                  </span>
+                  <span class="blunt">
+                    {{ timelineStage.status ? timelineStage.time : "---" }}
+                  </span>
+                  <div
+                    [ngStyle]="{
+                      'background-color': timelineStage.status
+                        ? timelineStage.color
+                        : '#b0b0b0'
+                    }"
+                    class="circle time-tab"
+                  ></div>
+                  <span
+                    [ngStyle]="{
+                      color: timelineStage.status
+                        ? timelineStage.color
+                        : '#b0b0b0'
+                    }"
+                    class="timeline-text"
+                    >{{ timelineStage.title }}</span
+                  >
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="job-status job Delivery">
+            <p>Delivery</p>
+          </div>
+        </div>
+
+        <p class="note" *ngIf="dataUpdated.title == bookingStages.expired.key">
+          <strong
+            >* Booking expired at allotment stage due to agent's
+            unavailability</strong
+          >
+        </p>
+
+        <p
+          class="note m-0"
+          *ngIf="dataUpdated.title == bookingStages.discarded.key"
+        >
+          <strong>* {{ dataUpdated.cancelReason }}</strong>
+        </p>
+        <p
+          class="note"
+          *ngIf="dataUpdated.title == bookingStages.discarded.key"
+        >
+          <strong *ngIf="dataUpdated.cancelReasonText"
+            >* {{ dataUpdated.cancelReasonText }}</strong
+          >
+        </p>
+
+        <div class="booking-details" *ngIf="AuthService.userPermissions['progressBar']">
+          <div
+            [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+            class="flex-between"
+          >
+            <span
+              [ngStyle]="{
+                width: dataUpdated.allStagesTime != '' ? '22%' : '33%',
+                color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+              }"
+              class="heading flex-width-book"
+              ><strong>Booking Details</strong></span
+            >
+            <div *ngIf="dataUpdated.allStagesTime != ''" class="divide-Y"></div>
+            <div
+              *ngIf="dataUpdated.allStagesTime != ''"
+              [ngStyle]="{
+                width: dataUpdated.allStagesTime != '' ? '22%' : '33%',
+              }"
+              class="flex-center-col flex-width-book"
+            >
+              <span>
+                All Stages &nbsp;
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="18"
+                  viewBox="0 0 16 18"
+                  fill="none"
+                >
+                  <path
+                    d="M3.99935 3.44298H2.66602V2.04102H13.3327V3.44298H11.9993V4.84494C11.9993 5.97732 11.4552 6.88807 10.7701 7.63251C10.3015 8.14165 9.73135 8.6106 9.15328 9.05082C9.73135 9.49104 10.3015 9.95999 10.7701 10.4691C11.4552 11.2136 11.9993 12.1243 11.9993 13.2567V14.6587H13.3327V16.0606H2.66602V14.6587H3.99935V13.2567C3.99935 12.1243 4.54346 11.2136 5.22862 10.4691C5.69723 9.95999 6.26736 9.49104 6.84541 9.05082C6.26736 8.6106 5.69723 8.14165 5.22862 7.63251C4.54346 6.88807 3.99935 5.97732 3.99935 4.84494V3.44298ZM5.33268 3.44298V4.84494C5.33268 5.32521 5.50619 5.78074 5.84689 6.2469H10.1518C10.4925 5.78074 10.666 5.32521 10.666 4.84494V3.44298H5.33268ZM7.99935 9.90735C7.30255 10.4249 6.67135 10.9175 6.18675 11.4441C6.0594 11.5825 5.94606 11.719 5.84689 11.8547H10.1518C10.0526 11.719 9.93928 11.5825 9.81195 11.4441C9.32735 10.9175 8.69615 10.4249 7.99935 9.90735Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#8E911A'
+                    "
+                  />
+                </svg>
+              </span>
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.allStagesTime }}</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div
+              [ngStyle]="{
+                width: dataUpdated.allStagesTime != '' ? '22%' : '33%',
+                color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+              }"
+              class="flex-center-col flex-width-book"
+            >
+              <span>
+                This Stage &nbsp;
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="18"
+                  viewBox="0 0 16 18"
+                  fill="none"
+                >
+                  <path
+                    d="M3.99935 3.44298H2.66602V2.04102H13.3327V3.44298H11.9993V4.84494C11.9993 5.97732 11.4552 6.88807 10.7701 7.63251C10.3015 8.14165 9.73135 8.6106 9.15328 9.05082C9.73135 9.49104 10.3015 9.95999 10.7701 10.4691C11.4552 11.2136 11.9993 12.1243 11.9993 13.2567V14.6587H13.3327V16.0606H2.66602V14.6587H3.99935V13.2567C3.99935 12.1243 4.54346 11.2136 5.22862 10.4691C5.69723 9.95999 6.26736 9.49104 6.84541 9.05082C6.26736 8.6106 5.69723 8.14165 5.22862 7.63251C4.54346 6.88807 3.99935 5.97732 3.99935 4.84494V3.44298ZM5.33268 3.44298V4.84494C5.33268 5.32521 5.50619 5.78074 5.84689 6.2469H10.1518C10.4925 5.78074 10.666 5.32521 10.666 4.84494V3.44298H5.33268ZM7.99935 9.90735C7.30255 10.4249 6.67135 10.9175 6.18675 11.4441C6.0594 11.5825 5.94606 11.719 5.84689 11.8547H10.1518C10.0526 11.719 9.93928 11.5825 9.81195 11.4441C9.32735 10.9175 8.69615 10.4249 7.99935 9.90735Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#8E911A'
+                    "
+                  />
+                </svg>
+              </span>
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >02:22</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div
+              [ngStyle]="{
+                width: '33%',
+                color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+              }"
+              class="flex-center-col flex-width-book"
+            >
+              <span>Job Acceptance Charge</span>
+              <span>{{ dataUpdated.jobAcceptanceCharge }}</span>
+            </div>
+          </div>
+
+          <div class="divide-X"></div>
+
+          <div class="flex-between px-2" >
+            <div class="flex-center-col">
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="sub-heading"
+                >Booking Time</span
+              >
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.bookingTime }}</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div class="flex-center-col">
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="sub-heading"
+                >Service date</span
+              >
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.serviceDate }}</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div class="flex-center-col">
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="sub-heading"
+                >Slot Time</span
+              >
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.slotTime }}</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div class="flex-center-col">
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="sub-heading"
+                >Job Start Time</span
+              >
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.jobStartTime }}</span
+              >
+            </div>
+            <div class="divide-Y"></div>
+            <div class="flex-center-col">
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="sub-heading"
+                >Job End Time</span
+              >
+              <span
+                [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+                class="blunt"
+                >{{ dataUpdated.jobEndTime }}</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="customer-details" *ngIf="AuthService.userPermissions['phoneNumberAddress']=='hide'?false:true" >
+          <div class="flex-between">
+            <span
+              [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+              class="heading flex-width"
+              ><strong>Customer Details</strong></span
+            >
+            <div class="divide-Y"></div>
+            <span
+              [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+              class="heading flex-width"
+              ><strong>Agent Details</strong></span
+            >
+            <div class="divide-Y"></div>
+            <span
+              [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+              class="heading flex-width"
+              ><strong>Location</strong></span
+            >
+          </div>
+
+          <div class="divide-X"></div>
+
+          <div class="flex-between px-2">
+            <div class="width">
+              <div>
+                <svg
+                  *ngIf="!dataUpdated.userPhoto"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#145889'
+                    "
+                  />
+                </svg>
+                <img
+                  *ngIf="dataUpdated.userPhoto"
+                  class="user-photo"
+                  [src]="dataUpdated.userPhoto"
+                />
+                <span
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >{{ dataUpdated.customerName }}</span
+                >
+              </div>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M9.36556 10.6821C10.302 12.3288 11.6712 13.698 13.3179 14.6344L14.2024 13.3961C14.4965 12.9845 15.0516 12.8573 15.4956 13.0998C16.9024 13.8683 18.4571 14.3353 20.0789 14.4637C20.599 14.5049 21 14.9389 21 15.4606V19.9234C21 20.4361 20.6122 20.8657 20.1022 20.9181C19.5723 20.9726 19.0377 21 18.5 21C9.93959 21 3 14.0604 3 5.5C3 4.96227 3.02742 4.42771 3.08189 3.89776C3.1343 3.38775 3.56394 3 4.07665 3H8.53942C9.0611 3 9.49513 3.40104 9.5363 3.92109C9.66467 5.54288 10.1317 7.09764 10.9002 8.50444C11.1427 8.9484 11.0155 9.50354 10.6039 9.79757L9.36556 10.6821ZM6.84425 10.0252L8.7442 8.66809C8.20547 7.50514 7.83628 6.27183 7.64727 5H5.00907C5.00303 5.16632 5 5.333 5 5.5C5 12.9558 11.0442 19 18.5 19C18.667 19 18.8337 18.997 19 18.9909V16.3527C17.7282 16.1637 16.4949 15.7945 15.3319 15.2558L13.9748 17.1558C13.4258 16.9425 12.8956 16.6915 12.3874 16.4061L12.3293 16.373C10.3697 15.2587 8.74134 13.6303 7.627 11.6707L7.59394 11.6126C7.30849 11.1044 7.05754 10.5742 6.84425 10.0252Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#145889'
+                    "
+                  />
+                </svg>
+                <span *ngIf="AuthService.userPermissions['phoneNumberAddress']=='mask'?false:true"
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >{{ dataUpdated.customerPhone }}</span
+                >
+                <span *ngIf="AuthService.userPermissions['phoneNumberAddress']=='mask'?true:false"
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >+91*********</span
+                >
+              </div>
+            </div>
+            <div class="width">
+              <div>
+                <svg
+                  *ngIf="!dataUpdated.agentPhoto"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#145889'
+                    "
+                  />
+                </svg>
+                <img
+                  *ngIf="dataUpdated.agentPhoto"
+                  class="user-photo"
+                  [src]="dataUpdated.agentPhoto"
+                />
+                <span
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >{{ dataUpdated.agentName }}</span
+                >
+              </div>
+              <div>
+                <svg
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9.36556 10.6821C10.302 12.3288 11.6712 13.698 13.3179 14.6344L14.2024 13.3961C14.4965 12.9845 15.0516 12.8573 15.4956 13.0998C16.9024 13.8683 18.4571 14.3353 20.0789 14.4637C20.599 14.5049 21 14.9389 21 15.4606V19.9234C21 20.4361 20.6122 20.8657 20.1022 20.9181C19.5723 20.9726 19.0377 21 18.5 21C9.93959 21 3 14.0604 3 5.5C3 4.96227 3.02742 4.42771 3.08189 3.89776C3.1343 3.38775 3.56394 3 4.07665 3H8.53942C9.0611 3 9.49513 3.40104 9.5363 3.92109C9.66467 5.54288 10.1317 7.09764 10.9002 8.50444C11.1427 8.9484 11.0155 9.50354 10.6039 9.79757L9.36556 10.6821ZM6.84425 10.0252L8.7442 8.66809C8.20547 7.50514 7.83628 6.27183 7.64727 5H5.00907C5.00303 5.16632 5 5.333 5 5.5C5 12.9558 11.0442 19 18.5 19C18.667 19 18.8337 18.997 19 18.9909V16.3527C17.7282 16.1637 16.4949 15.7945 15.3319 15.2558L13.9748 17.1558C13.4258 16.9425 12.8956 16.6915 12.3874 16.4061L12.3293 16.373C10.3697 15.2587 8.74134 13.6303 7.627 11.6707L7.59394 11.6126C7.30849 11.1044 7.05754 10.5742 6.84425 10.0252Z"
+                    [attr.fill]="
+                      dataUpdated.stageStatus ? '#b0b0b0' : '#145889'
+                    "
+                  />
+                </svg>
+                <span *ngIf="AuthService.userPermissions['phoneNumberAddress']=='mask'?false:true"
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >{{ dataUpdated.agentContactNo }}</span
+                >
+                <span *ngIf="AuthService.userPermissions['phoneNumberAddress']=='mask'?true:false"
+                  [ngStyle]="{
+                    color: dataUpdated.stageStatus ? '#b0b0b0' : ''
+                  }"
+                  class="blunt mx-1"
+                  >+91**********</span
+                >
+              </div>
+            </div>
+            <span
+              [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+              class="width text-wrap blunt"
+            >
+              {{ dataUpdated.customerAddress }}
+            </span>
+          </div>
+        </div>
+
+        <div
+          *ngIf="AuthService.userPermissions['jobAcceptance']"
+          [ngStyle]="{ color: dataUpdated.stageStatus ? '#b0b0b0' : '' }"
+          class="price-details p-2"
+        >
+          <strong>PRICE DETAILS</strong>
+          <div class="divide-X"></div>
+          <!-- <div class="flex-between my-3">
+            <span>Category</span>
+            <span>{{data.mainCategory.name}}</span>
+          </div> -->
+          <!-- <div class="flex-between my-3">
+            <span>Sub Category</span>
+            <span>{{data.subCategory.name}}</span>
+          </div> -->
+
+          <ng-container *ngFor="let service of dataUpdated.variants">
+            <span
+              ><b>{{ service.name }}</b></span
+            >
+            <div
+              class="flex-between my-3"
+              *ngFor="let variantItem of service.variants"
+            >
+              <span>{{ variantItem.name }}</span>
+              <span>{{ variantItem.quantity }}</span>
+              <span>₹{{ variantItem.price | number : "1.0-0" }}</span>
+            </div>
+          </ng-container>
+          <div class="flex-between my-3">
+            <span>Sub Total</span>
+            <span>₹{{ dataUpdated.billing.subTotal }}</span>
+          </div>
+          <div class="flex-between my-3" *ngIf="dataUpdated.billing.discount">
+            <span class="text-wrap w-25">Discount/Coupon Applied</span>
+            <span></span>
+            <span>₹{{ dataUpdated.billing.discount | number : "1.0-0" }}</span>
+          </div>
+          <div class="flex-between my-3">
+            <span>GST</span>
+            <span>₹{{ dataUpdated.billing.tax | number : "1.0-0" }}</span>
+          </div>
+          <ng-container
+            *ngIf="dataUpdated.billing && dataUpdated.billing.fixedCharges"
+          >
+            <div
+              class="flex-between my-3"
+              *ngFor="let charge of dataUpdated.billing.fixedCharges"
+            >
+              <span class="text-wrap w-25">{{ charge.name }}</span>
+              <span></span>
+              <span>₹{{ charge.amount | number : "1.0-0" }}</span>
+            </div>
+          </ng-container>
+          <div class="divide-X"></div>
+          <div class="flex-between my-3">
+            <strong>Total Amount</strong>
+            <strong
+              >₹{{ dataUpdated.billing.grandTotal | number : "1.0-0" }}</strong
+            >
+          </div>
+        </div>
+
+        <div class="payment-details p-2" *ngIf="AuthService.userPermissions['jobAcceptance']">
+          <div class="d-flex flex-between">
+            <strong>Payment Details</strong>
+            <div class="payment-status" [ngClass]="paymentStatus">
+              {{ paymentStatus }}
+            </div>
+          </div>
+          <div class="divide-X"></div>
+          <div class="flex-between my-3">
+            <span>Payment Mode</span>
+            <span>{{ paymentMode }}</span>
+          </div>
+          <div
+            class="flex-between my-3"
+            *ngIf="paymentMode === paymentModes.pre"
+          >
+            <span>Transaction ID</span>
+            <span
+              ><svg
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.16972 6.47217V3.47217C7.16972 2.91989 7.61744 2.47217 8.16972 2.47217H20.1697C20.722 2.47217 21.1697 2.91989 21.1697 3.47217V17.4722C21.1697 18.0245 20.722 18.4722 20.1697 18.4722H17.1697V21.4713C17.1697 22.0241 16.7198 22.4722 16.1629 22.4722H4.17658C3.62051 22.4722 3.16992 22.0276 3.16992 21.4713L3.17252 7.47304C3.17262 6.92028 3.62256 6.47217 4.17934 6.47217H7.16972ZM5.17234 8.47217L5.17011 20.4722H15.1697V8.47217H5.17234ZM9.16972 6.47217H17.1697V16.4722H19.1697V4.47217H9.16972V6.47217ZM7.16992 11.4722H13.1699V13.4722H7.16992V11.4722ZM7.16992 15.4722H13.1699V17.4722H7.16992V15.4722Z"
+                  fill="#451338"
+                />
+              </svg>
+              {{ dataUpdated.payment?.id }}</span
+            >
+          </div>
+          <div class="flex-between my-3" *ngIf="dataUpdated.isRefunded">
+            <span>Refund Status</span>
+            <span style="max-width: 400px"
+              >Your Refund has been initiated It will be processed before 3
+              Business Days</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" >
+        <input 
+          *ngIf="
+            dataUpdated.stage === utils.stageMaster.allotmentPending.key ||
+            dataUpdated.stage === utils.stageMaster.washInProgress.key && AuthService.userPermissions['allotReallot']
+          "
+          type="button"
+          value="Allot Booking"
+          class="cta success"
+          (click)="allotBooking()"
+        />
+        <input
+          *ngIf="dataUpdated.stage === utils.stageMaster.acceptancePending.key && AuthService.userPermissions['bookingActions']"
+          type="button"
+          value="Accept Booking"
+          class="cta success"
+          (click)="acceptBooking()"
+        />
+        <input
+          *ngIf="dataUpdated.stage === utils.stageMaster.acceptancePending.key && AuthService.userPermissions['allotReallot']"
+          type="button"
+          value="Reallot Booking"
+          class="cta empty"
+          (click)="allotBooking()"
+        />
+        <input
+          *ngIf="
+            dataUpdated.stage === utils.stageMaster.jobAccepted.key ||
+            dataUpdated.stage === utils.stageMaster.otpVerificationPending.key && AuthService.userPermissions['bookingActions']
+          "
+          type="button"
+          value="Enter OTP"
+          class="cta success"
+          (click)="enterOTP()"
+        />
+        <!-- <input
+          *ngIf="dataUpdated.stage === utils.stageMaster.inProgress.key"
+          type="button"
+          value="Upload Images"
+          class="cta success"
+          (click)="uploadImages(true)"
+        /> -->
+        <input
+          *ngIf="dataUpdated.stage === utils.stageMaster.inProgress.key && AuthService.userPermissions['bookingActions']"
+          type="button"
+          value="Complete Booking"
+          class="cta success"
+          (click)="completeBooking()"
+        />
+        <input
+
+          *ngIf="dataUpdated.stage === utils.stageMaster.completed.key && AuthService.userPermissions['jobAcceptance']"
+          type="button"
+          value="Download Invoice"
+          class="cta success"
+          (click)="downloadInvoice()"
+        />
+        <input
+          *ngIf="
+            dataUpdated.stage != utils.stageMaster.completed.key &&
+            dataUpdated.stage != utils.stageMaster.expired.key &&
+            dataUpdated.stage != utils.stageMaster.discarded.key
+            &&  AuthService.userPermissions['bookingActions']
+          "
+          type="button"
+          value="Cancel Booking"
+          class="cta fail"
+          (click)="cancelBooking()"
+        />
+      </div>
+    </div>
+  </div>
+</div>

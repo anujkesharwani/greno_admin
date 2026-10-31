@@ -1,0 +1,115 @@
+<div class="mainContainer">
+    <section class="containerr" >
+        <div class="cardd" *ngFor="let c of cards">
+            <div class="heading" [style]="c.color">
+                <h2>{{c.head}}</h2>
+            </div>
+            <div class="body">
+                <ng-container  *ngFor="let item of bookings">
+                    <div class="one" *ngIf="c.stage.includes(item.stage || '')">
+                        <div class="panel-head" (click)="item.clicked = !item.clicked">
+                            <section>
+                                <img class="userImage" [src]="'https://api.dicebear.com/6.x/initials/svg?seed='+item.currentUser?.phoneNumber" alt="">
+                            </section>
+                            <section class="content" style="flex-grow: 1;">
+                                <div class="row-2">
+                                    <section>
+                                        <img src="assets/icon/booking/all-booking/call.svg" alt="">
+                                        <h2>{{item.currentUser?.name}}</h2>
+                                    </section>
+                                    <section>
+                                        <h3 *ngFor="let service of item.services">{{service.name}}</h3>
+                                        <h4>{{item.billing.grandTotal | currency:'INR'}}</h4>
+                                        <img src="assets/icon/booking/all-booking/arrow-down.svg" alt=""
+                                        [ngClass]="item.clicked ? 'rotateClass' : 'no'">
+                                    </section>
+                                </div>
+                                <h5>{{item.id}}</h5>
+                            </section>
+                        </div>
+                        <div class="panel-body" *ngIf="item.clicked">
+                            <section class="row-3">
+                                <div class="left" *ngFor="let service of item.services">
+                                    <h2>Service :</h2>
+                                    <h2>{{service.name}}</h2>
+                                </div>
+                                <!-- <div class="right">
+                                    <h3>Agent assigned history</h3>
+                                    <img src="assets/icon/booking/all-booking/arrow-right.svg" alt="">
+                                </div> -->
+                            </section>
+                            <div class="row-x">
+                                <h4>Booking Made :</h4>
+                                <h4>{{item.createdAt.toDate() | date:'short'}} </h4>
+                            </div>
+                            <div class="row-4">
+                                <h4>Time & Date :</h4>
+                                <h4>{{item.timeSlot?.date?.toDate() | date:'shortDate'}} {{item.timeSlot?.date?.toDate() | date:'shortTime'}}</h4>
+                            </div>
+                            <div class="row-5">
+                                <i class="ri-map-pin-line"></i>
+                                <h4>{{item.address?.addressLine1}}</h4>
+                                <h4>{{item.address?.addressLine2}}</h4>
+                                <h4>{{item.address?.pinCode}}</h4>
+                            </div>
+    
+                            <div class="btnnn">
+                                <button mat-flat-button id="b1" *ngIf="item.stage == 'cancelled' || item.stage == 'completed'">Cancel</button>
+                                <button mat-flat-button id="b2" *ngIf="item.stage == 'unassigned'" (click)="assignAgent(item)">Assign</button>
+                                <button mat-flat-button id="b2" *ngIf="item.stage == 'assigned'" (click)="reAssignAgent(item)">Re-assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+    
+    <!-- <section class="containerr" >
+        <div class="cardd" >
+            <div class="heading" style="background: #F46152;">
+                <h2>Cancelled</h2>
+            </div>
+            <div class="body cancelled-body" >
+                <div *ngFor="let item of cancelled" class="one">
+                    <div class="panel-head">
+                        <section>
+                            <img [src]="item.imgSource" alt="">
+                        </section>
+                        <section class="content" style="flex-grow: 1;">
+                            <div class="row-2">
+                                <section>
+                                    
+                                    <h2>{{item.name}}</h2>
+                                </section>
+                                <section style="gap:30px">
+                                    <h3>{{item.service}}</h3>
+                                    
+                                    <img src="assets/icon/booking/all-booking/call.svg" alt="" id="call">
+                                </section>
+                            </div>
+                            <h5>{{item.id}}</h5>
+                        </section>
+                    </div>
+                    <div class="panel-body" >
+                        <section class="row-3">
+                            <div class="left">
+                                <h2>Service :</h2>
+                                <h2>{{item.serviceName}}</h2>
+                            </div>
+                        </section>
+                        
+                        <div class="row-4">
+                            <h4>Time & Date :</h4>
+                            <h4>{{item.timeNDate}}</h4>
+                        </div>
+                        <div class="row-5">
+                            <img src="assets/icon/booking/all-booking/location.png" alt="">
+                            <h4>{{item.address}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</div>

@@ -1,0 +1,139 @@
+$success: #14ae5c;
+$danger: #e82c2c;
+$neutral: #bcbcbc;
+$heading: #094A28;
+
+* {
+  font-size: 16px;
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.modal-title {
+  color: $heading !important;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  color: white;
+}
+
+.redCir {
+  background-color: $danger !important;
+}
+
+.greenCir {
+  background-color: $success !important;
+}
+
+.neutralCir {
+  background-color: $neutral !important;
+}
+
+.header-title,
+.header-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header {
+  font-size: 18px !important;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 707px !important;
+  height: fit-content !important;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+svg,
+mat-icon {
+  cursor: pointer;
+}
+
+.searchBox {
+  background-color: #f0f0f0;
+  padding: 5px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+  height: 49px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.searchBox > input {
+  background-color: #f0f0f0;
+  outline: none;
+  border: none;
+  width: 97%;
+}
+
+.agents-body {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.agent-body {
+  margin: 30px 0;
+}
+
+.agent-contact,
+.agent-title {
+  display: flex;
+  align-items: center;
+}
+
+.cta {
+  display: flex;
+  width: 154px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+}
